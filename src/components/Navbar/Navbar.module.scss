@@ -1,0 +1,136 @@
+@use '../../styles/variables' as *;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  transition: all $transition-normal;
+  padding: 1.5rem 0;
+  background-color: transparent;
+
+  &.scrolled {
+    background-color: rgba($color-white, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    box-shadow: $shadow-sm;
+  }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: $color-blue-dark;
+
+  .logo-icon {
+    color: $color-lime-main;
+  }
+}
+
+.desktopMenu {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+
+  @media (min-width: $bp-lg) {
+    display: flex;
+  }
+
+  .navLink {
+    font-weight: 500;
+    color: $color-gray-600;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $color-lime-main;
+    }
+  }
+}
+
+.desktopActions {
+  display: none;
+  align-items: center;
+  gap: 1.5rem;
+
+  @media (min-width: $bp-lg) {
+    display: flex;
+  }
+}
+
+.langSelector {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 600;
+  color: $color-blue-dark;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-lime-dark;
+  }
+}
+
+.mobileMenuBtn {
+  display: block;
+  background: none;
+  border: none;
+  color: $color-blue-dark;
+  padding: 0.5rem;
+  cursor: pointer;
+
+  @media (min-width: $bp-lg) {
+    display: none;
+  }
+}
+
+/* Mobile Menu Overlay */
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: $color-white;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  
+  .closeBtn {
+    align-self: flex-end;
+    margin-bottom: 3rem;
+  }
+
+  .mobileNavLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: $color-blue-dark;
+    
+    a {
+      transition: color $transition-fast;
+      &:hover {
+        color: $color-lime-main;
+      }
+    }
+  }
+
+  .mobileActions {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}

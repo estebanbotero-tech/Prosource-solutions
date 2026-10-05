@@ -1,0 +1,156 @@
+@use '../../styles/variables' as *;
+
+.contact {
+  background-color: $color-gray-50;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  
+  @media (min-width: $bp-lg) {
+    grid-template-columns: 1fr 1.5fr;
+  }
+}
+
+.info {
+  .title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.infoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  .icon {
+    color: $color-lime-main;
+    margin-top: 0.25rem;
+  }
+
+  .details {
+    h4 {
+      font-size: 1.125rem;
+      margin-bottom: 0.25rem;
+      color: $color-blue-dark;
+    }
+    
+    p {
+      color: $color-gray-600;
+      white-space: pre-line;
+
+      & + p {
+        margin-top: 0.75rem;
+      }
+    }
+
+    a:hover {
+      color: $color-blue-main;
+      text-decoration: underline;
+    }
+  }
+}
+
+.formCard {
+  background-color: $color-white;
+  border-radius: $radius-xl;
+  padding: 2.5rem;
+  box-shadow: $shadow-lg;
+  
+  .title {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+    color: $color-blue-dark;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $color-gray-700;
+  }
+
+  input, textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid $color-gray-300;
+    border-radius: $radius-md;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all $transition-fast;
+    background-color: $color-gray-50;
+
+    &:focus {
+      outline: none;
+      border-color: $color-lime-main;
+      background-color: $color-white;
+      box-shadow: 0 0 0 3px rgba($color-lime-main, 0.2);
+    }
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .errorMsg {
+    font-size: 0.875rem;
+    color: #ef4444;
+    margin-top: 0.25rem;
+  }
+}
+
+.formGroup .consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-weight: 400;
+  line-height: 1.5;
+  cursor: pointer;
+
+  input {
+    width: auto;
+    margin-top: 0.25rem;
+    accent-color: $color-blue-main;
+  }
+
+  a {
+    color: $color-blue-main;
+    text-decoration: underline;
+  }
+}
+
+.submitError {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: rgba(#ef4444, 0.1);
+  color: #b91c1c;
+  border-radius: $radius-md;
+  text-align: center;
+  font-weight: 600;
+}
+
+.submitSuccess {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: rgba($color-lime-main, 0.2);
+  color: $color-blue-dark;
+  border-radius: $radius-md;
+  text-align: center;
+  font-weight: 600;
+}

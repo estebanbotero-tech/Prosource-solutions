@@ -1,0 +1,138 @@
+@use '../../styles/variables' as *;
+
+.solutions {
+  background-color: $color-white;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  
+  @media (min-width: $bp-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.card {
+  position: relative;
+  border-radius: $radius-xl;
+  overflow: hidden;
+  height: 400px;
+  display: flex;
+  align-items: flex-end;
+  group: hover;
+  
+  @media (min-width: $bp-md) {
+    height: 450px;
+  }
+}
+
+.imageWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba($color-blue-dark, 0.95) 0%, rgba($color-blue-dark, 0.4) 50%, rgba($color-blue-dark, 0) 100%);
+    transition: background $transition-normal;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease-out;
+  }
+}
+
+.card:hover .imageWrapper {
+  &::after {
+    background: linear-gradient(to top, rgba($color-blue-dark, 0.98) 0%, rgba($color-blue-dark, 0.7) 60%, rgba($color-blue-dark, 0.3) 100%);
+  }
+  
+  img {
+    transform: scale(1.05);
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  padding: 2.5rem;
+  width: 100%;
+  color: $color-white;
+  transform: translateY(20px);
+  transition: transform $transition-normal;
+}
+
+.card:hover .content {
+  transform: translateY(0);
+}
+
+.iconWrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: $radius-md;
+  background-color: $color-lime-main;
+  color: $color-blue-dark;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: $color-white;
+}
+
+.cardDesc {
+  color: $color-gray-200;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
+  transition: opacity $transition-normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card:hover .cardDesc {
+  opacity: 1;
+}
+
+.cardLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: $color-lime-main;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all $transition-normal;
+  
+  .arrow {
+    transition: transform $transition-fast;
+  }
+
+  &:hover .arrow {
+    transform: translateX(5px);
+  }
+}
+
+.card:hover .cardLink {
+  opacity: 1;
+  transform: translateY(0);
+}

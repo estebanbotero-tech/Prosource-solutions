@@ -1,0 +1,61 @@
+@use '../../styles/variables' as *;
+
+.whyus {
+  background-color: $color-gray-50;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  
+  @media (min-width: $bp-sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: $bp-lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.feature {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background-color: $color-white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+  transition: all $transition-normal;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-5px);
+
+    .iconWrapper {
+      background-color: $color-blue-main;
+      color: $color-lime-main;
+    }
+  }
+
+  .iconWrapper {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: rgba($color-lime-main, 0.15);
+    color: $color-blue-main;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem auto;
+    transition: all $transition-normal;
+  }
+
+  .title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .description {
+    color: $color-gray-600;
+    font-size: 0.95rem;
+  }
+}

@@ -1,0 +1,71 @@
+@use '../../styles/variables' as *;
+
+.about {
+  background-color: $color-white;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  
+  @media (min-width: $bp-lg) {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+}
+
+.textContent {
+  .title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    
+    @media (min-width: $bp-md) {
+      font-size: 2.5rem;
+    }
+  }
+
+  .description {
+    font-size: 1.125rem;
+    color: $color-gray-600;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+
+  .statCard {
+    background-color: $color-gray-50;
+    border-radius: $radius-lg;
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid $color-gray-100;
+    transition: all $transition-normal;
+
+    &:hover {
+      box-shadow: $shadow-md;
+      transform: translateY(-5px);
+      border-color: $color-lime-light;
+    }
+
+    .statValue {
+      display: block;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: $color-blue-main;
+      margin-bottom: 0.5rem;
+    }
+
+    .statLabel {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: $color-gray-500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  }
+}

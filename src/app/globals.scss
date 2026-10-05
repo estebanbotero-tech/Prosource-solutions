@@ -1,0 +1,128 @@
+@use '../styles/variables' as *;
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: $font-family-sans;
+  background-color: $color-white;
+  color: $color-gray-800;
+  scroll-behavior: smooth;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  color: $color-blue-dark;
+}
+
+p {
+  line-height: 1.6;
+}
+
+/* Keep anchored sections from hiding under the fixed navbar */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+/* Helper Classes */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section {
+  padding: 5rem 0;
+  
+  @media (min-width: $bp-md) {
+    padding: 8rem 0;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  
+  @media (min-width: $bp-md) {
+    font-size: 2.5rem;
+  }
+}
+
+.section-subtitle {
+  color: $color-gray-500;
+  font-size: 1.125rem;
+  max-width: 600px;
+  margin: 0 auto 3rem auto;
+}
+
+/* Base button styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: $radius-full;
+  font-weight: 600;
+  transition: all $transition-normal;
+  gap: 0.5rem;
+  
+  &.btn-primary {
+    background-color: $color-lime-main;
+    color: $color-blue-dark;
+    
+    &:hover {
+      background-color: $color-lime-dark;
+      box-shadow: $shadow-lime;
+      transform: translateY(-2px);
+    }
+  }
+  
+  &.btn-secondary {
+    background-color: $color-blue-dark;
+    color: $color-white;
+    
+    &:hover {
+      background-color: $color-blue-main;
+      transform: translateY(-2px);
+      box-shadow: $shadow-md;
+    }
+  }
+
+  &.btn-outline {
+    border: 2px solid $color-blue-dark;
+    color: $color-blue-dark;
+    
+    &:hover {
+      background-color: $color-blue-dark;
+      color: $color-white;
+    }
+  }
+}
