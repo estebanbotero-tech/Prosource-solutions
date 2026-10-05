@@ -1,0 +1,310 @@
+@use '../../styles/variables' as *;
+
+.estimatorSection {
+  background: linear-gradient(180deg, $color-white 0%, $color-gray-50 100%);
+  position: relative;
+}
+
+.badgeWrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba($color-blue-main, 0.1);
+  color: $color-blue-dark;
+  padding: 0.35rem 0.9rem;
+  border-radius: $radius-full;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.calculatorCard {
+  background-color: $color-white;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-xl;
+  border: 1px solid $color-gray-200;
+  display: grid;
+  grid-template-columns: 1fr;
+  overflow: hidden;
+
+  @media (min-width: $bp-lg) {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+}
+
+.leftCol {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.stepGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.stepTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: $color-blue-dark;
+  margin-bottom: 1.25rem;
+}
+
+.optionsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+
+  @media (min-width: $bp-sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.optionBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: $radius-lg;
+  border: 1.5px solid $color-gray-200;
+  background-color: $color-white;
+  text-align: left;
+  transition: all $transition-fast;
+
+  &:hover {
+    border-color: $color-blue-main;
+    background-color: rgba($color-blue-main, 0.02);
+  }
+
+  &.active {
+    border-color: $color-blue-main;
+    background-color: rgba($color-blue-main, 0.06);
+    box-shadow: 0 0 0 2px rgba($color-blue-main, 0.2);
+
+    .optionRadio {
+      border-color: $color-blue-main;
+
+      &::after {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .optionName {
+      color: $color-blue-dark;
+      font-weight: 700;
+    }
+  }
+}
+
+.optionRadio {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid $color-gray-400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+
+  &::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: $color-blue-main;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all $transition-fast;
+  }
+}
+
+.optionName {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: $color-gray-700;
+}
+
+.sizeGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+
+  @media (min-width: $bp-sm) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.sizeCard {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-radius: $radius-lg;
+  border: 1.5px solid $color-gray-200;
+  background-color: $color-white;
+  text-align: left;
+  transition: all $transition-fast;
+
+  &:hover {
+    border-color: $color-lime-main;
+    background-color: rgba($color-lime-main, 0.05);
+  }
+
+  &.active {
+    border-color: #849e0f;
+    background-color: rgba($color-lime-main, 0.15);
+    box-shadow: 0 0 0 2px rgba($color-lime-main, 0.3);
+
+    .sizeTitle {
+      color: $color-blue-dark;
+      font-weight: 700;
+    }
+  }
+}
+
+.sizeTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: $color-gray-800;
+  margin-bottom: 0.35rem;
+}
+
+.sizeDesc {
+  font-size: 0.75rem;
+  color: $color-gray-500;
+  line-height: 1.3;
+}
+
+.rightCol {
+  background: linear-gradient(135deg, $color-blue-dark 0%, #001f3f 100%);
+  padding: 2.5rem;
+  color: $color-white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.resultBox {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.resultTitle {
+  font-size: 1.25rem;
+  color: $color-white;
+  font-weight: 700;
+}
+
+.impactCard {
+  background: rgba($color-white, 0.07);
+  border: 1px solid rgba($color-white, 0.12);
+  border-radius: $radius-xl;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.impactRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.impactIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: $radius-md;
+  background: rgba($color-white, 0.1);
+  color: $color-lime-main;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.impactLabel {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color-gray-300;
+  margin-bottom: 0.2rem;
+}
+
+.impactValueGreen {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: $color-lime-main;
+  line-height: 1.2;
+}
+
+.impactValueBlue {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #93c5fd;
+  line-height: 1.2;
+}
+
+.impactValueDark {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: $color-gray-200;
+  line-height: 1.3;
+}
+
+.actionButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.waBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background-color: #25d366;
+  color: $color-white;
+  padding: 0.9rem 1.5rem;
+  border-radius: $radius-full;
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+  transition: all $transition-normal;
+
+  &:hover {
+    background-color: #20ba5a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+  }
+}
+
+.emailBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: $color-gray-300;
+  border: 1px solid rgba($color-white, 0.2);
+  padding: 0.75rem 1.5rem;
+  border-radius: $radius-full;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all $transition-fast;
+
+  &:hover {
+    color: $color-white;
+    border-color: $color-white;
+    background-color: rgba($color-white, 0.05);
+  }
+}

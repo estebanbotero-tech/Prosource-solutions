@@ -1,0 +1,82 @@
+@use '../../styles/variables' as *;
+
+.trustSection {
+  background-color: $color-white;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid $color-gray-200;
+  border-top: 1px solid rgba($color-gray-200, 0.6);
+}
+
+.headerTitle {
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $color-gray-400;
+  margin-bottom: 2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+
+  @media (min-width: $bp-sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: $bp-lg) {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.75rem 1rem;
+  border-radius: $radius-lg;
+  background-color: $color-gray-50;
+  border: 1px solid $color-gray-200;
+  transition: all $transition-fast;
+
+  &:hover {
+    background-color: $color-white;
+    border-color: $color-blue-main;
+    box-shadow: $shadow-sm;
+    transform: translateY(-2px);
+  }
+}
+
+.iconCircle {
+  width: 40px;
+  height: 40px;
+  border-radius: $radius-md;
+  background-color: rgba($color-blue-main, 0.08);
+  color: $color-blue-main;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.itemName {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: $color-blue-dark;
+  line-height: 1.2;
+  margin-bottom: 0.2rem;
+}
+
+.itemTag {
+  font-size: 0.75rem;
+  color: $color-gray-500;
+  line-height: 1.2;
+}

@@ -22,8 +22,10 @@ export default function Navbar() {
   const navLinks = [
     { name: dict.nav.home, href: `/${lang}` },
     { name: dict.nav.services, href: `/${lang}#services` },
-    { name: dict.nav.about, href: `/${lang}#about` },
+    { name: dict.nav.cases, href: `/${lang}#cases` },
+    { name: dict.nav.estimator, href: `/${lang}#estimator` },
     { name: dict.nav.solutions, href: `/${lang}#solutions` },
+    { name: dict.nav.about, href: `/${lang}#about` },
     { name: dict.nav.contact, href: `/${lang}#contact` },
   ];
 

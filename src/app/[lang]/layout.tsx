@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import "../globals.scss";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
+import WhatsAppWidget from "@/components/WhatsAppWidget/WhatsAppWidget";
 import { locales, hasLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { I18nProvider } from "@/i18n/I18nProvider";
@@ -36,6 +37,7 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[la
           <Navbar />
           <main>{children}</main>
           <Footer />
+          <WhatsAppWidget />
         </I18nProvider>
       </body>
     </html>

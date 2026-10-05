@@ -149,6 +149,7 @@ export default function Contact() {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <h3 className={styles.title}>{t.formTitle}</h3>
+          {t.formSubtitle && <p className={styles.formSubtitle}>{t.formSubtitle}</p>}
 
           <form className={styles.form} onSubmit={handleSubmit} noValidate>
             <input

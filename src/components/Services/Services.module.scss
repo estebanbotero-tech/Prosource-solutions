@@ -72,23 +72,39 @@
   }
 
   .iconWrapper {
-    width: 60px;
-    height: 60px;
+    width: 56px;
+    height: 56px;
     border-radius: $radius-lg;
     background-color: $color-lime-light;
     color: $color-blue-main;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
     position: relative;
     z-index: 1;
     transition: all $transition-normal;
   }
 
+  .badgePill {
+    display: inline-block;
+    width: fit-content;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #3f4e04;
+    background-color: rgba($color-lime-main, 0.25);
+    padding: 0.25rem 0.65rem;
+    border-radius: $radius-full;
+    margin-bottom: 0.75rem;
+    position: relative;
+    z-index: 1;
+  }
+
   .cardTitle {
     font-size: 1.25rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     position: relative;
     z-index: 1;
   }
@@ -100,6 +116,7 @@
     flex-grow: 1;
     position: relative;
     z-index: 1;
+    line-height: 1.55;
   }
 
   .cardLink {
@@ -107,8 +124,8 @@
     align-items: center;
     gap: 0.5rem;
     color: $color-blue-main;
-    font-weight: 600;
-    font-size: 0.9rem;
+    font-weight: 700;
+    font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     position: relative;
@@ -118,8 +135,11 @@
       transition: transform $transition-fast;
     }
 
-    &:hover .arrow {
-      transform: translateX(5px);
+    &:hover {
+      color: $color-blue-dark;
+      .arrow {
+        transform: translateX(5px);
+      }
     }
   }
 }

@@ -1,7 +1,7 @@
 @use '../../styles/variables' as *;
 
 .cta {
-  background-color: $color-blue-main;
+  background: linear-gradient(135deg, $color-blue-dark 0%, $color-blue-main 100%);
   color: $color-white;
   text-align: center;
   position: relative;
@@ -14,7 +14,7 @@
     left: -10%;
     width: 60%;
     height: 200%;
-    background: radial-gradient(circle, rgba($color-lime-main, 0.15) 0%, rgba($color-lime-main, 0) 70%);
+    background: radial-gradient(circle, rgba($color-lime-main, 0.2) 0%, rgba($color-lime-main, 0) 70%);
     z-index: 0;
   }
 
@@ -25,7 +25,7 @@
     right: -10%;
     width: 60%;
     height: 200%;
-    background: radial-gradient(circle, rgba($color-blue-light, 0.1) 0%, rgba($color-blue-light, 0) 70%);
+    background: radial-gradient(circle, rgba($color-blue-light, 0.15) 0%, rgba($color-blue-light, 0) 70%);
     z-index: 0;
   }
 }
@@ -33,22 +33,74 @@
 .content {
   position: relative;
   z-index: 1;
-  max-width: 800px;
+  max-width: 820px;
   margin: 0 auto;
 }
 
-.title {
-  font-size: 2.5rem;
-  color: $color-white;
+.badgePill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba($color-lime-main, 0.2);
+  color: $color-lime-main;
+  border: 1px solid rgba($color-lime-main, 0.35);
+  padding: 0.4rem 1rem;
+  border-radius: $radius-full;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 2.25rem;
+  color: $color-white;
+  margin-bottom: 1.25rem;
+  font-weight: 800;
+  line-height: 1.2;
   
   @media (min-width: $bp-md) {
-    font-size: 3.5rem;
+    font-size: 3.25rem;
   }
 }
 
 .subtitle {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   color: $color-gray-200;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  @media (min-width: $bp-sm) {
+    flex-direction: row;
+  }
+}
+
+.waBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: $radius-full;
+  font-weight: 700;
+  color: $color-white;
+  background-color: #25d366;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all $transition-normal;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+
+  &:hover {
+    background-color: #20ba5a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+  }
 }

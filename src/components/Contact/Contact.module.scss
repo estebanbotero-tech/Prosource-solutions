@@ -63,8 +63,15 @@
   
   .title {
     font-size: 1.75rem;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
     color: $color-blue-dark;
+  }
+
+  .formSubtitle {
+    font-size: 0.95rem;
+    color: $color-gray-500;
+    margin-bottom: 2rem;
+    line-height: 1.5;
   }
 }
 

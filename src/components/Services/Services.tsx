@@ -52,8 +52,11 @@ export default function Services() {
               <motion.div key={service.title} className={styles.card} variants={itemVariants}>
                 <span className={styles.number}>{String(i + 1).padStart(2, '0')}</span>
                 <div className={styles.iconWrapper}>
-                  <Icon size={32} />
+                  <Icon size={28} />
                 </div>
+                {service.badge && (
+                  <span className={styles.badgePill}>{service.badge}</span>
+                )}
                 <h3 className={styles.cardTitle}>{service.title}</h3>
                 <p className={styles.cardDesc}>{service.description}</p>
                 <Link
