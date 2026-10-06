@@ -57,6 +57,9 @@ body {
 
 html {
   scrollbar-gutter: stable; // no layout shift when a modal locks scroll
+  // Thin brand-colored page scrollbar instead of the wide default Windows one (same look as the service modal)
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--heading) 35%, transparent) var(--bg);
 }
 
 a {

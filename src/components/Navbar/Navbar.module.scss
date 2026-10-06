@@ -84,48 +84,84 @@
 .desktopMenu {
   display: none;
   align-items: center;
-  gap: 1.25rem;
+  gap: 0.25rem;
 
   @media (min-width: $bp-lg) {
     display: flex;
   }
 
   @media (min-width: $bp-xl) {
-    gap: 2.25rem;
+    gap: 1rem;
   }
 
-  // Lime underline grows from the left; text turns navy (lime text is illegible on white)
+  // Hover pill and lime underline glide between links (framer layoutId); text turns navy (lime text is illegible on white)
   .navLink {
     position: relative;
     white-space: nowrap;
     font-weight: 500;
     color: var(--text-muted);
-    padding: 0.35rem 0;
+    padding: 0.45rem 0.85rem;
     transition: color $transition-fast;
-
-    &::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 2px;
-      border-radius: 2px;
-      background: $color-lime-main;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
-    }
 
     &:hover,
     &.active {
       color: var(--heading);
     }
+  }
+}
 
-    &:hover::after,
-    &.active::after {
-      transform: scaleX(1);
-    }
+// Rolling text: on hover every letter slides up and out while its copy rolls in from below, in a wave
+.roll {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden;
+  line-height: 1.35;
+  height: 1.35em;
+}
+
+.rollRow {
+  display: block;
+  white-space: pre;
+
+  & + & {
+    position: absolute;
+    left: 0;
+    top: 100%;
+  }
+
+  span {
+    display: inline-block;
+    transition: transform 480ms cubic-bezier(0.76, 0, 0.24, 1);
+    transition-delay: calc(var(--i) * 16ms);
+  }
+}
+
+.navLink:hover .rollRow span,
+.navLink:focus-visible .rollRow span {
+  transform: translateY(-100%);
+}
+
+// Over the dark hero the incoming copy is lime (readable on navy, unlike on white)
+.onDark .rollRow + .rollRow {
+  color: $color-lime-main;
+}
+
+// Lime dot that glides to the hovered link and settles back on the current section
+.dot {
+  position: absolute;
+  left: calc(50% - 3px);
+  bottom: -0.15rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: $color-lime-main;
+  box-shadow: 0 0 10px rgba($color-lime-main, 0.7);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rollRow span {
+    transition: none;
   }
 }
 

@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, Globe, Moon, Sun } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, MotionConfig } from 'framer-motion';
 import styles from './Navbar.module.scss';
 import Logo from '@/components/Logo/Logo';
 import { useI18n } from '@/i18n/I18nProvider';
@@ -16,6 +16,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState('');
+  const [hoverId, setHoverId] = useState<string | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
   const otherLang = lang === 'es' ? 'en' : 'es';
@@ -119,18 +120,35 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Menu */}
-        <nav className={styles.desktopMenu}>
-          {navLinks.map((link) => (
-            <Link
-              key={link.id}
-              href={`/${lang}#${link.id}`}
-              className={`${styles.navLink} ${activeId === link.id ? styles.active : ''}`}
-              aria-current={activeId === link.id ? 'location' : undefined}
-            >
-              {link.name}
-            </Link>
-          ))}
-        </nav>
+        {/* Rolling text on hover; the lime dot follows hover, then settles back on the current section */}
+        <MotionConfig reducedMotion="user" transition={{ type: 'spring', stiffness: 500, damping: 38 }}>
+          <nav className={styles.desktopMenu} onMouseLeave={() => setHoverId(null)}>
+            {navLinks.map((link) => (
+              <Link
+                key={link.id}
+                href={`/${lang}#${link.id}`}
+                className={`${styles.navLink} ${activeId === link.id ? styles.active : ''}`}
+                aria-current={activeId === link.id ? 'location' : undefined}
+                aria-label={link.name}
+                onMouseEnter={() => setHoverId(link.id)}
+                onFocus={() => setHoverId(link.id)}
+                onBlur={() => setHoverId(null)}
+              >
+                {/* Two copies split into letters; aria-label keeps screen readers from spelling it out */}
+                <span className={styles.roll} aria-hidden="true">
+                  {[0, 1].map((row) => (
+                    <span key={row} className={styles.rollRow}>
+                      {[...link.name].map((ch, i) => (
+                        <span key={i} style={{ ['--i' as string]: i }}>{ch}</span>
+                      ))}
+                    </span>
+                  ))}
+                </span>
+                {(hoverId ?? activeId) === link.id && <motion.span layoutId="nav-dot" className={styles.dot} />}
+              </Link>
+            ))}
+          </nav>
+        </MotionConfig>
 
         {/* Desktop Actions */}
         <div className={styles.desktopActions}>
