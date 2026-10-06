@@ -15,13 +15,14 @@ const BASES: [number, number][] = [
 const CLIENTS: [number, number][] = [
   [33.75, -84.39], // Atlanta
 ];
-// One point per continent: global reach, not specific clients
+// One point per continent (white dot + arc from Colombia): global reach, not specific clients
 const REACH: [number, number][] = [
   [34.05, -118.24], // North America · Los Angeles
   [-23.55, -46.63], // South America · São Paulo
   [40.42, -3.7],    // Europe · Madrid
   [1.35, 103.82],   // Asia · Singapore
   [-33.87, 151.21], // Oceania · Sydney
+  [-26.2, 28.05],   // Africa · Johannesburg
 ];
 
 // Every country in the Americas (capital, or its main city): small dots without arcs.
@@ -78,6 +79,18 @@ const WORLD: [number, number][] = [
   [35.68, 139.69],  // Tokyo
 ];
 
+// Key markets: thinner sky-blue arcs from Colombia (Atlanta keeps the lime arc as the real client)
+const MARKETS: [number, number][] = [
+  [40.71, -74.0],   // USA · New York
+  [43.65, -79.38],  // Canada · Toronto
+  [19.43, -99.13],  // México · Ciudad de México
+  [-23.55, -46.63], // Brazil · São Paulo
+  [40.42, -3.7],    // Spain · Madrid
+  [51.51, -0.13],   // UK · London
+  [25.2, 55.27],    // UAE · Dubai
+  [35.68, 139.69],  // Japan · Tokyo
+];
+
 const LIME: RGB = [0.71, 0.83, 0.11];
 const SKY: RGB = [0.55, 0.75, 1];
 const WHITE: RGB = [1, 1, 1];
@@ -125,8 +138,10 @@ export default function Globe() {
         ...REACH.map((location) => ({ location, size: 0.035, color: WHITE })),
         ...[...AMERICAS, ...WORLD].map((location) => ({ location, size: 0.025, color: SKY })),
       ],
-      // Only arc: Colombia → Atlanta (the real client). Everything else is dots.
+      // Colombia → Atlanta (the real client) in lime; Colombia → key markets and every continent in sky blue
       arcs: [
+        ...[...MARKETS, ...REACH.filter((r) => !MARKETS.some((m) => m[0] === r[0] && m[1] === r[1]))]
+          .map((to) => ({ from: BASES[0], to, color: SKY })),
         ...CLIENTS.map((to) => ({ from: BASES[0], to, color: LIME })),
       ],
       arcColor: LIME,
