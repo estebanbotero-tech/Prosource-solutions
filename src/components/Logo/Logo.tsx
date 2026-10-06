@@ -15,15 +15,28 @@ export default function Logo({ className, variant = 'footer' }: LogoProps) {
 
   return (
     <div className={className} style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
-      <Image 
-        src={imgSrc} 
-        alt="Prosource Logo" 
-        width={width} 
-        height={height} 
+      <Image
+        src={imgSrc}
+        alt="Prosource Logo"
+        width={width}
+        height={height}
         style={{ objectFit: 'contain', width: `${width}px`, height: `${height}px` }}
+        className={variant === 'header' ? 'onlyLight' : undefined}
         priority
         unoptimized
       />
+      {/* Dark mode: same icon with the blue figures in white */}
+      {variant === 'header' && (
+        <Image
+          src="/logo-header-white.webp"
+          alt="Prosource Logo"
+          width={width}
+          height={height}
+          style={{ objectFit: 'contain', width: `${width}px`, height: `${height}px` }}
+          className="onlyDark"
+          unoptimized
+        />
+      )}
     </div>
   );
 }

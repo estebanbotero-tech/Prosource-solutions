@@ -49,7 +49,12 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[la
   if (!hasLocale(lang)) notFound();
 
   return (
-    <html lang={lang} className={display.variable}>
+    // suppressHydrationWarning: the inline script sets data-theme before React hydrates
+    <html lang={lang} className={display.variable} suppressHydrationWarning>
+      <head>
+        {/* Apply the saved theme before first paint (no flash); no saved choice = follow the OS */}
+        <script dangerouslySetInnerHTML={{ __html: `try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}` }} />
+      </head>
       <body className={inter.className}>
         <I18nProvider lang={lang} dict={getDictionary(lang)}>
           <Navbar />

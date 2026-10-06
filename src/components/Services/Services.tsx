@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, type MotionValue } from 'framer-motion';
-import { ArrowRight, X, MessageCircle, CheckCircle2, Sparkles, Send } from 'lucide-react';
+import { ArrowRight, X, MessageCircle, Sparkles, Send } from 'lucide-react';
 import styles from './Services.module.scss';
 import { serviceIcons } from '@/data/services';
 import { useI18n } from '@/i18n/I18nProvider';
@@ -65,10 +65,11 @@ export default function Services() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setActiveModalIndex(null);
     };
-    document.body.style.overflow = 'hidden';
+    // html is the scroller (overflow-x: clip on html/body), so lock it, not body
+    document.documentElement.style.overflow = 'hidden';
     window.addEventListener('keydown', handleKeyDown);
     return () => {
-      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [activeModalIndex]);
@@ -141,16 +142,23 @@ export default function Services() {
                 <X size={22} />
               </button>
 
-              {/* Modal Header with Title & Badge */}
-              <div className={styles.modalHeader}>
-                {activeService.badge && (
-                  <span className={styles.modalBadgePill}>
-                    <Sparkles size={14} /> {activeService.badge}
-                  </span>
+              <div className={styles.modalScroll}>
+              {/* Hero: image with title overlaid */}
+              <div className={`${styles.modalHero} ${activeService.image ? '' : styles.modalHeroPlain}`}>
+                {activeService.image && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={activeService.image} alt="" className={styles.modalHeroImg} />
                 )}
-                <h2 className={styles.modalTitle}>
-                  {activeService.details?.headline || activeService.title}
-                </h2>
+                <div className={styles.modalHeroContent}>
+                  {activeService.badge && (
+                    <span className={styles.modalBadgePill}>
+                      <Sparkles size={14} /> {activeService.badge}
+                    </span>
+                  )}
+                  <h2 className={styles.modalTitle}>
+                    {activeService.details?.headline || activeService.title}
+                  </h2>
+                </div>
               </div>
 
               {/* Modal Body */}
@@ -161,18 +169,6 @@ export default function Services() {
                 )}
                 {activeService.details?.p2 && (
                   <p className={styles.modalP}>{activeService.details.p2}</p>
-                )}
-
-                {/* Optional Representative Image */}
-                {activeService.image && (
-                  <div className={styles.modalImageWrapper}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={activeService.image}
-                      alt={activeService.title}
-                      className={styles.modalImage}
-                    />
-                  </div>
                 )}
 
                 {/* What we offer (if present) */}
@@ -197,9 +193,7 @@ export default function Services() {
                   <div className={styles.featuresGrid}>
                     {activeService.details.features.map((feat, idx) => (
                       <div key={idx} className={styles.featureCard}>
-                        <div className={styles.featIconWrapper}>
-                          <CheckCircle2 size={20} />
-                        </div>
+                        <span className={styles.featNum}>{String(idx + 1).padStart(2, '0')}</span>
                         <h4 className={styles.featTitle}>{feat.title}</h4>
                         {feat.desc && <p className={styles.featDesc}>{feat.desc}</p>}
                       </div>
@@ -216,6 +210,7 @@ export default function Services() {
                     <p>{activeService.details.conclusion}</p>
                   </div>
                 )}
+              </div>
               </div>
 
               {/* Modal Actions Footer */}

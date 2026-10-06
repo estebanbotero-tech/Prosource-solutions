@@ -16,6 +16,7 @@ const es = {
     openMenu: "Abrir menú",
     closeMenu: "Cerrar menú",
     switchLang: "Ver en inglés",
+    toggleTheme: "Cambiar modo claro/oscuro",
   },
   hero: {
     title: "Escala tu operación y",
@@ -217,10 +218,10 @@ const es = {
       title: "Desarrollamos su web y su app Android, y operamos su atención 24/7",
       description: "OK Taxi conecta pasajeros con conductores en el área metropolitana de Atlanta desde 2014. Es uno de nuestros proyectos más grandes: diseñamos y desarrollamos su página web y su app para Android, y operamos la atención al cliente y el despacho que acompañan su crecimiento.",
       metrics: [
-        { val: "+200.000", label: "Servicios realizados" },
-        { val: "+45.000", label: "Clientes" },
-        { val: "+560", label: "Unidades de taxi" },
-        { val: "+10", label: "Ciudades con cobertura" },
+        { val: "+10.000.000", label: "Servicios realizados" },
+        { val: "+20.000", label: "Clientes" },
+        { val: "+450", label: "Conductores" },
+        { val: "+6", label: "Ciudades con cobertura" },
       ],
       tags: ["Operando desde 2014", "Atención y despacho 24/7", "Web y app Android desarrolladas por Prosource"],
       cta: "Visitar OK Taxi",

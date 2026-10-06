@@ -35,7 +35,7 @@
     }
 
     .mobileMenu .langSelector {
-      color: $color-blue-dark;
+      color: var(--heading);
     }
   }
   transition: all $transition-normal;
@@ -43,7 +43,7 @@
   background-color: transparent;
 
   &.scrolled {
-    background-color: rgba($color-white, 0.95);
+    background-color: color-mix(in srgb, var(--surface) 95%, transparent);
     backdrop-filter: blur(10px);
     padding: 1rem 0;
     box-shadow: $shadow-sm;
@@ -73,7 +73,12 @@
   gap: 0.5rem;
   font-weight: 800;
   font-size: 1.25rem;
-  color: $color-blue-dark;
+  color: var(--heading);
+}
+
+// Exact lime sampled from the logo icon
+.logoAccent {
+  color: #b8e401;
 }
 
 .desktopMenu {
@@ -94,7 +99,7 @@
     position: relative;
     white-space: nowrap;
     font-weight: 500;
-    color: $color-gray-600;
+    color: var(--text-muted);
     padding: 0.35rem 0;
     transition: color $transition-fast;
 
@@ -114,7 +119,7 @@
 
     &:hover,
     &.active {
-      color: $color-blue-dark;
+      color: var(--heading);
     }
 
     &:hover::after,
@@ -141,11 +146,11 @@
   align-items: center;
   gap: 0.25rem;
   font-weight: 600;
-  color: $color-blue-dark;
+  color: var(--heading);
   transition: color $transition-fast;
 
   &:hover {
-    color: $color-blue-main;
+    color: var(--link);
   }
 }
 
@@ -155,7 +160,7 @@
   border-radius: $radius-sm;
 
   &:focus-visible {
-    outline: 2px solid $color-blue-main;
+    outline: 2px solid var(--link);
     outline-offset: 4px;
   }
 }
@@ -185,7 +190,7 @@
   display: block;
   background: none;
   border: none;
-  color: $color-blue-dark;
+  color: var(--heading);
   padding: 0.5rem;
   cursor: pointer;
 
@@ -201,7 +206,7 @@
   left: 0;
   width: 100%;
   height: 100dvh;
-  background-color: $color-white;
+  background-color: var(--surface);
   z-index: 100;
   display: flex;
   flex-direction: column;
@@ -210,7 +215,7 @@
   .closeBtn {
     align-self: flex-end;
     margin-bottom: 3rem;
-    color: $color-blue-dark;
+    color: var(--heading);
   }
 
   .mobileNavLinks {
@@ -219,7 +224,7 @@
     gap: 2rem;
     font-size: 1.5rem;
     font-weight: 600;
-    color: $color-blue-dark;
+    color: var(--heading);
     
     a {
       transition: color $transition-fast;

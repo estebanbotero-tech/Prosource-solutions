@@ -3,7 +3,7 @@
 $ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
 .whyus {
-  background: $color-white;
+  background: var(--bg);
 }
 
 .layout {
@@ -32,7 +32,7 @@ $ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   p {
-    color: $color-gray-600;
+    color: var(--text-muted);
     font-size: 1.1rem;
     line-height: 1.6;
     max-width: 30rem;
@@ -67,7 +67,7 @@ $ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
 .list {
   list-style: none;
-  border-top: 2px solid $color-blue-dark;
+  border-top: 2px solid var(--heading);
 }
 
 .row {
@@ -76,7 +76,7 @@ $ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   grid-template-columns: 48px 1fr;
   gap: 1.25rem;
   padding: 1.75rem 0 1.75rem 0.5rem;
-  border-bottom: 1px solid $color-gray-200;
+  border-bottom: 1px solid var(--border);
 
   > * { transition: transform 300ms $ease-out; }
 
@@ -115,6 +115,7 @@ $ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   place-items: center;
   background: $color-blue-dark;
   color: $color-lime-main;
+  box-shadow: inset 0 0 0 1px var(--border); // keeps the navy badge edge visible on the dark page
   transition: background-color 300ms $ease-out, color 300ms $ease-out, transform 300ms $ease-out;
 }
 
@@ -126,7 +127,7 @@ $ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .description {
-  color: $color-gray-600;
+  color: var(--text-muted);
   line-height: 1.6;
   max-width: 34rem;
 }

@@ -3,7 +3,7 @@ import type { LegalDoc } from '@/i18n/legal';
 
 export default function Legal({ doc }: { doc: LegalDoc }) {
   return (
-    <article className={`container ${styles.legal}`}>
+    <article className={styles.legal}>
       <h1>{doc.title}</h1>
       <p className={styles.updated}>{doc.updated}</p>
       <p>{doc.intro}</p>

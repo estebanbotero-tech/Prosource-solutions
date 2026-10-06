@@ -3,7 +3,7 @@
 $ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
 .cta {
-  background: $color-white;
+  background: var(--bg);
   padding: 5rem 0;
 
   @media (min-width: $bp-md) {

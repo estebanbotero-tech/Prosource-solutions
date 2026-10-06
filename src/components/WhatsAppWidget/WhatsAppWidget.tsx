@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, X, Send, Sparkles } from 'lucide-react';
+import { MessageCircle, X, ArrowUpRight } from 'lucide-react';
 import styles from './WhatsAppWidget.module.scss';
 import { useI18n } from '@/i18n/I18nProvider';
 import { company } from '@/data/company';
@@ -31,17 +31,18 @@ export default function WhatsAppWidget() {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
           >
             {/* Header */}
             <div className={styles.chatHeader}>
               <div className={styles.agentInfo}>
                 <div className={styles.avatar}>
-                  <Sparkles size={16} />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/logo-header-white.webp" alt="" />
                   <span className={styles.onlineBeacon}></span>
                 </div>
                 <div>
-                  <h4 className={styles.agentName}>Prosource Commercial</h4>
+                  <p className={styles.agentName}>{company.name}</p>
                   <span className={styles.agentStatus}>{t.online}</span>
                 </div>
               </div>
@@ -73,7 +74,7 @@ export default function WhatsAppWidget() {
                     onClick={() => track('contact_whatsapp', { location: 'widget' })}
                   >
                     <span>{opt.label}</span>
-                    <Send size={14} className={styles.sendIcon} />
+                    <ArrowUpRight size={16} className={styles.sendIcon} />
                   </a>
                 ))}
               </div>
@@ -88,7 +89,7 @@ export default function WhatsAppWidget() {
                 className={styles.directChatBtn}
                 onClick={() => track('contact_whatsapp', { location: 'widget' })}
               >
-                <MessageCircle size={16} />
+                <MessageCircle size={18} />
                 <span>{t.promptCustom}</span>
               </a>
             </div>

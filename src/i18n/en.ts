@@ -18,6 +18,7 @@ const en: Dict = {
     openMenu: "Open menu",
     closeMenu: "Close menu",
     switchLang: "Ver en español",
+    toggleTheme: "Toggle light/dark mode",
   },
   hero: {
     title: "Scale your operations and",
@@ -219,10 +220,10 @@ const en: Dict = {
       title: "We built their website and Android app, and we run their 24/7 customer care",
       description: "OK Taxi has connected riders with drivers across metro Atlanta since 2014. It's one of our largest projects: we designed and built their website and Android app, and we run the customer care and dispatch operation that supports their growth.",
       metrics: [
-        { val: "200,000+", label: "Rides completed" },
-        { val: "45,000+", label: "Customers" },
-        { val: "560+", label: "Taxis in service" },
-        { val: "10+", label: "Cities covered" },
+        { val: "10,000,000+", label: "Rides completed" },
+        { val: "20,000+", label: "Customers" },
+        { val: "450+", label: "Drivers" },
+        { val: "6+", label: "Cities covered" },
       ],
       tags: ["Operating since 2014", "24/7 customer care and dispatch", "Website and Android app built by Prosource"],
       cta: "Visit OK Taxi",

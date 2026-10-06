@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X, Globe, Moon, Sun } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Navbar.module.scss';
 import { company } from '@/data/company';
@@ -99,6 +99,24 @@ export default function Navbar() {
     </Link>
   );
 
+  // Flip whatever is showing now (saved choice or OS preference) and remember it
+  const toggleTheme = () => {
+    const root = document.documentElement;
+    const isDark = root.dataset.theme
+      ? root.dataset.theme === 'dark'
+      : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = isDark ? 'light' : 'dark';
+    try { localStorage.setItem('theme', root.dataset.theme); } catch {}
+  };
+
+  // Both icons render; CSS shows the one for the current theme, so server and client HTML match
+  const themeToggle = (
+    <button type="button" className={styles.langSelector} onClick={toggleTheme} aria-label={dict.nav.toggleTheme}>
+      <Moon size={18} className="onlyLight" />
+      <Sun size={18} className="onlyDark" />
+    </button>
+  );
+
   return (
     <header
       className={`${styles.header} ${isScrolled ? styles.scrolled : ''} ${!isScrolled && isHome ? styles.onDark : ''} ${isMobileMenuOpen ? styles.menuOpen : ''}`}
@@ -106,7 +124,7 @@ export default function Navbar() {
       <div className={`container ${styles.nav}`}>
         <Link href={`/${lang}`} className={styles.logo}>
           <Logo variant="header" />
-          <span>{company.name}</span>
+          <span>Prosource <span className={styles.logoAccent}>Solutions</span></span>
         </Link>
 
         {/* Desktop Menu */}
@@ -125,6 +143,7 @@ export default function Navbar() {
 
         {/* Desktop Actions */}
         <div className={styles.desktopActions}>
+          {themeToggle}
           {langSwitch}
           <Link href={`/${lang}#contact`} className="btn btn-primary">
             {dict.nav.cta}
@@ -133,6 +152,7 @@ export default function Navbar() {
 
         {/* Mobile: compact CTA always in reach + menu button */}
         <div className={styles.mobileBar}>
+          {themeToggle}
           <Link href={`/${lang}#contact`} className={`btn btn-primary ${styles.mobileCta}`}>
             {dict.nav.cta}
           </Link>

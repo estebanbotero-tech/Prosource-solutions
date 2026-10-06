@@ -1,9 +1,9 @@
 @use '../../styles/variables' as *;
 
 .trustSection {
-  background-color: $color-white;
+  background-color: var(--surface);
   padding: 2.5rem 0;
-  border-bottom: 1px solid $color-gray-200;
+  border-bottom: 1px solid var(--border);
   overflow: hidden;
 }
 
@@ -11,7 +11,7 @@
   text-align: center;
   font-size: 1rem;
   font-weight: 700;
-  color: $color-blue-dark;
+  color: var(--heading);
   margin: 0 auto 1.5rem;
   padding: 0 1.5rem;
   max-width: 40rem;
@@ -49,8 +49,8 @@
   gap: 0.6rem;
   padding: 0.5rem 1.1rem 0.5rem 0.5rem;
   border-radius: $radius-full;
-  border: 1px solid $color-gray-200;
-  background: $color-gray-50;
+  border: 1px solid var(--border);
+  background: var(--surface-alt);
   white-space: nowrap;
 }
 
@@ -66,7 +66,7 @@
 
 .itemName {
   font-weight: 700;
-  color: $color-blue-dark;
+  color: var(--heading);
   font-size: 0.95rem;
 }
 
