@@ -19,6 +19,8 @@ export default function Navbar() {
 
   const otherLang = lang === 'es' ? 'en' : 'es';
   const switchHref = pathname.replace(/^\/(es|en)/, `/${otherLang}`);
+  // Home starts on the dark hero, so the transparent header uses light text there
+  const isHome = /^\/(es|en)\/?$/.test(pathname);
 
   // Desktop keeps 4 links (logo = home, CTA = contact); About/Contact live in the mobile menu and footer
   const navLinks = [
@@ -75,7 +77,9 @@ export default function Navbar() {
   );
 
   return (
-    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''} ${isMobileMenuOpen ? styles.menuOpen : ''}`}>
+    <header
+      className={`${styles.header} ${isScrolled ? styles.scrolled : ''} ${!isScrolled && isHome ? styles.onDark : ''} ${isMobileMenuOpen ? styles.menuOpen : ''}`}
+    >
       <div className={`container ${styles.nav}`}>
         <Link href={`/${lang}`} className={styles.logo}>
           <Logo variant="header" />

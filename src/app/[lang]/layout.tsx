@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Bricolage_Grotesque } from "next/font/google";
 import { notFound } from "next/navigation";
 import "../globals.scss";
 import Navbar from "@/components/Navbar/Navbar";
@@ -10,6 +10,8 @@ import { getDictionary } from "@/i18n/dictionaries";
 import { I18nProvider } from "@/i18n/I18nProvider";
 
 const inter = Inter({ subsets: ["latin"] });
+// Display face for headings (variable font, exposed as --font-display)
+const display = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-display", display: "swap" });
 
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
@@ -31,7 +33,7 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[la
   if (!hasLocale(lang)) notFound();
 
   return (
-    <html lang={lang}>
+    <html lang={lang} className={display.variable}>
       <body className={inter.className}>
         <I18nProvider lang={lang} dict={getDictionary(lang)}>
           <Navbar />

@@ -11,6 +11,33 @@
   &.menuOpen {
     z-index: 10000;
   }
+
+  // Transparent over the dark hero: light text (the overlay menu keeps its own colors)
+  &.onDark {
+    .logo,
+    .langSelector,
+    .mobileMenuBtn {
+      color: $color-white;
+    }
+
+    .desktopMenu .navLink {
+      color: rgba($color-white, 0.78);
+
+      &:hover {
+        color: $color-white;
+      }
+    }
+
+    .navLink:focus-visible,
+    .langSelector:focus-visible,
+    .logo:focus-visible {
+      outline-color: $color-white;
+    }
+
+    .mobileMenu .langSelector {
+      color: $color-blue-dark;
+    }
+  }
   transition: all $transition-normal;
   padding: 1.5rem 0;
   background-color: transparent;

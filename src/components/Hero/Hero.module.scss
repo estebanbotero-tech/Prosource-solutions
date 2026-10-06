@@ -1,32 +1,44 @@
 @use '../../styles/variables' as *;
 
+// Deep navy derived from the brand blue; the hero is the "operations room"
+$hero-bg: #001630;
+$ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
 .hero {
-  min-height: 92vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding-top: 6rem;
+  padding-top: 6.5rem;
   padding-bottom: 4rem;
-  background: radial-gradient(circle at top right, rgba(181, 211, 29, 0.08), transparent 45%),
-              linear-gradient(135deg, $color-gray-50 0%, $color-white 100%);
+  color: $color-white;
+  background:
+    linear-gradient(180deg, rgba($hero-bg, 0) 70%, rgba($color-blue-dark, 0.9) 100%),
+    linear-gradient(120deg, $hero-bg 0%, #00224a 55%, #002650 100%);
 
   @media (min-width: $bp-lg) {
     padding-top: 7.5rem;
     padding-bottom: 5rem;
+  }
+
+  ::selection {
+    background: $color-lime-main;
+    color: $color-blue-dark;
   }
 }
 
 .content {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 3.5rem;
+  gap: 2.5rem;
   position: relative;
-  z-index: 10;
+  z-index: 1;
 
   @media (min-width: $bp-lg) {
-    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-columns: 1.05fr 0.95fr;
     align-items: center;
+    gap: 3rem;
   }
 }
 
@@ -35,103 +47,82 @@
   flex-direction: column;
 }
 
-.indicatorBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  background-color: rgba($color-blue-main, 0.08);
-  border: 1px solid rgba($color-blue-main, 0.15);
-  padding: 0.4rem 1rem;
-  border-radius: $radius-full;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  color: $color-blue-dark;
-  margin-bottom: 1.5rem;
-  width: fit-content;
-  text-transform: uppercase;
-}
-
-.livePulse {
-  flex-shrink: 0;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: #22c55e;
-  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
-  animation: pulseBeacon 2s infinite;
-}
-
-@keyframes pulseBeacon {
-  0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
-  }
-  70% {
-    transform: scale(1);
-    box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
-  }
-  100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
-  }
-}
-
+/* ---------- Headline: masked line reveal (CSS, so it runs before hydration) ---------- */
 .title {
-  font-size: 2.25rem;
-  line-height: 1.15;
-  margin-bottom: 1.5rem;
-  color: $color-blue-dark;
+  font-size: clamp(2.25rem, 1.2rem + 2.8vw, 3.9rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
   font-weight: 800;
-  letter-spacing: -0.02em;
+  color: $color-white;
+  margin-bottom: 1.75rem;
+}
 
-  @media (min-width: $bp-md) {
-    font-size: 3.25rem;
-  }
-
-  @media (min-width: $bp-xl) {
-    font-size: 3.75rem;
-  }
-
+.line {
+  display: block;
+  overflow: hidden;
+  // room for descenders (g, y, ç) inside the mask
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
   text-wrap: balance;
 
-  // Inline marker: follows each wrapped line instead of one full-width box
-  .highlight {
-    color: $color-blue-main;
-    background: linear-gradient(transparent 62%, rgba($color-lime-main, 0.45) 62%, rgba($color-lime-main, 0.45) 88%, transparent 88%);
-    -webkit-box-decoration-break: clone;
-    box-decoration-break: clone;
+  > span {
+    display: inline-block;
+    animation: lineUp 900ms $ease-out both;
   }
+
+  &:nth-child(2) > span { animation-delay: 90ms; }
+  &:nth-child(3) > span { animation-delay: 180ms; }
+}
+
+@keyframes lineUp {
+  from { transform: translateY(105%); }
+  to { transform: translateY(0); }
+}
+
+.highlight {
+  color: $color-lime-main;
 }
 
 .description {
   font-size: 1.1rem;
-  color: $color-gray-600;
+  color: rgba($color-white, 0.74);
   margin-bottom: 2rem;
-  max-width: 580px;
+  max-width: 34rem;
   line-height: 1.65;
+  animation: fadeUp 700ms $ease-out 260ms both;
 
   @media (min-width: $bp-md) {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
   }
 }
 
-.reassurance {
-  font-size: 0.9rem;
-  color: $color-gray-600;
-  margin-bottom: 2.5rem;
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
 }
 
+/* ---------- Actions ---------- */
 .actions {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   margin-bottom: 0.875rem;
+  animation: fadeUp 700ms $ease-out 340ms both;
 
   @media (min-width: $bp-sm) {
     flex-direction: row;
     align-items: center;
   }
+}
+
+.magnetic {
+  display: inline-flex;
+
+  > a { width: 100%; }
+}
+
+.primaryCta {
+  box-shadow: 0 10px 30px -8px rgba($color-lime-main, 0.55);
 }
 
 .btnWhatsapp {
@@ -142,25 +133,39 @@
   padding: 0.75rem 1.5rem;
   border-radius: $radius-full;
   font-weight: 600;
-  color: #128c7e;
-  background-color: rgba(37, 211, 102, 0.12);
-  border: 1.5px solid rgba(37, 211, 102, 0.4);
-  transition: all $transition-normal;
+  color: #6ee7a0;
+  background-color: rgba(37, 211, 102, 0.1);
+  border: 1.5px solid rgba(37, 211, 102, 0.35);
+  transition: background-color $transition-fast, border-color $transition-fast;
 
   &:hover {
-    background-color: #25d366;
-    color: $color-white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+    background-color: rgba(37, 211, 102, 0.18);
+    border-color: rgba(37, 211, 102, 0.6);
   }
+}
+
+.primaryCta,
+.btnWhatsapp {
+  &:focus-visible {
+    outline: 2px solid $color-white;
+    outline-offset: 3px;
+  }
+}
+
+.reassurance {
+  font-size: 0.9rem;
+  color: rgba($color-white, 0.6);
+  margin-bottom: 2.25rem;
+  animation: fadeUp 700ms $ease-out 400ms both;
 }
 
 .trustBadges {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.25rem;
-  padding-top: 1rem;
-  border-top: 1px solid $color-gray-200;
+  gap: 0.75rem 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba($color-white, 0.12);
+  animation: fadeUp 700ms $ease-out 460ms both;
 }
 
 .trustItem {
@@ -169,274 +174,129 @@
   gap: 0.5rem;
   font-size: 0.85rem;
   font-weight: 600;
-  color: $color-gray-700;
+  color: rgba($color-white, 0.82);
 
   .trustIcon {
-    color: $color-blue-main;
+    color: $color-lime-main;
   }
 }
 
-/* Visual Live KPI Command Center */
+/* ---------- Globe + live clocks ---------- */
 .visual {
   position: relative;
   width: 100%;
-  max-width: 480px;
+  max-width: 560px;
   margin: 0 auto;
-
-  @media (min-width: $bp-lg) {
-    max-width: 520px;
-  }
-
-  .blob {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 320px;
-    height: 320px;
-    background: linear-gradient(135deg, rgba($color-blue-main, 0.35), rgba($color-lime-main, 0.35));
-    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-    filter: blur(55px);
-    z-index: 0;
-    will-change: transform; // own layer: blur rasterized once, not every frame
-  }
-}
-
-.floatingPill {
-  position: absolute;
-  z-index: 20;
-  background: $color-white;
-  padding: 0.55rem 1rem;
-  border-radius: $radius-full;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba($color-gray-200, 0.8);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: $color-gray-800;
-
-  will-change: transform;
-
-  &.pillTop {
-    top: -30px;
-    right: 5px;
-    --float: -8px;
-    animation: floatY 4s ease-in-out infinite;
-  }
-
-  &.pillBottom {
-    bottom: -15px;
-    left: 10px;
-    --float: 8px;
-    animation: floatY 5s ease-in-out 1s infinite;
-  }
 }
 
-.pillIconGreen {
-  color: #16a34a;
+.globeWrap {
+  width: 100%;
+  aspect-ratio: 1;
+  // the globe owns its glow; this only fades the edges into the page
+  mask-image: radial-gradient(circle at 50% 50%, #000 62%, transparent 72%);
 }
 
-.pillIconYellow {
-  color: #ca8a04;
+.globe {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  touch-action: pan-y;
+
+  &:active { cursor: grabbing; }
 }
 
-.dashboard {
+.globeReady {
+  opacity: 1;
+}
+
+.clockCard {
+  margin-top: -3.5rem;
   position: relative;
-  z-index: 2;
-  background-color: $color-white;
-  border-radius: $radius-xl;
-  box-shadow: 0 20px 40px -10px rgba(0, 45, 90, 0.18);
-  border: 1px solid rgba($color-gray-200, 0.9);
-  overflow: hidden;
-  --float: -6px;
-  will-change: transform;
-  animation: floatY 7s ease-in-out infinite;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem 1.25rem;
+  padding: 0.85rem 1.25rem;
+  border-radius: $radius-lg;
+  background: rgba($hero-bg, 0.72);
+  border: 1px solid rgba($color-white, 0.12);
+  backdrop-filter: blur(12px);
+  animation: fadeUp 700ms $ease-out 600ms both;
 }
 
-@keyframes floatY {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(0, var(--float), 0); }
+.clock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.clockLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba($color-white, 0.6);
+}
+
+.clockTime {
+  font-family: var(--font-display), $font-family-sans;
+  font-size: 1.35rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: $color-white;
+}
+
+.clockDivider {
+  width: 1px;
+  align-self: stretch;
+  background: rgba($color-white, 0.14);
+}
+
+.liveTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: $radius-full;
+  background: rgba($color-lime-main, 0.12);
+  color: $color-lime-main;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.liveDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: $color-lime-main;
+  animation: blink 2.4s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.globeHint {
+  margin-top: 0.85rem;
+  font-size: 0.8rem;
+  color: rgba($color-white, 0.5);
+  text-align: center;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .floatingPill, .dashboard, .livePulse { animation: none; }
-}
-
-.dashHeader {
-  height: 48px;
-  background: linear-gradient(90deg, #f8fafc 0%, #f1f5f9 100%);
-  border-bottom: 1px solid $color-gray-200;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 1.25rem;
-}
-
-.windowDots {
-  display: flex;
-  gap: 6px;
-
-  .dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    
-    &:nth-child(1) { background-color: #ef4444; }
-    &:nth-child(2) { background-color: #f59e0b; }
-    &:nth-child(3) { background-color: #10b981; }
+  .line > span,
+  .description,
+  .actions,
+  .reassurance,
+  .trustBadges,
+  .clockCard,
+  .liveDot {
+    animation: none;
   }
-}
-
-.dashStatus {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: $color-blue-dark;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-
-  .pulseDot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background-color: #10b981;
-    box-shadow: 0 0 6px #10b981;
-  }
-}
-
-.uptimeBadge {
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: $color-blue-main;
-  background-color: rgba($color-blue-main, 0.08);
-  padding: 0.2rem 0.6rem;
-  border-radius: $radius-full;
-}
-
-.dashBody {
-  padding: 1.5rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  background-color: #fafbfc;
-}
-
-.kpiCard {
-  background-color: $color-white;
-  border-radius: $radius-lg;
-  padding: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  border: 1px solid $color-gray-100;
-  display: flex;
-  flex-direction: column;
-
-  &.kpiFull {
-    grid-column: span 2;
-    background: linear-gradient(135deg, $color-white 0%, rgba(230, 240, 250, 0.4) 100%);
-  }
-}
-
-.kpiHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.kpiLabel {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: $color-gray-500;
-  text-transform: uppercase;
-}
-
-.kpiIcon {
-  color: $color-blue-main;
-}
-
-.kpiValRow {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 0.6rem;
-}
-
-.kpiValue {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: $color-blue-dark;
-}
-
-.kpiTrend {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #15803d;
-  background-color: #dcfce7;
-  padding: 0.15rem 0.45rem;
-  border-radius: $radius-sm;
-}
-
-.progressBar {
-  width: 100%;
-  height: 6px;
-  background-color: $color-gray-100;
-  border-radius: $radius-full;
-  overflow: hidden;
-
-  .progressFill {
-    height: 100%;
-    background: linear-gradient(90deg, $color-lime-main, $color-blue-main);
-    border-radius: $radius-full;
-  }
-}
-
-.miniChart {
-  width: 100%;
-  height: 24px;
-
-  .sparkline {
-    width: 100%;
-    height: 100%;
-  }
-}
-
-.kpiScoreBadge {
-  font-size: 0.7rem;
-  font-weight: 700;
-  background-color: rgba($color-lime-main, 0.25);
-  color: #4d5c07;
-  padding: 0.15rem 0.5rem;
-  border-radius: $radius-full;
-}
-
-.csatRow {
-  display: flex;
-  align-items: baseline;
-  gap: 0.8rem;
-  flex-wrap: wrap;
-}
-
-.kpiValueLarge {
-  font-size: 1.75rem;
-  font-weight: 800;
-  color: $color-blue-dark;
-}
-
-.stars {
-  display: inline-flex;
-  gap: 2px;
-  color: #eab308;
-}
-
-.csatSub {
-  font-size: 0.75rem;
-  color: $color-gray-500;
-  width: 100%;
 }

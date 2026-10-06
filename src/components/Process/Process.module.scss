@@ -1,97 +1,188 @@
 @use '../../styles/variables' as *;
 
+$ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
 .process {
-  background-color: $color-white;
+  background: linear-gradient(160deg, #001630 0%, $color-blue-dark 100%);
+  color: $color-white;
 }
 
-.timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  max-width: 800px;
-  margin: 0 auto;
+// Desktop: tall scroller + sticky child = the section pins while steps advance
+.scroller {
   position: relative;
-  
+  padding: 5rem 0;
+
   @media (min-width: $bp-lg) {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    max-width: 100%;
-    margin-top: 4rem;
+    padding: 0;
+    height: calc(var(--steps) * 40vh + 100vh);
   }
+}
 
-  &::before {
-    content: '';
-    position: absolute;
+.pinned {
+  display: grid;
+  gap: 3rem;
+
+  @media (min-width: $bp-lg) {
+    position: sticky;
     top: 0;
-    left: 24px;
-    width: 2px;
-    height: 100%;
-    background-color: $color-gray-200;
-    z-index: 0;
-
-    @media (min-width: $bp-lg) {
-      top: 24px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-    }
+    height: 100vh;
+    grid-template-columns: 0.9fr 1.1fr;
+    align-items: center;
+    gap: 5rem;
   }
+}
+
+.heading {
+  color: $color-white;
+  font-size: clamp(2rem, 1.3rem + 2.4vw, 3.25rem);
+  line-height: 1.05;
+  margin-bottom: 1rem;
+  text-wrap: balance;
+}
+
+.subtitle {
+  color: rgba($color-white, 0.7);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 28rem;
+}
+
+.counter {
+  display: none;
+  margin-top: 2.5rem;
+  font-family: var(--font-display), $font-family-sans;
+  font-variant-numeric: tabular-nums;
+
+  @media (min-width: $bp-lg) {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+}
+
+.counterCurrent {
+  font-size: 5rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: $color-lime-main;
+}
+
+.counterTotal {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: rgba($color-white, 0.4);
+}
+
+/* ---------- Steps + progress track ---------- */
+$node: 44px;
+
+.steps {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2rem;
+
+  @media (min-width: $bp-lg) {
+    gap: 2.25rem;
+  }
+}
+
+.track {
+  position: absolute;
+  left: calc(#{$node} / 2 - 1px);
+  top: calc(#{$node} / 2);
+  bottom: calc(#{$node} / 2);
+  width: 2px;
+  background: rgba($color-white, 0.12);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.trackFill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: $color-lime-main;
+  transform-origin: top;
 }
 
 .step {
   position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 1.5rem;
-  
+  display: grid;
+  grid-template-columns: $node 1fr;
+  gap: 1.25rem;
+  align-items: start;
+  opacity: 0.4;
+  transition: opacity 400ms $ease-out;
+
+  &.done {
+    opacity: 0.7;
+  }
+
+  &.active {
+    opacity: 1;
+  }
+}
+
+.node {
+  width: $node;
+  height: $node;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: rgba($color-white, 0.7);
+  background: #001630;
+  border: 2px solid rgba($color-white, 0.2);
+  transition: background-color 400ms $ease-out, border-color 400ms $ease-out, color 400ms $ease-out, transform 400ms $ease-out;
+
+  .done & {
+    border-color: $color-lime-main;
+    color: $color-lime-main;
+  }
+
+  .active & {
+    background: $color-lime-main;
+    border-color: $color-lime-main;
+    color: $color-blue-dark;
+    transform: scale(1.08);
+  }
+}
+
+.title {
+  color: $color-white;
+  font-size: 1.25rem;
+  margin: 0.55rem 0 0.35rem;
+  transition: transform 400ms $ease-out;
+
   @media (min-width: $bp-lg) {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    flex: 1;
+    font-size: 1.4rem;
   }
 
-  .numberWrapper {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: $color-blue-main;
-    color: $color-white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 1.125rem;
-    flex-shrink: 0;
-    box-shadow: 0 0 0 8px $color-white;
-    transition: transform $transition-normal;
+  .active & {
+    transform: translateX(4px);
   }
+}
 
-  &:hover .numberWrapper {
-    transform: scale(1.1);
-    background-color: $color-lime-main;
-    color: $color-blue-dark;
-  }
+.description {
+  color: rgba($color-white, 0.72);
+  line-height: 1.55;
+  max-width: 30rem;
+}
 
-  .content {
-    padding-top: 0.5rem;
-    
-    @media (min-width: $bp-lg) {
-      padding-top: 1rem;
-    }
-  }
-
+@media (prefers-reduced-motion: reduce) {
+  .step,
+  .node,
   .title {
-    font-size: 1.25rem;
-    color: $color-blue-dark;
-    margin-bottom: 0.5rem;
+    transition: none;
   }
 
-  .description {
-    color: $color-gray-500;
-    font-size: 0.95rem;
+  .active .title {
+    transform: none;
   }
 }
