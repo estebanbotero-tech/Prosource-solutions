@@ -12,8 +12,8 @@ export const company = {
   formRecipient: "boteroestebanc13@gmail.com",
   contact: {
     email: "info@prosource.com.co",
-    phone: "+57 314 811 4635",
-    phoneHref: "+573148114635",
+    phone: "+57 314 841 4635",
+    phoneHref: "+573148414635",
     addresses: [
       "Calle 79B sur #50-150 501\nLa Estrella, Antioquia",
       "Carrera 23 #63-23 1003A\nManizales, Caldas",
@@ -24,7 +24,7 @@ export const company = {
     instagram: "https://www.instagram.com/prosourcesolutions",
     facebook: "https://www.facebook.com/ProsourceSolutionsSAS",
     linkedin: "https://www.linkedin.com/company/prosource-solutions-sas",
-    whatsapp: "https://wa.me/573148114635",
+    whatsapp: "https://wa.me/573148414635",
   },
   stats: ["+15", "+100", "+500", "24/7"],
 };
