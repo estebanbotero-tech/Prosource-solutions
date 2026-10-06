@@ -24,8 +24,8 @@ export default function Estimator() {
   const currentSizeObj = t.sizes.find((s) => s.id === selectedSize) || t.sizes[0];
 
   const summaryText = lang === 'es'
-    ? `Hola Prosource Solutions, utilicé el cotizador web para proyectar una solución:\n- Servicio: ${currentServiceObj.name}\n- Alcance: ${currentSizeObj.name}\n- Ahorro esperado: ${currentServiceObj.savings}\nQuisiera recibir una propuesta comercial formal.`
-    : `Hello Prosource Solutions, I used your online estimator:\n- Service: ${currentServiceObj.name}\n- Scope: ${currentSizeObj.name}\n- Projected savings: ${currentServiceObj.savings}\nI would like to receive a formal commercial proposal.`;
+    ? `Hola Prosource Solutions, usé la calculadora de ahorro de su sitio web:\n- Servicio: ${currentServiceObj.name}\n- Tamaño del equipo: ${currentSizeObj.name}\n- Ahorro proyectado: ${currentServiceObj.savings}\nMe gustaría recibir una propuesta comercial formal.`
+    : `Hi Prosource Solutions, I used the savings calculator on your website:\n- Service: ${currentServiceObj.name}\n- Team size: ${currentSizeObj.name}\n- Projected savings: ${currentServiceObj.savings}\nI'd like to receive a formal proposal.`;
 
   const waUrl = `${company.social.whatsapp}?text=${encodeURIComponent(summaryText)}`;
 
@@ -43,7 +43,7 @@ export default function Estimator() {
             <div className={styles.stepGroup}>
               <h3 className={styles.stepTitle}>
                 <span className={styles.stepNum} aria-hidden="true">1</span>
-                {t.serviceLabel.replace(/^\d+\.\s*/, '')}
+                {t.serviceLabel}
               </h3>
               <div className={styles.optionsGrid} role="radiogroup" aria-label={t.serviceLabel}>
                 {t.services.map((srv) => {
@@ -70,7 +70,7 @@ export default function Estimator() {
             <div className={styles.stepGroup}>
               <h3 className={styles.stepTitle}>
                 <span className={styles.stepNum} aria-hidden="true">2</span>
-                {t.sizeLabel.replace(/^\d+\.\s*/, '')}
+                {t.sizeLabel}
               </h3>
               <div className={styles.sizeGrid} role="radiogroup" aria-label={t.sizeLabel}>
                 {t.sizes.map((sz) => {

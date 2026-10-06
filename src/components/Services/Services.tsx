@@ -87,7 +87,7 @@ export default function Services() {
   const getWaUrl = (serviceTitle: string) => {
     const text = lang === 'es'
       ? `Hola Prosource Solutions, deseo más información y cotizar el servicio de: ${serviceTitle}`
-      : `Hello Prosource Solutions, I would like more information and a quote for: ${serviceTitle}`;
+      : `Hi Prosource Solutions, I'd like more information and a quote for: ${serviceTitle}`;
     return `${company.social.whatsapp}?text=${encodeURIComponent(text)}`;
   };
 
@@ -179,7 +179,7 @@ export default function Services() {
                 {activeService.details?.whatWeOffer && (
                   <div className={styles.whatWeOfferBox}>
                     <h4 className={styles.greenSubhead}>
-                      {lang === 'es' ? '¿Qué ofrecemos?' : 'What do we offer?'}
+                      {t.whatWeOffer}
                     </h4>
                     <p className={styles.whatWeOfferText}>{activeService.details.whatWeOffer}</p>
                   </div>

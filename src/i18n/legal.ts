@@ -4,7 +4,7 @@ import type { Locale } from './config';
 // Base legal texts under Colombian law. Must be reviewed by a lawyer before publishing.
 export type LegalDoc = { title: string; updated: string; intro: string; sections: { h: string; p: string[] }[] };
 
-const { name, nit, contact } = company;
+const { name, nit, contact, gaId } = company;
 const addr = contact.addresses[0].replace('\n', ', ');
 
 export const legal: Record<Locale, { privacy: LegalDoc; terms: LegalDoc }> = {
@@ -46,7 +46,9 @@ export const legal: Record<Locale, { privacy: LegalDoc; terms: LegalDoc }> = {
           "Conservaremos tus datos durante el tiempo necesario para cumplir las finalidades descritas y las obligaciones legales aplicables.",
         ] },
         { h: "9. Cookies", p: [
-          "Este sitio no utiliza cookies de publicidad ni de analítica de terceros. Solo pueden usarse elementos técnicos estrictamente necesarios para su funcionamiento.",
+          gaId
+            ? "Este sitio usa Google Analytics, que instala cookies de analítica para medir de forma agregada cómo se usa el sitio. No usamos cookies de publicidad. Puedes bloquear o eliminar las cookies desde la configuración de tu navegador."
+            : "Este sitio no utiliza cookies de publicidad ni de analítica de terceros. Solo pueden usarse elementos técnicos estrictamente necesarios para su funcionamiento.",
         ] },
         { h: "10. Vigencia y cambios", p: [
           "Esta política rige desde la fecha de su última actualización. Cualquier cambio sustancial será publicado en este sitio. Las bases de datos permanecerán vigentes mientras se mantengan las finalidades del tratamiento.",
@@ -95,42 +97,44 @@ export const legal: Record<Locale, { privacy: LegalDoc; terms: LegalDoc }> = {
     privacy: {
       title: "Personal Data Processing Policy",
       updated: "Last updated: October 5, 2026",
-      intro: `${name} is committed to protecting the personal data of its clients, users and partners. This policy explains how we collect, use, store and protect your information in accordance with Article 15 of the Colombian Constitution, Statutory Law 1581 of 2012, Decree 1377 of 2013 (compiled in Decree 1074 of 2015) and related regulations. In case of discrepancy, the Spanish version prevails.`,
+      intro: `${name} is committed to protecting the personal data of its clients, users and partners. This policy explains how we collect, use, store, and protect your information in accordance with Article 15 of the Colombian Constitution, Statutory Law 1581 of 2012, Decree 1377 of 2013 (compiled in Decree 1074 of 2015), and related regulations. In case of discrepancy, the Spanish version prevails.`,
       sections: [
         { h: "1. Data controller", p: [
-          `Company: ${name}. Tax ID (NIT): ${nit}.`,
+          `Legal name: ${name}. Tax ID (NIT): ${nit}.`,
           `Address: ${addr}, Colombia.`,
           `Email: ${contact.email}. Phone: ${contact.phone}.`,
         ] },
         { h: "2. Data we collect", p: [
-          "Through this website's contact form we collect: name, company, email, phone and the content of your message.",
-          "We do not request sensitive data or knowingly collect data from minors. Please do not include such information in your messages.",
+          "Through this website's contact form, we collect your name, company, email address, phone number, and the content of your message.",
+          "We do not request sensitive data (such as health information, beliefs, or biometric data), and we do not knowingly collect data from minors. Please do not include this type of information in your messages.",
         ] },
         { h: "3. Purposes", p: [
-          "Your data will be used to: (a) answer your requests and questions; (b) prepare and send proposals or quotes; (c) manage pre-contractual and contractual relationships; (d) send you information about our services, when you have authorized it; and (e) comply with legal obligations.",
+          "We use your data to: (a) respond to your requests and questions; (b) prepare and send proposals or quotes; (c) manage pre-contractual and contractual relationships; (d) send you information about our services, when you have authorized it; and (e) comply with legal obligations.",
         ] },
         { h: "4. Authorization", p: [
-          "Processing your data requires your prior, express and informed authorization. By submitting the contact form and checking the authorization box, you accept processing under this policy. We keep proof of that authorization.",
+          "Processing your data requires your prior, express, and informed authorization. By submitting the contact form and checking the authorization box, you accept processing under this policy. We keep proof of that authorization.",
         ] },
         { h: "5. Your rights", p: [
           "Under Article 8 of Law 1581 of 2012, you have the right to: (a) access, update and correct your data; (b) request proof of your authorization; (c) be informed about how your data is used; (d) file complaints with the Superintendence of Industry and Commerce (SIC); (e) revoke your authorization and/or request deletion of your data; and (f) access your personal data free of charge.",
         ] },
         { h: "6. Requests and claims", p: [
-          `You can exercise your rights by writing to ${contact.email}, including your name, ID number, a description of your request and how you want to be contacted.`,
+          `You can exercise your rights by writing to ${contact.email}, including your name, ID number, a description of your request, and how you would like us to reply.`,
           "Inquiries will be answered within ten (10) business days, extendable by up to five (5) additional business days. Claims will be answered within fifteen (15) business days, extendable by up to eight (8) additional business days.",
           "Before filing a complaint with the SIC, you must first submit your request to us (Article 16, Law 1581 of 2012).",
         ] },
         { h: "7. Data transmission and transfer", p: [
-          "To operate this website and its contact form we use technology providers (web hosting and form-to-email delivery) that may be located outside Colombia. They act as data processors and only use the data to provide their service. We do not sell or share your data with third parties for commercial purposes.",
+          "To operate this website and its contact form, we use technology providers (web hosting and form-to-email delivery) that may be located outside Colombia. They act as data processors and only use the data to provide their service. We do not sell or share your data with third parties for commercial purposes.",
         ] },
         { h: "8. Security and retention", p: [
-          "We apply reasonable technical, human and administrative measures to protect your data. We keep your data only as long as needed for the purposes described and applicable legal obligations.",
+          "We apply reasonable technical, human, and administrative measures to protect your data. We keep it only for as long as necessary to fulfill the purposes described above and to meet applicable legal obligations.",
         ] },
         { h: "9. Cookies", p: [
-          "This website does not use third-party advertising or analytics cookies. Only strictly necessary technical elements may be used.",
+          gaId
+            ? "This website uses Google Analytics, which sets analytics cookies to measure, in aggregate, how the site is used. We do not use advertising cookies. You can block or delete cookies in your browser settings."
+            : "This website does not use third-party advertising or analytics cookies. Only strictly necessary technical elements may be used.",
         ] },
         { h: "10. Validity and changes", p: [
-          "This policy is effective from its last update date. Any substantial change will be published on this website.",
+          "This policy is effective as of its last update. Any material changes will be published on this website.",
         ] },
       ],
     },
@@ -143,28 +147,28 @@ export const legal: Record<Locale, { privacy: LegalDoc; terms: LegalDoc }> = {
           `${name}, Tax ID (NIT) ${nit}, located at ${addr}, Colombia. Email: ${contact.email}. Phone: ${contact.phone}.`,
         ] },
         { h: "2. Purpose", p: [
-          "This site is for information about our services. Its content is not a binding commercial offer; terms, prices and scope of each service are defined in a written proposal or contract.",
+          "This website provides information about our services. Its content is not a binding commercial offer; the terms, pricing, and scope of each service are set out in a written proposal or contract.",
         ] },
         { h: "3. Acceptable use", p: [
-          "You agree to use the site lawfully, without affecting its operation, attempting unauthorized access, or submitting false, offensive or infringing content.",
+          "You agree to use the site lawfully and not to disrupt its operation, attempt unauthorized access, or submit false, offensive, or infringing content.",
         ] },
         { h: "4. Intellectual property", p: [
-          `Texts, logos, trademarks, designs and images on this site belong to ${name} or its licensors and are protected by Colombian Law 23 of 1982, Andean Decision 351 of 1993 and other applicable rules. Reproduction without prior written authorization is not allowed.`,
+          `The text, logos, trademarks, designs, and images on this site belong to ${name} or its licensors and are protected by Colombian Law 23 of 1982, Andean Decision 351 of 1993, and other applicable laws. They may not be reproduced, distributed, or modified without prior written authorization.`,
         ] },
         { h: "5. Liability", p: [
-          "We strive to keep information accurate and up to date, but we do not guarantee it is error-free or that the site will be always available. We are not responsible for damages arising from use of the site or for third-party linked sites.",
+          "We strive to keep the information accurate and up to date, but we do not guarantee that it is error-free or that the site will always be available. We are not liable for damages arising from the use of the site or for the content of linked third-party sites.",
         ] },
         { h: "6. Personal data", p: [
-          "Data you send us is processed under our Personal Data Processing Policy, in accordance with Law 1581 of 2012.",
+          "Any data you send us is processed under our Personal Data Processing Policy, in accordance with Law 1581 of 2012.",
         ] },
         { h: "7. Electronic communications", p: [
-          "Messages sent through the site or by email are valid as data messages under Colombian Law 527 of 1999.",
+          "Messages sent through the site or by email are legally valid as data messages under Colombian Law 527 of 1999.",
         ] },
         { h: "8. Consumer rights", p: [
           "Where applicable, consumer relationships are governed by Law 1480 of 2011 (Consumer Statute). Nothing in these terms limits your rights under that law.",
         ] },
         { h: "9. Changes", p: [
-          "We may update these terms at any time. The current version is always the one published on this site.",
+          "We may update these terms at any time. The version published on this site is always the one in effect.",
         ] },
         { h: "10. Governing law", p: [
           "These terms are governed by the laws of the Republic of Colombia. Any dispute will be settled by the competent courts of Colombia.",

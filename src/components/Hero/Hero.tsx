@@ -42,7 +42,7 @@ export default function Hero() {
   const waUrl = `${company.social.whatsapp}?text=${encodeURIComponent(
     lang === 'es'
       ? 'Hola Prosource Solutions, deseo cotizar servicios operativos y tecnológicos para mi empresa.'
-      : 'Hello Prosource Solutions, I would like to get a quote for operations and tech services.'
+      : "Hi Prosource Solutions, I'd like a quote for operations and technology services for my company."
   )}`;
 
   return (

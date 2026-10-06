@@ -14,7 +14,7 @@ export default function CTA() {
   const waUrl = `${company.social.whatsapp}?text=${encodeURIComponent(
     lang === 'es'
       ? 'Hola Prosource Solutions, deseo agendar una llamada de asesoría comercial para mi empresa.'
-      : 'Hello Prosource Solutions, I would like to schedule a consultation call for my company.'
+      : "Hi Prosource Solutions, I'd like to schedule a consultation call for my company."
   )}`;
 
   return (

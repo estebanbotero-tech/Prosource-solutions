@@ -17,9 +17,9 @@ export default function WhatsAppWidget() {
     `${company.social.whatsapp}?text=${encodeURIComponent(message)}`;
 
   const quickOptions = [
-    { label: t.prompt1, text: lang === 'es' ? 'Hola Prosource Solutions, me interesa cotizar un equipo de Atención al Cliente / BPO para mi empresa.' : 'Hello Prosource Solutions, I would like a quote for a BPO / Customer Care squad.' },
-    { label: t.prompt2, text: lang === 'es' ? 'Hola Prosource Solutions, requiero información para una operación crítica o soporte 24/7/365.' : 'Hello Prosource Solutions, I need information regarding 24/7/365 critical operations support.' },
-    { label: t.prompt3, text: lang === 'es' ? 'Hola Prosource Solutions, tengo un proyecto de desarrollo de software o app móvil y deseo una cotización.' : 'Hello Prosource Solutions, I have a software or mobile app project and would like a quote.' },
+    { label: t.prompt1, text: lang === 'es' ? 'Hola Prosource Solutions, me interesa cotizar un equipo de Atención al Cliente / BPO para mi empresa.' : "Hi Prosource Solutions, I'd like a quote for a customer care / BPO team." },
+    { label: t.prompt2, text: lang === 'es' ? 'Hola Prosource Solutions, requiero información para una operación crítica o soporte 24/7/365.' : "Hi Prosource Solutions, I'd like information about 24/7/365 operations and support." },
+    { label: t.prompt3, text: lang === 'es' ? 'Hola Prosource Solutions, tengo un proyecto de desarrollo de software o app móvil y deseo una cotización.' : "Hi Prosource Solutions, I have a software or mobile app project and I'd like a quote." },
   ];
 
   return (
@@ -49,7 +49,7 @@ export default function WhatsAppWidget() {
                 type="button"
                 className={styles.closeBtn}
                 onClick={() => setIsOpen(false)}
-                aria-label="Cerrar chat"
+                aria-label={t.close}
               >
                 <X size={18} />
               </button>
@@ -82,7 +82,7 @@ export default function WhatsAppWidget() {
             {/* Footer */}
             <div className={styles.chatFooter}>
               <a
-                href={getWaLink(lang === 'es' ? 'Hola Prosource Solutions, deseo más información sobre sus servicios.' : 'Hello Prosource Solutions, I would like more information about your services.')}
+                href={getWaLink(lang === 'es' ? 'Hola Prosource Solutions, deseo más información sobre sus servicios.' : "Hi Prosource Solutions, I'd like more information about your services.")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.directChatBtn}
@@ -101,7 +101,7 @@ export default function WhatsAppWidget() {
         type="button"
         className={styles.triggerBtn}
         onClick={() => setIsOpen(!isOpen)}
-        aria-label="Abrir asistente de WhatsApp comercial"
+        aria-label={t.open}
       >
         <span className={styles.beaconRing}></span>
         {isOpen ? <X size={26} /> : <MessageCircle size={28} />}

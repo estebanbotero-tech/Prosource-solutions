@@ -1,33 +1,33 @@
+// Spanish (Colombia). Style: tuteo, sentence case in headings, "costos" (not "costes"),
+// "y" instead of "&", decimal comma ("99,9 %"), point for thousands ("200.000"), "24 h".
 const es = {
   meta: {
-    title: "Prosource Solutions | BPO, Operaciones 24/7 y Tecnología a Medida",
-    description: "Escala tu empresa y reduce hasta un 40% en costos operativos con células BPO especializadas, soporte 24/7 y desarrollo de software de alto impacto.",
+    title: "Prosource Solutions | BPO, operaciones 24/7 y tecnología a la medida",
+    description: "Escala tu empresa y reduce hasta un 40 % tus costos operativos con equipos BPO especializados, soporte 24/7 y desarrollo de software a la medida.",
   },
   nav: {
-    home: "Inicio",
     services: "Servicios",
     cases: "Casos de éxito",
     estimator: "Calcula tu ahorro",
     about: "Nosotros",
     solutions: "Tecnología",
     contact: "Contacto",
-    cta: "Cotizar en 24h",
+    cta: "Cotizar en 24 h",
     openMenu: "Abrir menú",
     closeMenu: "Cerrar menú",
     switchLang: "Ver en inglés",
   },
   hero: {
-    indicator: "BPO Estratégico • Operaciones 24/7 • Desarrollo Cloud & Software",
     title: "Escala tu operación y",
-    titleEnd: "reduce hasta 40% en costos con",
+    titleEnd: "reduce hasta un 40 % tus costos con",
     highlight: "talento y tecnología.",
-    description: "Prosource Solutions proporciona equipos dedicados de BPO, soporte 24/7/365 y software a medida para empresas que buscan rentabilidad, cero tiempos muertos y crecimiento acelerado.",
-    primary: "Cotizar en 24h",
+    description: "Prosource Solutions ofrece equipos BPO dedicados, soporte 24/7/365 y software a la medida para empresas que buscan más rentabilidad, cero tiempos muertos y un crecimiento acelerado.",
+    primary: "Cotizar en 24 h",
     reassurance: "Respondemos en menos de 24 h · Sin compromiso",
     secondary: "Hablar por WhatsApp",
-    badge1: "SLA 99.9% Garantizado",
+    badge1: "SLA del 99,9 % garantizado",
     badge2: "Soporte 24/7/365",
-    badge3: "-40% Costos Operativos",
+    badge3: "Hasta 40 % menos en costos",
     clocks: {
       you: "Tu hora",
       team: "Equipo en Colombia",
@@ -37,174 +37,175 @@ const es = {
   },
   trustBar: {
     title: "Desarrollamos soluciones para cualquier sector",
-    items: ["Logística y Transporte", "Fintech y Banca", "E-Commerce y Retail", "Salud", "Tecnología y SaaS", "Telecomunicaciones", "Educación", "Turismo y Hotelería", "Seguros", "Inmobiliario", "Manufactura", "Energía", "Gobierno", "Agroindustria"],
+    items: ["Logística y transporte", "Fintech y banca", "E-commerce y retail", "Salud", "Tecnología y SaaS", "Telecomunicaciones", "Educación", "Turismo y hotelería", "Seguros", "Inmobiliario", "Manufactura", "Energía", "Gobierno", "Agroindustria"],
   },
   about: {
     missionTitle: "Misión",
-    mission: "Prosource Solutions S.A.S. presta servicios de Outsourcing con calidad humana, respaldo tecnológico y experiencia en el medio, enfocado en empresas del exterior en el canal BPO Call Center.",
+    mission: "Prosource Solutions S.A.S. presta servicios de outsourcing con calidad humana, respaldo tecnológico y experiencia en el sector, enfocados en empresas del exterior en el canal BPO call center.",
     visionTitle: "Visión",
-    vision: "Convertirse en un competidor consolidado en el canal BPO Call Center, con operaciones a nivel nacional para empresas en el exterior, para el año 2026.",
+    vision: "Convertirnos en un competidor consolidado en el canal BPO call center, con operaciones a nivel nacional para empresas del exterior, para el año 2026.",
     howWeWork: "Conoce cómo trabajamos",
     title: "La extensión operativa y tecnológica que tu empresa necesita",
-    p1: "En Prosource Solutions eliminamos la carga de contratar, capacitar y gestionar infraestructura interna. Diseñamos células operativas de alto rendimiento y desarrollamos la tecnología que tu negocio requiere para competir y ganar en el mercado actual.",
-    p2: "Trabajamos como un socio estratégico directo: con acuerdos de nivel de servicio (SLAs) rigurosos, métricas en tiempo real y una cultura de servicio humano, eficiente y orientada a resultados financieros reales para tu negocio.",
-    stats: ["Años de trayectoria", "Empresas atendidas", "Proyectos entregados", "Disponibilidad 365 días"],
+    p1: "En Prosource Solutions te quitamos la carga de contratar, capacitar y gestionar infraestructura propia. Armamos equipos operativos de alto rendimiento y desarrollamos la tecnología que tu negocio necesita para competir y ganar.",
+    p2: "Trabajamos como tu socio estratégico: con acuerdos de nivel de servicio (SLA) rigurosos, métricas en tiempo real y una cultura de servicio humana, eficiente y orientada a resultados financieros concretos.",
+    stats: ["Años de trayectoria", "Empresas atendidas", "Proyectos entregados", "Disponibilidad los 365 días"],
   },
   team: {
     title: "El equipo detrás de tu operación",
     subtitle: "Líderes en Antioquia y Caldas que responden por cada cliente, cada proceso y cada línea de código.",
     members: [
-      { role: "Gerente General", bio: "Dirige la estrategia de Prosource y la relación con cada cliente, para que cada operación cumpla lo que prometemos." },
-      { role: "Líder de Tecnología", bio: "Lidera el desarrollo de software, la infraestructura cloud y las integraciones que sostienen cada operación." },
-      { role: "Líder de Planeación", bio: "Planea capacidad, turnos y metas para que cada cliente tenga cobertura sin interrupciones." },
-      { role: "Líder de Recursos Humanos", bio: "Selecciona, forma y acompaña al talento que atiende a nuestros clientes con calidad humana." },
-      { role: "Líder de Operación · Manizales", bio: "Lidera el equipo de operación en Manizales y el cumplimiento diario de los indicadores de servicio." },
-      { role: "Líder de Operación · Medellín, Antioquia", bio: "Lidera el equipo de operación en Medellín y la atención 24/7 a nuestros clientes." },
+      { role: "Gerente general", bio: "Dirige la estrategia de Prosource y la relación con cada cliente, para que cada operación cumpla lo que prometemos." },
+      { role: "Líder de tecnología", bio: "Lidera el desarrollo de software, la infraestructura en la nube y las integraciones que sostienen cada operación." },
+      { role: "Líder de planeación", bio: "Planea capacidad, turnos y metas para que cada cliente tenga cobertura sin interrupciones." },
+      { role: "Líder de recursos humanos", bio: "Selecciona, forma y acompaña al talento que atiende a nuestros clientes con calidad humana." },
+      { role: "Líder de operación · Manizales", bio: "Lidera el equipo de operación en Manizales y el cumplimiento diario de los indicadores de servicio." },
+      { role: "Líder de operación · Medellín, Antioquia", bio: "Lidera el equipo de operación en Medellín y la atención 24/7 a nuestros clientes." },
     ],
     prev: "Anterior",
     next: "Siguiente",
     show: "Ver a",
   },
   services: {
-    title: "Nuestros Servicios de Alto Impacto",
-    subtitle: "Soluciones llave en mano diseñadas para blindar tu operación, deleitar a tus clientes y acelerar tus ingresos.",
+    title: "Servicios de alto impacto",
+    subtitle: "Soluciones llave en mano para blindar tu operación, encantar a tus clientes y acelerar tus ingresos.",
     more: "Ver más",
-    prefill: "Hola, me interesa una propuesta comercial sobre:",
+    prefill: "Hola, me interesa recibir una propuesta comercial sobre:",
     modalClose: "Cerrar",
     modalQuote: "Cotizar este servicio",
     modalWa: "Consultar por WhatsApp",
+    whatWeOffer: "¿Qué ofrecemos?",
     items: [
-      { 
-        title: "Atención al Cliente Omnicanal", 
-        badge: "Retención + Ventas",
-        description: "Equipos dedicados bilingües y entrenados para atender llamadas, WhatsApp, chat y tickets con tiempos récord de respuesta y alto índice de satisfacción (CSAT > 95%).",
+      {
+        title: "Atención al cliente omnicanal",
+        badge: "Retención y ventas",
+        description: "Equipos bilingües dedicados y capacitados para atender llamadas, WhatsApp, chat y tickets con tiempos de respuesta mínimos y alta satisfacción (CSAT superior al 95 %).",
         image: "/services/customer-service.jpg",
         details: {
           headline: "Servicio al cliente",
-          p1: "En Prosource Solutions, nuestro compromiso con la satisfacción de nuestros clientes es nuestra mayor prioridad.",
-          p2: "Por eso, hemos diseñado un servicio de atención al cliente que combina calidad excepcional y años de experiencia para brindarte soluciones rápidas, eficaces y personalizadas.",
+          p1: "En Prosource Solutions, la satisfacción de tus clientes es nuestra mayor prioridad.",
+          p2: "Por eso diseñamos un servicio de atención que combina calidad excepcional y años de experiencia para ofrecer soluciones rápidas, eficaces y personalizadas.",
           sectionTitle: "¿Qué nos caracteriza?",
           whatWeOffer: "",
           features: [
-            { 
-              title: "Atención personalizada", 
-              desc: "Soluciones a la medida de tus usuarios con cercanía, empatía y trato profesional." 
+            {
+              title: "Atención personalizada",
+              desc: "Cada interacción refleja el tono de tu marca, con cercanía, empatía y trato profesional.",
             },
-            { 
-              title: "Resolución eficiente", 
-              desc: "Especialistas enfocados en solucionar incidencias en el primer contacto con tiempos mínimos." 
+            {
+              title: "Resolución eficiente",
+              desc: "Especialistas enfocados en resolver en el primer contacto y con tiempos de espera mínimos.",
             },
-            { 
-              title: "Disponibilidad", 
-              desc: "Presencia continua a través de múltiples canales para estar donde tus clientes te buscan." 
+            {
+              title: "Disponibilidad",
+              desc: "Presencia continua en teléfono, WhatsApp, chat y correo, donde tus clientes te buscan.",
             },
-            { 
-              title: "Compromiso continuo", 
-              desc: "Monitoreo constante de calidad para superar expectativas y fidelizar a tu comunidad." 
-            }
+            {
+              title: "Compromiso continuo",
+              desc: "Monitoreo constante de calidad para superar expectativas y fidelizar a tus clientes.",
+            },
           ],
-          p3: "Nuestro equipo de especialistas capacitados está listo para brindarte soluciones rápidas y efectivas, sin dejar de lado la excelencia que nos caracteriza. Además, estamos disponibles a través de múltiples canales de comunicación, asegurándonos de que siempre tengas el apoyo que necesitas, en el momento que lo necesites. Nos esforzamos constantemente por escuchar tus comentarios y mejorar cada día, porque no solo buscamos resolver tus dudas o problemas, sino también construir relaciones de confianza que perduren en el tiempo.",
-          conclusion: "En Prosource Solutions, no solo solucionamos problemas; construimos relaciones de confianza. Contáctanos hoy y experimenta un servicio al cliente diseñado para superar tus expectativas."
-        }
+          p3: "Nuestro equipo de especialistas está listo para darte soluciones rápidas y efectivas sin perder la excelencia que nos caracteriza. Estamos disponibles en múltiples canales para que siempre tengas el apoyo que necesitas, cuando lo necesitas. Escuchamos tus comentarios y mejoramos cada día, porque no solo resolvemos dudas o problemas: construimos relaciones de confianza que perduran.",
+          conclusion: "En Prosource Solutions no solo solucionamos problemas: construimos relaciones de confianza. Contáctanos hoy y conoce un servicio al cliente diseñado para superar tus expectativas.",
+        },
       },
-      { 
-        title: "BPO / Back Office", 
-        badge: "Ahorro Operativo",
-        description: "Tercerización de procesos administrativos, validación documental, digitación y auditoría para que tu equipo se concentre 100% en el core de tu negocio.",
+      {
+        title: "BPO y back office",
+        badge: "Ahorro operativo",
+        description: "Tercerización de procesos administrativos, validación documental, digitación y auditoría, para que tu equipo se concentre al 100 % en lo esencial de tu negocio.",
         image: "/services/bpo-backoffice.jpg",
         details: {
-          headline: "BPO / Back office",
-          p1: "En Prosource Solutions, entendemos que la optimización de los procesos internos es clave para el éxito empresarial. Por eso, ofrecemos servicios de BPO (Business Process Outsourcing) y Back Office diseñados para agilizar tus operaciones, reducir costos y permitirte centrarte en lo que realmente importa: hacer crecer tu negocio.",
+          headline: "BPO y back office",
+          p1: "En Prosource Solutions sabemos que optimizar los procesos internos es clave para el éxito de una empresa. Por eso ofrecemos servicios de BPO (Business Process Outsourcing) y back office diseñados para agilizar tu operación, reducir costos y permitirte enfocarte en lo que realmente importa: hacer crecer tu negocio.",
           p2: "",
           sectionTitle: "¿Por qué elegirnos?",
-          whatWeOffer: "Nos especializamos en la gestión integral de tareas administrativas y operativas, brindando soluciones personalizadas que se adaptan a las necesidades específicas de cada cliente. Desde la gestión documental y el procesamiento de datos, hasta la atención al cliente, garantizamos precisión, confidencialidad y resultados excepcionales.",
+          whatWeOffer: "Nos especializamos en la gestión integral de procesos administrativos y operativos, con soluciones que se adaptan a las necesidades de cada cliente. Desde la gestión documental y el procesamiento de datos hasta la atención al cliente, garantizamos precisión, confidencialidad y resultados excepcionales.",
           features: [
-            { 
-              title: "Experiencia comprobada", 
-              desc: "Contamos con un equipo de expertos altamente capacitados que trabajan con herramientas y tecnologías de vanguardia." 
+            {
+              title: "Experiencia comprobada",
+              desc: "Un equipo altamente capacitado que trabaja con herramientas y metodologías de vanguardia.",
             },
-            { 
-              title: "Escalabilidad", 
-              desc: "Adaptamos nuestros servicios al ritmo de crecimiento de tu empresa, garantizando flexibilidad y continuidad operativa." 
+            {
+              title: "Escalabilidad",
+              desc: "Adaptamos el equipo al ritmo de crecimiento de tu empresa, con flexibilidad y continuidad operativa.",
             },
-            { 
-              title: "Eficiencia operativa", 
-              desc: "Optimizamos procesos para maximizar la productividad y minimizar los tiempos de ejecución." 
+            {
+              title: "Eficiencia operativa",
+              desc: "Optimizamos procesos para maximizar la productividad y reducir los tiempos de ejecución.",
             },
-            { 
-              title: "Enfoque en la calidad", 
-              desc: "Cada tarea es realizada con los más altos estándares de calidad, asegurando resultados confiables y consistentes." 
-            }
+            {
+              title: "Enfoque en la calidad",
+              desc: "Cada tarea se audita con estándares exigentes para entregar resultados confiables y consistentes.",
+            },
           ],
-          p3: "En Prosource Solutions, no somos solo un proveedor, somos tu socio estratégico. Al delegar tus operaciones de back office con nosotros, podrás enfocarte en tus objetivos estratégicos mientras nosotros cuidamos de los detalles operativos.",
-          conclusion: "Contáctanos hoy y descubre cómo nuestros servicios de BPO y Back Office pueden transformar tu negocio."
-        }
+          p3: "En Prosource Solutions no somos solo un proveedor: somos tu socio estratégico. Al delegarnos tu back office, puedes enfocarte en tus objetivos de negocio mientras nosotros nos encargamos de los detalles operativos.",
+          conclusion: "Contáctanos hoy y descubre cómo nuestros servicios de BPO y back office pueden transformar tu negocio.",
+        },
       },
-      { 
-        title: "Servicio 24/7 - 365", 
-        badge: "Cero Caídas",
+      {
+        title: "Operación 24/7/365",
+        badge: "Cero interrupciones",
         description: "Monitoreo nocturno, mesa de ayuda ininterrumpida y despacho logístico continuo. Tu empresa nunca duerme ni pierde oportunidades de venta.",
         image: "/services/service-247.jpg",
         details: {
-          headline: "Servicio 24/7 - 365",
-          p1: "En Prosource Solutions, entendemos que los negocios no se detienen, y tus necesidades tampoco. Por eso, ofrecemos un servicio de atención y soporte disponible las 24 horas del día, los 7 días de la semana, durante los 365 días del año.",
-          p2: "Nuestra misión es estar siempre a tu disposición, garantizando que cuentes con el respaldo necesario en cualquier momento, sin importar la hora ni el día.",
+          headline: "Operación 24/7/365",
+          p1: "En Prosource Solutions sabemos que los negocios no se detienen, y tus necesidades tampoco. Por eso ofrecemos atención y soporte las 24 horas del día, los 7 días de la semana, los 365 días del año.",
+          p2: "Nuestra misión es estar siempre a tu disposición, para que cuentes con el respaldo que necesitas sin importar la hora ni el día.",
           sectionTitle: "¿Qué nos diferencia?",
           whatWeOffer: "",
           features: [
-            { 
-              title: "Respuesta inmediata", 
-              desc: "Nuestro equipo está listo para atender tus consultas o resolver tus incidencias en tiempo real." 
+            {
+              title: "Respuesta inmediata",
+              desc: "Nuestro equipo atiende tus consultas y resuelve incidencias en tiempo real.",
             },
-            { 
-              title: "Cobertura global", 
-              desc: "Nos adaptamos a diferentes husos horarios para apoyar a clientes en cualquier parte del mundo." 
+            {
+              title: "Cobertura global",
+              desc: "Trabajamos en distintos husos horarios para atender a clientes en cualquier parte del mundo.",
             },
-            { 
-              title: "Operatividad Continua", 
-              desc: "Ya sea que necesites soporte técnico, atención al cliente o gestión de procesos, estamos aquí para garantizar que tu negocio nunca se detenga." 
+            {
+              title: "Operación continua",
+              desc: "Ya sea soporte técnico, atención al cliente o despacho logístico, tu negocio nunca se detiene.",
             },
-            { 
-              title: "Equipo altamente capacitado", 
-              desc: "Contamos con especialistas que ofrecen soluciones rápidas y efectivas, con un enfoque en la calidad y la satisfacción del cliente." 
-            }
+            {
+              title: "Equipo altamente capacitado",
+              desc: "Especialistas que resuelven con rapidez y con foco en la calidad y la satisfacción del cliente.",
+            },
           ],
-          p3: "Tu tranquilidad, nuestra prioridad. Con nuestro servicio 24/7 - 365, puedes tener la seguridad de que siempre tendrás un aliado confiable a tu lado, listo para ayudarte cuando más lo necesites. En Prosource Solutions, transformamos nuestra disponibilidad en tu ventaja competitiva.",
-          conclusion: "Contáctanos hoy y descubre cómo podemos ofrecerte el respaldo que necesitas, todo el año, sin interrupciones."
-        }
+          p3: "Tu tranquilidad es nuestra prioridad. Con nuestra operación 24/7/365 tienes la certeza de contar con un aliado confiable, listo para ayudarte cuando más lo necesitas. En Prosource Solutions convertimos nuestra disponibilidad en tu ventaja competitiva.",
+          conclusion: "Contáctanos hoy y descubre cómo darte el respaldo que necesitas, todo el año y sin interrupciones.",
+        },
       },
-      { 
-        title: "Desarrollo de Software & Apps", 
-        badge: "Innovación a Medida",
-        description: "Ingeniería de software a la medida: plataformas web, aplicaciones móviles, integraciones con APIs y sistemas corporativos seguros y escalables.",
+      {
+        title: "Desarrollo de software y apps",
+        badge: "Innovación a la medida",
+        description: "Ingeniería de software a la medida: plataformas web, aplicaciones móviles, integraciones con API y sistemas corporativos seguros y escalables.",
         image: "/services/software-dev.jpg",
         details: {
           headline: "Desarrollo de software",
-          p1: "En Prosource Solutions, diseñamos y construimos soluciones digitales a medida que impulsan la transformación y escalabilidad de tu empresa.",
-          p2: "Combinamos metodologías ágiles, arquitecturas modernas y estándares rigurosos de calidad de software para entregar productos estables, rápidos y seguros.",
+          p1: "En Prosource Solutions diseñamos y construimos soluciones digitales a la medida que impulsan la transformación y el crecimiento de tu empresa.",
+          p2: "Combinamos metodologías ágiles, arquitecturas modernas y estándares rigurosos de calidad para entregar software estable, rápido y seguro.",
           sectionTitle: "¿Qué nos caracteriza?",
-          whatWeOffer: "Creamos ecosistemas tecnológicos a medida: plataformas web responsivas, aplicaciones móviles nativas y multiplataforma, automatizaciones de flujos e integraciones seguras de APIs que conectan tus sistemas existentes.",
+          whatWeOffer: "Creamos ecosistemas digitales completos: plataformas web adaptables a cualquier pantalla, aplicaciones móviles nativas y multiplataforma, automatización de flujos e integraciones seguras con API que conectan tus sistemas actuales.",
           features: [
-            { 
-              title: "Arquitectura escalable", 
-              desc: "Diseño de sistemas robustos en la nube preparados para soportar alto tráfico y transacciones simultáneas sin degradación." 
+            {
+              title: "Arquitectura escalable",
+              desc: "Sistemas en la nube preparados para picos de tráfico y altos volúmenes de transacciones simultáneas.",
             },
-            { 
-              title: "Desarrollo a la medida", 
-              desc: "Plataformas web y móviles adaptadas 100% a las reglas y necesidades específicas de tu modelo de negocio." 
+            {
+              title: "Desarrollo a la medida",
+              desc: "Plataformas web y móviles diseñadas al 100 % según las reglas y necesidades de tu negocio.",
             },
-            { 
-              title: "Metodología ágil", 
-              desc: "Sprints continuos, entregas iterativas y comunicación constante para ver avances reales desde la primera semana." 
+            {
+              title: "Metodología ágil",
+              desc: "Sprints continuos, entregas iterativas y comunicación constante para ver avances reales desde la primera semana.",
             },
-            { 
-              title: "Seguridad y calidad", 
-              desc: "Código limpio, pruebas rigurosas y protección de datos para garantizar la continuidad operativa de tus plataformas." 
-            }
+            {
+              title: "Seguridad y calidad",
+              desc: "Código limpio, pruebas rigurosas y protección de datos para asegurar la continuidad de tus plataformas.",
+            },
           ],
-          p3: "En Prosource Solutions, tu visión tecnológica se convierte en una ventaja competitiva real en el mercado. Trabajamos como una extensión de ingeniería comprometida con tus metas comerciales.",
-          conclusion: "Contáctanos hoy y descubre cómo acelerar tus proyectos de software con un squad de ingeniería dedicado."
-        }
+          p3: "En Prosource Solutions tu visión tecnológica se convierte en una ventaja competitiva real. Trabajamos como una extensión de tu equipo de ingeniería, comprometidos con tus metas comerciales.",
+          conclusion: "Contáctanos hoy y descubre cómo acelerar tus proyectos de software con un equipo de ingeniería dedicado.",
+        },
       },
     ],
   },
@@ -221,108 +222,108 @@ const es = {
         { val: "+560", label: "Unidades de taxi" },
         { val: "+10", label: "Ciudades con cobertura" },
       ],
-      tags: ["Operando desde 2014", "Atención y despacho 24/7", "Web + App Android desarrolladas por Prosource"],
+      tags: ["Operando desde 2014", "Atención y despacho 24/7", "Web y app Android desarrolladas por Prosource"],
       cta: "Visitar OK Taxi",
       url: "https://oktaxiatlanta.com",
     },
     similar: "Quiero un resultado similar",
-    similarPrefill: "Hola Prosource Solutions, me interesa un caso similar a:",
-    title: "Cómo transformamos números y operaciones",
-    subtitle: "Historias reales de optimización y crecimiento logradas con nuestras soluciones.",
+    similarPrefill: "Hola Prosource Solutions, me interesa un proyecto similar a:",
+    title: "Cómo transformamos operaciones y resultados",
+    subtitle: "Resultados reales logrados con nuestras soluciones.",
   },
   estimator: {
-    badge: "Cotizador Interactivo",
-    title: "Calcula tu impacto y ahorro estimado",
-    subtitle: "Selecciona lo que tu negocio necesita para proyectar tu ahorro operativo y tiempo de despliegue en minutos.",
-    serviceLabel: "1. ¿Qué tipo de solución buscas?",
+    title: "Calcula tu ahorro y tu impacto",
+    subtitle: "Elige lo que tu negocio necesita y proyecta en minutos tu ahorro operativo y el tiempo de puesta en marcha.",
+    serviceLabel: "¿Qué tipo de solución buscas?",
     services: [
-      { id: "bpo", name: "Atención al Cliente / BPO", savings: "35% - 45% vs contratación interna", time: "7 a 10 días hábiles" },
-      { id: "247", name: "Operación Crítica 24/7/365", savings: "40% - 55% en sobretiempos y turnos", time: "5 a 8 días hábiles" },
-      { id: "software", name: "Desarrollo Software / Apps", savings: "Acelera entrega x3 con squad listo", time: "Inicio inmediato de sprint" },
-      { id: "cloud", name: "Infraestructura Cloud & Datos", savings: "30% en facturación de infraestructura", time: "Auditoría en 48 horas" },
+      { id: "bpo", name: "Atención al cliente / BPO", savings: "35 % a 45 % frente a contratar internamente", time: "7 a 10 días hábiles" },
+      { id: "247", name: "Operación crítica 24/7/365", savings: "40 % a 55 % en horas extra y turnos nocturnos", time: "5 a 8 días hábiles" },
+      { id: "software", name: "Desarrollo de software y apps", savings: "Entrega hasta 3 veces más rápido con un equipo listo", time: "Inicio inmediato del primer sprint" },
+      { id: "cloud", name: "Infraestructura en la nube y datos", savings: "Hasta 30 % menos en tu factura de nube", time: "Auditoría en 48 horas" },
     ],
-    sizeLabel: "2. Tamaño de la necesidad / equipo:",
+    sizeLabel: "Tamaño del equipo que necesitas",
     sizes: [
-      { id: "small", name: "Inicial / 1 a 3 personas", desc: "Para proyectos ágiles o arranque" },
-      { id: "medium", name: "Crecimiento / 4 a 10 personas", desc: "Para operaciones en expansión continua" },
-      { id: "large", name: "Corporativo / +10 personas", desc: "Para grandes operaciones con SLAs dedicados" },
+      { id: "small", name: "Inicial · 1 a 3 personas", desc: "Para proyectos ágiles o un primer arranque" },
+      { id: "medium", name: "Crecimiento · 4 a 10 personas", desc: "Para operaciones en expansión" },
+      { id: "large", name: "Corporativo · más de 10 personas", desc: "Para grandes operaciones con SLA dedicados" },
     ],
-    summaryTitle: "Proyección estimada de tu solución:",
-    projectedSavings: "Ahorro proyectado:",
-    deploymentTime: "Tiempo de puesta en marcha:",
-    slaGuarantee: "SLA de Servicio:",
-    slaValue: "99.9% Disponibilidad y KPI garantizado por contrato",
+    summaryTitle: "Proyección estimada de tu solución",
+    projectedSavings: "Ahorro proyectado",
+    deploymentTime: "Tiempo de puesta en marcha",
+    slaGuarantee: "Nivel de servicio (SLA)",
+    slaValue: "99,9 % de disponibilidad y KPI garantizados por contrato",
     ctaWhatsapp: "Solicitar esta cotización por WhatsApp",
-    ctaForm: "O pedir propuesta detallada por correo",
+    ctaForm: "O pedir una propuesta detallada por correo",
   },
   solutions: {
-    title: "Tecnología robusta diseñada para resolver problemas reales",
-    subtitle: "Implementamos arquitecturas modernas y herramientas de vanguardia para que tu negocio sea ágil, blindado y escalable.",
+    title: "Tecnología robusta para resolver problemas reales",
+    subtitle: "Implementamos arquitecturas modernas y herramientas de vanguardia para que tu negocio sea ágil, seguro y escalable.",
     more: "Conocer detalles",
     less: "Ver menos",
     includes: "Qué incluye",
     quote: "Cotizar este servicio",
     items: [
-      { title: "Infraestructura Cloud", description: "Migramos y gestionamos tu arquitectura en AWS/GCP/Azure garantizando alta disponibilidad y optimización de facturación.",
-        details: ["Migración a AWS, GCP o Azure sin detener tu operación", "Monitoreo 24/7, respaldos automáticos y seguridad", "Optimización de costos para pagar solo lo que usas"] },
-      { title: "Gestión de datos y analítica", description: "Transformamos tus bases de datos en paneles ejecutivos en tiempo real con Big Data y BI para decisiones que aumentan ventas.",
-        details: ["Tableros en Power BI o Looker conectados a tus sistemas", "Integración y limpieza de datos de ventas, CRM y ERP", "Reportes automáticos para gerencia"] },
-      { title: "Aplicaciones móviles y Web", description: "Diseñamos interfaces de alta conversión y código ultra-rápido para iOS, Android y navegadores modernos.",
-        details: ["Apps iOS y Android y sitios web a medida", "Diseño UX/UI enfocado en conversión", "Mantenimiento y soporte después del lanzamiento"] },
-      { title: "Optimización de procesos", description: "Automatizamos flujos de trabajo repetitivos con integraciones que reducen hasta un 80% de errores humanos.",
-        details: ["Automatización de tareas repetitivas y back-office", "Integraciones entre CRM, ERP, WhatsApp y correo", "Flujos con aprobaciones y trazabilidad completa"] },
+      { title: "Infraestructura en la nube", description: "Migramos y gestionamos tu arquitectura en AWS, GCP o Azure con alta disponibilidad y una facturación optimizada.",
+        details: ["Migración a AWS, GCP o Azure sin detener tu operación", "Monitoreo 24/7, copias de seguridad automáticas y seguridad", "Optimización de costos para pagar solo lo que usas"] },
+      { title: "Gestión de datos y analítica", description: "Convertimos tus bases de datos en tableros ejecutivos en tiempo real con Big Data y BI, para decisiones que aumentan las ventas.",
+        details: ["Tableros en Power BI o Looker conectados a tus sistemas", "Integración y limpieza de datos de ventas, CRM y ERP", "Reportes automáticos para la gerencia"] },
+      { title: "Aplicaciones móviles y web", description: "Diseñamos interfaces que convierten y código de alto rendimiento para iOS, Android y la web.",
+        details: ["Apps iOS y Android y sitios web a la medida", "Diseño UX/UI enfocado en conversión", "Mantenimiento y soporte después del lanzamiento"] },
+      { title: "Automatización de procesos", description: "Automatizamos flujos de trabajo repetitivos con integraciones que reducen hasta en un 80 % los errores humanos.",
+        details: ["Automatización de tareas repetitivas y de back office", "Integraciones entre CRM, ERP, WhatsApp y correo", "Flujos con aprobaciones y trazabilidad completa"] },
     ],
   },
   whyUs: {
     title: "¿Por qué las empresas nos eligen como socio estratégico?",
     subtitle: "Combinamos experiencia técnica, agilidad de contratación y compromiso contractual para proteger tu inversión.",
     items: [
-      { title: "Reducción de Costes Comprobada", description: "Ahorras en cargas prestacionales, infraestructura física y licencias mientras ganas talento especializado listo para operar." },
-      { title: "Disponibilidad 24/7 Real", description: "Nuestras operaciones no se detienen en noches ni festivos. Cero baches en la atención a tus clientes." },
-      { title: "Transparencia y Métricas en Vivo", description: "Acceso total a paneles de control, reportes de llamadas, tiempos de respuesta y cumplimiento de SLAs." },
-      { title: "Seguridad y Cumplimiento Legal", description: "Cumplimiento total con normativas de protección de datos, acuerdos de confidencialidad (NDA) y respaldo empresarial." },
+      { title: "Reducción de costos comprobada", description: "Ahorras en cargas prestacionales, infraestructura física y licencias, y ganas talento especializado listo para operar." },
+      { title: "Disponibilidad 24/7 real", description: "Nuestras operaciones no se detienen de noche, los fines de semana ni los festivos. Tus clientes siempre reciben atención." },
+      { title: "Transparencia y métricas en vivo", description: "Acceso total a tableros, reportes de llamadas, tiempos de respuesta y cumplimiento de los SLA." },
+      { title: "Seguridad y cumplimiento legal", description: "Cumplimiento total de la normativa de protección de datos, acuerdos de confidencialidad (NDA) y respaldo empresarial." },
     ],
   },
   process: {
-    title: "Nuestro Proceso de Implementación Ágil",
+    title: "Nuestro proceso de implementación ágil",
     subtitle: "De la primera llamada a tu equipo operando en tiempo récord.",
     steps: [
-      { title: "Diagnóstico", desc: "Revisamos tus cuellos de botella y metas comerciales." },
-      { title: "Propuesta & SLA", desc: "Definimos métricas clave, equipo y modelo de costos claro." },
-      { title: "Onboarding & Setup", desc: "Capacitamos la célula o preparamos el entorno técnico." },
-      { title: "Lanzamiento", desc: "Puesta en marcha con monitoreo cercano de calidad." },
-      { title: "Escalamiento", desc: "Optimizamos continuamente para maximizar tu rentabilidad." },
+      { title: "Diagnóstico", desc: "Revisamos tus cuellos de botella, tus volúmenes y tus metas comerciales." },
+      { title: "Propuesta y SLA", desc: "Definimos los indicadores clave, el equipo y un modelo de costos claro." },
+      { title: "Capacitación y configuración", desc: "Capacitamos al equipo o preparamos el entorno técnico." },
+      { title: "Lanzamiento", desc: "Puesta en marcha con un monitoreo de calidad muy cercano." },
+      { title: "Escalamiento", desc: "Optimizamos de forma continua para maximizar tu rentabilidad." },
     ],
   },
   cta: {
-    badge: "¿Listo para dar el siguiente paso?",
-    title: "No dejes que las operaciones lentas frenen el crecimiento de tu empresa",
-    subtitle: "Agenda hoy una llamada de asesoría de 15 minutos sin costo o solicita tu cotización inmediata por WhatsApp.",
-    button: "Solicitar cotización",
-    whatsappBtn: "Chatear por WhatsApp",
+    title: "No dejes que una operación lenta frene el crecimiento de tu empresa",
+    subtitle: "Agenda hoy una asesoría gratuita de 15 minutos o pide tu cotización inmediata por WhatsApp.",
+    button: "Cotizar en 24 h",
+    whatsappBtn: "Hablar por WhatsApp",
   },
   whatsappWidget: {
     online: "En línea",
-    title: "¿Podemos ayudarte con una cotización?",
+    title: "¿Te ayudamos con una cotización?",
     subtitle: "Normalmente respondemos en menos de 5 minutos.",
-    prompt1: "Cotizar equipo BPO / Atención al Cliente",
-    prompt2: "Cotizar soporte u operación 24/7",
-    prompt3: "Cotizar desarrollo de Software / Apps",
-    promptCustom: "Escribir otra consulta...",
+    prompt1: "Cotizar un equipo de atención al cliente / BPO",
+    prompt2: "Cotizar una operación o soporte 24/7",
+    prompt3: "Cotizar desarrollo de software o apps",
+    promptCustom: "Escribir otra consulta…",
+    open: "Abrir chat de WhatsApp",
+    close: "Cerrar chat",
   },
   contact: {
     mapTitle: "Mapa de nuestra sede en La Estrella, Antioquia",
     follow: "Síguenos",
     directions: "Cómo llegar",
-    infoTitle: "Información de Contacto Directo",
+    infoTitle: "Contáctanos directamente",
     email: "Correo corporativo",
     phone: "Línea directa",
-    locations: "Sedes operativas",
-    hours: "Horario de oficinas",
-    hoursValue: "Lunes a viernes 8:00 AM – 5:00 PM (Operación BPO disponible 24/7)",
-    formTitle: "Solicita tu Propuesta Comercial",
-    formSubtitle: "Llena tus datos y un especialista senior se comunicará contigo en menos de 2 horas hábiles.",
-    name: "Nombre y Apellido",
+    locations: "Sedes",
+    hours: "Horario de oficina",
+    hoursValue: "Lunes a viernes, de 8:00 a. m. a 5:00 p. m. (operación BPO disponible 24/7)",
+    formTitle: "Solicita tu propuesta comercial",
+    formSubtitle: "Completa tus datos y un especialista senior se comunicará contigo en menos de 2 horas hábiles.",
+    name: "Nombre y apellido",
     namePh: "Ej. Laura Gómez",
     company: "Empresa",
     companyPh: "Nombre de tu empresa u organización",
@@ -330,17 +331,17 @@ const es = {
     phoneField: "Teléfono / WhatsApp",
     phonePh: "+57 300 000 0000",
     message: "Detalles de tu requerimiento",
-    messagePh: "Cuéntanos sobre tu necesidad: número de agentes requeridos, proyecto tecnológico o proceso a optimizar...",
+    messagePh: "Cuéntanos qué necesitas: número de agentes, proyecto tecnológico o proceso por optimizar…",
     consentPre: "Autorizo a Prosource Solutions el tratamiento de mis datos personales conforme a su",
-    consentLink: "Política de privacidad",
-    errName: "Por favor, escribe tu nombre.",
-    errEmail: "Ingresa un correo electrónico válido.",
-    errMessage: "Por favor, especifica tu requerimiento.",
+    consentLink: "política de privacidad",
+    errName: "Escribe tu nombre.",
+    errEmail: "Escribe un correo electrónico válido.",
+    errMessage: "Cuéntanos brevemente qué necesitas.",
     errConsent: "Necesitamos tu autorización para poder responderte.",
-    send: "Enviar solicitud comercial",
-    sending: "Enviando solicitud...",
-    success: "¡Solicitud recibida con éxito! Un especialista se pondrá en contacto contigo muy pronto.",
-    error: "No pudimos enviar tu mensaje. Por favor escríbenos directamente a WhatsApp para atenderte de inmediato.",
+    send: "Enviar solicitud",
+    sending: "Enviando…",
+    success: "¡Recibimos tu solicitud! Un especialista se comunicará contigo muy pronto.",
+    error: "No pudimos enviar tu mensaje. Escríbenos por WhatsApp y te atendemos de inmediato.",
     emailSubject: "Nueva solicitud comercial desde la web",
   },
   footer: {
@@ -349,7 +350,7 @@ const es = {
     offices: "Sedes",
     backToTop: "Volver arriba",
     inColombia: "en Colombia",
-    description: "Impulsamos la rentabilidad y escalabilidad de tu empresa mediante células BPO de alto rendimiento, operaciones 24/7/365 y soluciones tecnológicas avanzadas.",
+    description: "Impulsamos la rentabilidad y el crecimiento de tu empresa con equipos BPO de alto rendimiento, operación 24/7/365 y soluciones tecnológicas avanzadas.",
     navigation: "Navegación",
     services: "Servicios",
     contact: "Contacto",
