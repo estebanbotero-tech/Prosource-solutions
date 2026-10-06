@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Mail, Phone, MapPin, Clock, Send, MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import styles from './Contact.module.scss';
-import { company, mapsUrl, mapEmbedUrl, mapQuery } from '@/data/company';
+import { company, contactLimits, mapsUrl, mapEmbedUrl, mapQuery } from '@/data/company';
 import SocialLinks from '@/components/SocialLinks/SocialLinks';
 import { track } from '@/components/Analytics/Analytics';
 import { useI18n } from '@/i18n/I18nProvider';
@@ -44,7 +44,10 @@ export default function Contact() {
     if (!formData.message.trim()) newErrors.message = t.errMessage;
     if (!consent) newErrors.consent = t.errConsent;
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    // Move focus to the first field with an error so keyboard and screen reader users land on it
+    const first = Object.keys(newErrors)[0];
+    if (first) document.getElementById(first)?.focus();
+    return !first;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -53,27 +56,14 @@ export default function Contact() {
     setStatus('sending');
 
     try {
-      if (!honey) {
-        const res = await fetch(`https://formsubmit.co/ajax/${company.formRecipient}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({
-            Nombre: formData.name,
-            Empresa: formData.company || '-',
-            email: formData.email,
-            Telefono: formData.phone || '-',
-            Mensaje: formData.message,
-            Idioma: lang,
-            // Proof of authorization required by Ley 1581 de 2012
-            'Autorizacion tratamiento de datos': `Sí - ${new Date().toISOString()}`,
-            _subject: `${t.emailSubject}: ${formData.name}`,
-            _template: 'table',
-            _captcha: 'false',
-          }),
-        });
-        const data = await res.json().catch(() => ({}));
-        if (!res.ok || String(data.success) !== 'true') throw new Error(data.message);
-      }
+      // Server relay (src/app/api/contact) validates again and forwards to the inbox
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, lang, consent, _honey: honey }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) throw new Error();
       setStatus('success');
       track('generate_lead', { form: 'contact' });
       setFormData(emptyForm);
@@ -82,6 +72,13 @@ export default function Contact() {
       setStatus('error');
     }
   };
+
+  // Length cap + error wiring shared by every field
+  const fieldProps = (k: keyof typeof contactLimits) => ({
+    maxLength: contactLimits[k],
+    "aria-invalid": errors[k] ? true : undefined,
+    "aria-describedby": errors[k] ? `${k}-error` : undefined,
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -196,13 +193,14 @@ export default function Contact() {
                 <input
                   type="text"
                   id="name"
+                  {...fieldProps('name')}
                   name="name"
                   autoComplete="name"
                   value={formData.name}
                   onChange={handleChange}
                   placeholder={t.namePh}
                 />
-                {errors.name && <span className={styles.errorMsg}>{errors.name}</span>}
+                {errors.name && <span id="name-error" className={styles.errorMsg}>{errors.name}</span>}
               </div>
 
               <div className={styles.formGroup}>
@@ -210,6 +208,7 @@ export default function Contact() {
                 <input
                   type="text"
                   id="company"
+                  {...fieldProps('company')}
                   name="company"
                   autoComplete="organization"
                   value={formData.company}
@@ -226,13 +225,14 @@ export default function Contact() {
                 <input
                   type="email"
                   id="email"
+                  {...fieldProps('email')}
                   name="email"
                   autoComplete="email"
                   value={formData.email}
                   onChange={handleChange}
                   placeholder={t.emailPh}
                 />
-                {errors.email && <span className={styles.errorMsg}>{errors.email}</span>}
+                {errors.email && <span id="email-error" className={styles.errorMsg}>{errors.email}</span>}
               </div>
 
               <div className={styles.formGroup}>
@@ -240,6 +240,7 @@ export default function Contact() {
                 <input
                   type="tel"
                   id="phone"
+                  {...fieldProps('phone')}
                   name="phone"
                   autoComplete="tel"
                   value={formData.phone}
@@ -254,18 +255,22 @@ export default function Contact() {
               <label htmlFor="message">{t.message}</label>
               <textarea
                 id="message"
+                  {...fieldProps('message')}
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
                 placeholder={t.messagePh}
               />
-              {errors.message && <span className={styles.errorMsg}>{errors.message}</span>}
+              {errors.message && <span id="message-error" className={styles.errorMsg}>{errors.message}</span>}
             </div>
 
             <div className={styles.formGroup}>
               <label className={styles.consent}>
                 <input
                   type="checkbox"
+                  id="consent"
+                  aria-invalid={errors.consent ? true : undefined}
+                  aria-describedby={errors.consent ? "consent-error" : undefined}
                   checked={consent}
                   onChange={(e) => {
                     setConsent(e.target.checked);
@@ -277,7 +282,7 @@ export default function Contact() {
                   <Link href={`/${lang}/privacy`} target="_blank">{t.consentLink}</Link>.
                 </span>
               </label>
-              {errors.consent && <span className={styles.errorMsg}>{errors.consent}</span>}
+              {errors.consent && <span id="consent-error" className={styles.errorMsg}>{errors.consent}</span>}
             </div>
 
             <button type="submit" className="btn btn-primary" disabled={status === 'sending'}>

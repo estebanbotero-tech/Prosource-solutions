@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, type MotionValue } from 'framer-motion';
 import { ArrowRight, X, MessageCircle, Sparkles, Send } from 'lucide-react';
 import styles from './Services.module.scss';
@@ -8,6 +8,8 @@ import { serviceIcons } from '@/data/services';
 import { useI18n } from '@/i18n/I18nProvider';
 import { prefillContact } from '@/components/Contact/Contact';
 import { company } from '@/data/company';
+import { track } from '@/components/Analytics/Analytics';
+import { useModal } from '@/components/useModal';
 
 type ServiceCardProps = {
   index: number;
@@ -57,22 +59,10 @@ export default function Services() {
   const t = dict.services;
   const [activeModalIndex, setActiveModalIndex] = useState<number | null>(null);
   const stackRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: stackRef, offset: ["start start", "end end"] });
 
-  // Close on Escape & Lock body scroll
-  useEffect(() => {
-    if (activeModalIndex === null) return;
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setActiveModalIndex(null);
-    };
-    // html is the scroller (overflow-x: clip on html/body), so lock it, not body
-    document.documentElement.style.overflow = 'hidden';
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.documentElement.style.overflow = '';
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [activeModalIndex]);
+  useModal(modalRef, activeModalIndex !== null, () => setActiveModalIndex(null));
 
   const activeService = activeModalIndex !== null ? t.items[activeModalIndex] : null;
 
@@ -123,6 +113,7 @@ export default function Services() {
         {activeService && (
           <div className={styles.modalBackdrop} onClick={() => setActiveModalIndex(null)}>
             <motion.div
+              ref={modalRef}
               className={styles.modalContainer}
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -131,6 +122,7 @@ export default function Services() {
               onClick={(e) => e.stopPropagation()}
               role="dialog"
               aria-modal="true"
+              aria-labelledby="service-modal-title"
             >
               {/* Close Button */}
               <button
@@ -155,7 +147,7 @@ export default function Services() {
                       <Sparkles size={14} /> {activeService.badge}
                     </span>
                   )}
-                  <h2 className={styles.modalTitle}>
+                  <h2 id="service-modal-title" className={styles.modalTitle}>
                     {activeService.details?.headline || activeService.title}
                   </h2>
                 </div>
@@ -229,6 +221,7 @@ export default function Services() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.btnWaModal}
+                  onClick={() => track('contact_whatsapp', { location: 'service_modal' })}
                 >
                   <MessageCircle size={18} />
                   <span>{t.modalWa}</span>

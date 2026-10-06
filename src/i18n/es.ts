@@ -13,6 +13,7 @@ const es = {
     solutions: "Tecnología",
     contact: "Contacto",
     cta: "Cotizar en 24 h",
+    menu: "Menú",
     openMenu: "Abrir menú",
     closeMenu: "Cerrar menú",
     switchLang: "Ver en inglés",
@@ -80,7 +81,7 @@ const es = {
         title: "Atención al cliente omnicanal",
         badge: "Retención y ventas",
         description: "Equipos bilingües dedicados y capacitados para atender llamadas, WhatsApp, chat y tickets con tiempos de respuesta mínimos y alta satisfacción (CSAT superior al 95 %).",
-        image: "/services/customer-service.jpg",
+        image: "/services/customer-service.webp",
         details: {
           headline: "Servicio al cliente",
           p1: "En Prosource Solutions, la satisfacción de tus clientes es nuestra mayor prioridad.",
@@ -113,7 +114,7 @@ const es = {
         title: "BPO y back office",
         badge: "Ahorro operativo",
         description: "Tercerización de procesos administrativos, validación documental, digitación y auditoría, para que tu equipo se concentre al 100 % en lo esencial de tu negocio.",
-        image: "/services/bpo-backoffice.jpg",
+        image: "/services/bpo-backoffice.webp",
         details: {
           headline: "BPO y back office",
           p1: "En Prosource Solutions sabemos que optimizar los procesos internos es clave para el éxito de una empresa. Por eso ofrecemos servicios de BPO (Business Process Outsourcing) y back office diseñados para agilizar tu operación, reducir costos y permitirte enfocarte en lo que realmente importa: hacer crecer tu negocio.",
@@ -146,7 +147,7 @@ const es = {
         title: "Operación 24/7/365",
         badge: "Cero interrupciones",
         description: "Monitoreo nocturno, mesa de ayuda ininterrumpida y despacho logístico continuo. Tu empresa nunca duerme ni pierde oportunidades de venta.",
-        image: "/services/service-247.jpg",
+        image: "/services/service-247.webp",
         details: {
           headline: "Operación 24/7/365",
           p1: "En Prosource Solutions sabemos que los negocios no se detienen, y tus necesidades tampoco. Por eso ofrecemos atención y soporte las 24 horas del día, los 7 días de la semana, los 365 días del año.",
@@ -179,7 +180,7 @@ const es = {
         title: "Desarrollo de software y apps",
         badge: "Innovación a la medida",
         description: "Ingeniería de software a la medida: plataformas web, aplicaciones móviles, integraciones con API y sistemas corporativos seguros y escalables.",
-        image: "/services/software-dev.jpg",
+        image: "/services/software-dev.webp",
         details: {
           headline: "Desarrollo de software",
           p1: "En Prosource Solutions diseñamos y construimos soluciones digitales a la medida que impulsan la transformación y el crecimiento de tu empresa.",
@@ -301,6 +302,13 @@ const es = {
     button: "Cotizar en 24 h",
     whatsappBtn: "Hablar por WhatsApp",
   },
+  cookies: {
+    label: "Aviso de cookies",
+    text: "Usamos cookies de analítica para entender cómo se usa el sitio y mejorarlo. Solo se activan si las aceptas.",
+    more: "Más información",
+    accept: "Aceptar",
+    reject: "Rechazar",
+  },
   whatsappWidget: {
     online: "En línea",
     title: "¿Te ayudamos con una cotización?",
@@ -343,7 +351,6 @@ const es = {
     sending: "Enviando…",
     success: "¡Recibimos tu solicitud! Un especialista se comunicará contigo muy pronto.",
     error: "No pudimos enviar tu mensaje. Escríbenos por WhatsApp y te atendemos de inmediato.",
-    emailSubject: "Nueva solicitud comercial desde la web",
   },
   footer: {
     ctaTitle: "¿Hablamos de tu operación?",

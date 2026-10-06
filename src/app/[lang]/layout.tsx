@@ -61,13 +61,13 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[la
           <main>{children}</main>
           <Footer />
           <WhatsAppWidget />
+          <Analytics />
         </I18nProvider>
         <script
           type="application/ld+json"
           // Organization data for Google (address, contact, social profiles)
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd).replace(/</g, "\\u003c") }}
         />
-        <Analytics />
       </body>
     </html>
   );

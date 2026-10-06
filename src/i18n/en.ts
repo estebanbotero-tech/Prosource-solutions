@@ -15,6 +15,7 @@ const en: Dict = {
     solutions: "Technology",
     contact: "Contact",
     cta: "Get a Quote in 24h",
+    menu: "Menu",
     openMenu: "Open menu",
     closeMenu: "Close menu",
     switchLang: "Ver en español",
@@ -82,7 +83,7 @@ const en: Dict = {
         title: "Omnichannel customer care",
         badge: "Retention & sales",
         description: "Dedicated, bilingual teams trained to handle calls, WhatsApp, live chat, and support tickets with fast response times and high satisfaction (CSAT above 95%).",
-        image: "/services/customer-service.jpg",
+        image: "/services/customer-service.webp",
         details: {
           headline: "Customer care",
           p1: "At Prosource Solutions, your customers' satisfaction is our top priority.",
@@ -115,7 +116,7 @@ const en: Dict = {
         title: "BPO & back office",
         badge: "Lower operating costs",
         description: "Outsource administrative processes, document validation, data entry, and auditing so your team can focus 100% on your core business.",
-        image: "/services/bpo-backoffice.jpg",
+        image: "/services/bpo-backoffice.webp",
         details: {
           headline: "BPO & back office",
           p1: "At Prosource Solutions, we know that streamlined internal processes are key to business success. That's why we offer BPO (Business Process Outsourcing) and back-office services designed to streamline your operations, reduce costs, and let you focus on what really matters: growing your business.",
@@ -148,7 +149,7 @@ const en: Dict = {
         title: "24/7/365 operations",
         badge: "Zero downtime",
         description: "Overnight monitoring, a round-the-clock help desk, and continuous logistics dispatch. Your business never sleeps and never misses a sales opportunity.",
-        image: "/services/service-247.jpg",
+        image: "/services/service-247.webp",
         details: {
           headline: "24/7/365 operations",
           p1: "At Prosource Solutions, we know business never stops, and neither do your needs. That's why we provide customer care and support 24 hours a day, 7 days a week, 365 days a year.",
@@ -181,7 +182,7 @@ const en: Dict = {
         title: "Software & app development",
         badge: "Tailored innovation",
         description: "Custom software engineering: web platforms, mobile apps, API integrations, and secure, scalable business systems.",
-        image: "/services/software-dev.jpg",
+        image: "/services/software-dev.webp",
         details: {
           headline: "Software development",
           p1: "At Prosource Solutions, we design and build custom digital solutions that drive your company's transformation and growth.",
@@ -303,6 +304,13 @@ const en: Dict = {
     button: "Get a Quote in 24h",
     whatsappBtn: "Chat on WhatsApp",
   },
+  cookies: {
+    label: "Cookie notice",
+    text: "We use analytics cookies to understand how the site is used and improve it. They only turn on if you accept.",
+    more: "Learn more",
+    accept: "Accept",
+    reject: "Decline",
+  },
   whatsappWidget: {
     online: "Online",
     title: "Can we help you with a quote?",
@@ -345,7 +353,6 @@ const en: Dict = {
     sending: "Sending…",
     success: "Thanks! We've received your request, and a specialist will be in touch shortly.",
     error: "We couldn't send your message. Please reach us on WhatsApp and we'll help you right away.",
-    emailSubject: "New business inquiry from the website (EN)",
   },
   footer: {
     ctaTitle: "Let's talk about your operation",

@@ -6,12 +6,14 @@ export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   if (locales.some((l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`))) return;
 
-  const prefersEnglish = request.headers.get('accept-language')?.toLowerCase().startsWith('en');
-  request.nextUrl.pathname = `/${prefersEnglish ? 'en' : 'es'}${pathname}`;
+  // First es/en in the browser's ordered list ("fr, en" -> en); anything else -> es
+  const preferred = request.headers.get('accept-language')?.toLowerCase().split(',')
+    .map((l) => l.trim().slice(0, 2)).find((l) => l === 'en' || l === 'es');
+  request.nextUrl.pathname = `/${preferred ?? 'es'}${pathname}`;
   return NextResponse.redirect(request.nextUrl);
 }
 
 export const config = {
-  // Skip Next internals and any file with an extension (images, icons, etc.)
-  matcher: ['/((?!_next|.*\\..*).*)'],
+  // Skip Next internals, API routes and any file with an extension (images, icons, etc.)
+  matcher: ['/((?!_next|api/|.*\\..*).*)'],
 };

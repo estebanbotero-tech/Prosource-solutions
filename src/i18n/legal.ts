@@ -47,7 +47,7 @@ export const legal: Record<Locale, { privacy: LegalDoc; terms: LegalDoc }> = {
         ] },
         { h: "9. Cookies", p: [
           gaId
-            ? "Este sitio usa Google Analytics, que instala cookies de analítica para medir de forma agregada cómo se usa el sitio. No usamos cookies de publicidad. Puedes bloquear o eliminar las cookies desde la configuración de tu navegador."
+            ? "Si lo aceptas en el aviso de cookies, este sitio usa Google Analytics, que instala cookies de analítica para medir de forma agregada cómo se usa el sitio. No usamos cookies de publicidad. Puedes bloquear o eliminar las cookies desde la configuración de tu navegador."
             : "Este sitio no utiliza cookies de publicidad ni de analítica de terceros. Solo pueden usarse elementos técnicos estrictamente necesarios para su funcionamiento.",
         ] },
         { h: "10. Vigencia y cambios", p: [
@@ -130,7 +130,7 @@ export const legal: Record<Locale, { privacy: LegalDoc; terms: LegalDoc }> = {
         ] },
         { h: "9. Cookies", p: [
           gaId
-            ? "This website uses Google Analytics, which sets analytics cookies to measure, in aggregate, how the site is used. We do not use advertising cookies. You can block or delete cookies in your browser settings."
+            ? "If you accept it in the cookie notice, this website uses Google Analytics, which sets analytics cookies to measure, in aggregate, how the site is used. We do not use advertising cookies. You can block or delete cookies in your browser settings."
             : "This website does not use third-party advertising or analytics cookies. Only strictly necessary technical elements may be used.",
         ] },
         { h: "10. Validity and changes", p: [

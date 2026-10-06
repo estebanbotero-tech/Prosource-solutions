@@ -8,8 +8,6 @@ export const company = {
   gaId: process.env.NEXT_PUBLIC_GA_ID || "",
   // Shown in the footer and legal pages (Ley 1581 de 2012)
   nit: "901.209.820-0",
-  // Contact form submissions are delivered here (via formsubmit.co).
-  formRecipient: "boteroestebanc13@gmail.com",
   contact: {
     email: "info@prosource.com.co",
     phone: "+57 314 841 4635",
@@ -28,6 +26,9 @@ export const company = {
   },
   stats: ["+15", "+100", "+500", "24/7"],
 };
+
+// Max length per contact form field (checked in the form and again in /api/contact)
+export const contactLimits = { name: 100, company: 120, email: 254, phone: 40, message: 5000 } as const;
 
 // Keyless Google Maps embed for the contact mini map. Uses the building address without the
 // office number ("501"), which otherwise makes Google pin a neighbouring business.

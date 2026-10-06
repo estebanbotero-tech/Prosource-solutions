@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, Globe, Moon, Sun } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Navbar.module.scss';
-import { company } from '@/data/company';
 import Logo from '@/components/Logo/Logo';
 import { useI18n } from '@/i18n/I18nProvider';
+import { useModal } from '@/components/useModal';
 
 export default function Navbar() {
   const { lang, dict } = useI18n();
@@ -16,6 +16,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState('');
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const otherLang = lang === 'es' ? 'en' : 'es';
   const switchHref = pathname.replace(/^\/(es|en)/, `/${otherLang}`);
@@ -75,17 +76,7 @@ export default function Navbar() {
     return () => document.removeEventListener('click', onClick, true);
   }, []);
 
-  // Lock background scroll and allow closing with Escape while the mobile menu is open
-  useEffect(() => {
-    if (!isMobileMenuOpen) return;
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setIsMobileMenuOpen(false);
-    document.body.style.overflow = 'hidden';
-    window.addEventListener('keydown', onKey);
-    return () => {
-      document.body.style.overflow = '';
-      window.removeEventListener('keydown', onKey);
-    };
-  }, [isMobileMenuOpen]);
+  useModal(menuRef, isMobileMenuOpen, () => setIsMobileMenuOpen(false));
 
   const langSwitch = (
     <Link
@@ -170,9 +161,11 @@ export default function Navbar() {
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
+              ref={menuRef}
               className={styles.mobileMenu}
               role="dialog"
               aria-modal="true"
+              aria-label={dict.nav.menu}
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
