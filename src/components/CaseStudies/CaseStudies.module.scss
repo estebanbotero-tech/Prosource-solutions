@@ -30,118 +30,173 @@ $ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   }
 }
 
-.grid {
+/* ---------- Featured client case ---------- */
+.featured {
   display: grid;
-  gap: 1.25rem;
+  gap: 2rem;
+  margin-bottom: 1.25rem;
+  padding: 2rem;
+  border-radius: $radius-xl;
+  border: 1px solid rgba($color-lime-main, 0.35);
+  background:
+    radial-gradient(600px circle at 0% 0%, rgba($color-lime-main, 0.12), transparent 60%),
+    rgba($color-white, 0.04);
+
+  @media (min-width: $bp-md) {
+    padding: 2.75rem;
+  }
 
   @media (min-width: $bp-lg) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: center;
+    gap: 3.5rem;
   }
 }
 
-/* Card with a lime spotlight that follows the cursor (--spot-x/--spot-y from onSpotlightMove) */
-.card {
-  position: relative;
+.featuredBody {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
-  padding: 2rem;
-  border-radius: $radius-lg;
-  background: rgba($color-white, 0.04);
-  border: 1px solid rgba($color-white, 0.1);
-  overflow: hidden;
-  isolation: isolate;
-  transition: border-color 300ms $ease-out;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: radial-gradient(420px circle at var(--spot-x, 50%) var(--spot-y, -20%), rgba($color-lime-main, 0.14), transparent 60%);
-    opacity: 0;
-    transition: opacity 300ms $ease-out;
-  }
-
-  &:hover {
-    border-color: rgba($color-lime-main, 0.35);
-
-    &::before { opacity: 1; }
-  }
+  align-items: flex-start;
+  gap: 1rem;
 }
 
-.tag {
-  align-self: flex-start;
+.featuredTop {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.featuredLabel {
   padding: 0.3rem 0.75rem;
   border-radius: $radius-full;
-  background: rgba($color-lime-main, 0.12);
-  color: $color-lime-main;
+  background: $color-lime-main;
+  color: $color-blue-dark;
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: 800;
 }
 
-.cardTitle {
+// Client's own taxi yellow, only on its name tag
+.clientBadge {
+  padding: 0.3rem 0.7rem;
+  border-radius: $radius-sm;
+  background: #ffd200;
+  color: #111;
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+}
+
+.client {
+  font-weight: 700;
+  color: $color-white;
+
+  span {
+    font-weight: 500;
+    color: rgba($color-white, 0.6);
+  }
+}
+
+.featuredTitle {
   font-family: var(--font-display), $font-family-sans;
-  font-size: 1.35rem;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
+  font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
   text-wrap: balance;
 }
 
-.metrics {
+.featuredText {
+  color: rgba($color-white, 0.78);
+  line-height: 1.65;
+  max-width: 40rem;
+}
+
+.featuredMetrics {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.75rem;
-  padding: 1.25rem 0;
-  border-top: 1px solid rgba($color-white, 0.1);
-  border-bottom: 1px solid rgba($color-white, 0.1);
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid rgba($color-white, 0.12);
+
+  > div {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0.35rem;
+    padding: 1.25rem 1rem 1.25rem 0;
+    border-bottom: 1px solid rgba($color-white, 0.12);
+
+    &:nth-child(even) {
+      padding-left: 1rem;
+      border-left: 1px solid rgba($color-white, 0.12);
+    }
+  }
+
+  dt {
+    font-size: 0.85rem;
+    color: rgba($color-white, 0.65);
+  }
+
+  dd { margin: 0; }
 }
 
-.metric {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.metricVal {
+.featuredVal {
   font-family: var(--font-display), $font-family-sans;
-  font-size: clamp(1.4rem, 1.1rem + 1vw, 1.9rem);
+  font-size: clamp(1.35rem, 1rem + 1.4vw, 2.4rem);
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
   color: $color-lime-main;
-  white-space: nowrap;
 }
 
-.metricLabel {
-  font-size: 0.78rem;
-  line-height: 1.35;
-  color: rgba($color-white, 0.65);
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+
+  li {
+    padding: 0.35rem 0.8rem;
+    border-radius: $radius-full;
+    border: 1px solid rgba($color-white, 0.18);
+    color: rgba($color-white, 0.85);
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
 }
 
-.story {
-  display: grid;
-  gap: 1rem;
+.featuredActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-top: 0.5rem;
+}
 
-  dt {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: rgba($color-white, 0.5);
-    margin-bottom: 0.25rem;
+.similarBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: $radius-full;
+  background: $color-lime-main;
+  color: $color-blue-dark;
+  font-weight: 700;
+  transition: background-color 200ms $ease-out;
+
+  svg { transition: transform 220ms $ease-out; }
+
+  &:hover {
+    background: $color-lime-dark;
+
+    svg { transform: translateX(4px); }
   }
 
-  dd {
-    color: rgba($color-white, 0.82);
-    line-height: 1.55;
-    font-size: 0.95rem;
+  &:focus-visible {
+    outline: 2px solid $color-white;
+    outline-offset: 3px;
   }
 }
 
 .ctaLink {
-  margin-top: auto;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;

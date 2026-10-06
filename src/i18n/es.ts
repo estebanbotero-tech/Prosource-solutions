@@ -46,6 +46,11 @@ const es = {
     ],
   },
   about: {
+    missionTitle: "Misión",
+    mission: "Prosource Solutions S.A.S. presta servicios de Outsourcing con calidad humana, respaldo tecnológico y experiencia en el medio, enfocado en empresas del exterior en el canal BPO Call Center.",
+    visionTitle: "Visión",
+    vision: "Convertirse en un competidor consolidado en el canal BPO Call Center, con operaciones a nivel nacional para empresas en el exterior, para el año 2026.",
+    howWeWork: "Conoce cómo trabajamos",
     title: "La extensión operativa y tecnológica que tu empresa necesita",
     p1: "En Prosource Solutions eliminamos la carga de contratar, capacitar y gestionar infraestructura interna. Diseñamos células operativas de alto rendimiento y desarrollamos la tecnología que tu negocio requiere para competir y ganar en el mercado actual.",
     p2: "Trabajamos como un socio estratégico directo: con acuerdos de nivel de servicio (SLAs) rigurosos, métricas en tiempo real y una cultura de servicio humano, eficiente y orientada a resultados financieros reales para tu negocio.",
@@ -195,49 +200,26 @@ const es = {
     ],
   },
   caseStudies: {
-    challenge: "Desafío",
-    solution: "Solución Prosource",
-    impact: "Impacto medible",
+    featured: {
+      label: "Caso destacado",
+      client: "OK Taxi, LLC",
+      location: "Atlanta, Georgia · Condados de DeKalb y Gwinnett",
+      title: "Desarrollamos su web y su app Android, y operamos su atención 24/7",
+      description: "OK Taxi conecta pasajeros con conductores en el área metropolitana de Atlanta desde 2014. Es uno de nuestros proyectos más grandes: diseñamos y desarrollamos su página web y su app para Android, y operamos la atención al cliente y el despacho que acompañan su crecimiento.",
+      metrics: [
+        { val: "+200.000", label: "Servicios realizados" },
+        { val: "+45.000", label: "Clientes" },
+        { val: "+560", label: "Unidades de taxi" },
+        { val: "+10", label: "Ciudades con cobertura" },
+      ],
+      tags: ["Operando desde 2014", "Atención y despacho 24/7", "Web + App Android desarrolladas por Prosource"],
+      cta: "Visitar OK Taxi",
+      url: "https://oktaxiatlanta.com",
+    },
     similar: "Quiero un resultado similar",
     similarPrefill: "Hola Prosource Solutions, me interesa un caso similar a:",
-    badge: "Resultados Demostrables",
     title: "Cómo transformamos números y operaciones",
     subtitle: "Historias reales de optimización y crecimiento logradas con nuestras soluciones.",
-    items: [
-      {
-        tag: "Logística & Transporte",
-        title: "Optimización de despacho y soporte a conductores 24/7",
-        problem: "Pérdida de viajes y saturación en líneas telefónicas en horas pico y fines de semana.",
-        solution: "Implementación de una célula BPO especializada 24/7 con protocolo de asignación ágil e integración de canales WhatsApp.",
-        metrics: [
-          { val: "-68%", label: "Tiempo de espera en línea" },
-          { val: "+34%", label: "Capacidad de despacho" },
-          { val: "24/7", label: "Cobertura ininterrumpida" },
-        ]
-      },
-      {
-        tag: "Fintech & Servicios Digitales",
-        title: "Mesa de ayuda Tier 1 y modernización Cloud Serverless",
-        problem: "Altos costos en servidores y quejas por demoras en validación de identidad y soporte nocturno.",
-        solution: "Rediseño de infraestructura en la nube AWS + mesa de validación bilingüe con SLA garantizado.",
-        metrics: [
-          { val: "-35%", label: "Gasto en nube mensual" },
-          { val: "99.2%", label: "Resolución en primer contacto" },
-          { val: "< 60s", label: "Tiempo de atención inicial" },
-        ]
-      },
-      {
-        tag: "E-Commerce & Retail",
-        title: "Back-office automatizado y retención en compras",
-        problem: "Abandono de carritos por falta de asesoría en tiempo real y lentitud en despachos de pedidos.",
-        solution: "Agentes comerciales omnicanal capacitados en conversión y sincronización de inventarios.",
-        metrics: [
-          { val: "+26%", label: "Aumento en conversión de ventas" },
-          { val: "98.7%", label: "Satisfacción de clientes" },
-          { val: "0", label: "Tickets rezagados en 24h" },
-        ]
-      }
-    ]
   },
   estimator: {
     badge: "Cotizador Interactivo",
@@ -325,14 +307,14 @@ const es = {
     directions: "Cómo llegar",
     infoTitle: "Información de Contacto Directo",
     email: "Correo corporativo",
-    phone: "Línea directa / WhatsApp",
+    phone: "Línea directa",
     locations: "Sedes operativas",
     hours: "Horario de oficinas",
     hoursValue: "Lunes a viernes 8:00 AM – 5:00 PM (Operación BPO disponible 24/7)",
     formTitle: "Solicita tu Propuesta Comercial",
     formSubtitle: "Llena tus datos y un especialista senior se comunicará contigo en menos de 2 horas hábiles.",
     name: "Nombre y Apellido",
-    namePh: "Ej. Esteban Botero",
+    namePh: "Ej. Laura Gómez",
     company: "Empresa",
     companyPh: "Nombre de tu empresa u organización",
     emailPh: "tu@empresa.com",

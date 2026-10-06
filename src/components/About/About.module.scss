@@ -22,6 +22,47 @@
   text-wrap: balance;
 }
 
+.offices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 1.75rem 0 1.5rem;
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.85rem;
+    border-radius: $radius-full;
+    background: $color-white;
+    border: 1px solid $color-gray-200;
+    color: $color-blue-dark;
+    font-size: 0.85rem;
+    font-weight: 600;
+
+    svg { color: $color-lime-dark; }
+  }
+}
+
+.processLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: $color-blue-main;
+  font-weight: 700;
+  background: linear-gradient($color-lime-main, $color-lime-main) left bottom / 0 2px no-repeat;
+  padding-bottom: 2px;
+  transition: background-size 300ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  &:hover { background-size: 100% 2px; }
+
+  &:focus-visible {
+    outline: 2px solid $color-blue-main;
+    outline-offset: 3px;
+  }
+}
+
 .text {
   display: grid;
   gap: 1rem;
@@ -30,6 +71,62 @@
     color: $color-gray-600;
     font-size: 1.1rem;
     line-height: 1.7;
+  }
+}
+
+/* Mission (navy) and vision (lime): the company's own words, given weight */
+.purpose {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 4rem;
+
+  @media (min-width: $bp-md) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.purposeItem {
+  padding: 2rem;
+  border-radius: $radius-xl;
+  background: $color-blue-dark;
+  color: $color-white;
+
+  @media (min-width: $bp-md) {
+    padding: 2.5rem;
+  }
+
+  h3 {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $color-lime-main;
+    margin-bottom: 1rem;
+
+    &::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: currentColor;
+    }
+  }
+
+  p {
+    font-family: var(--font-display), $font-family-sans;
+    font-size: clamp(1.2rem, 1rem + 0.7vw, 1.55rem);
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+
+  & + & {
+    background: $color-lime-main;
+    color: $color-blue-dark;
+
+    h3 { color: $color-blue-dark; }
   }
 }
 

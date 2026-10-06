@@ -1,13 +1,12 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 import styles from './CaseStudies.module.scss';
 import { useI18n } from '@/i18n/I18nProvider';
 import { prefillContact } from '@/components/Contact/Contact';
 import CountUp from '@/components/motion/CountUp';
-import { onSpotlightMove } from '@/components/motion/spotlight';
 
 export default function CaseStudies() {
   const { lang, dict } = useI18n();
@@ -21,52 +20,50 @@ export default function CaseStudies() {
           <p>{t.subtitle}</p>
         </div>
 
-        <div className={styles.grid} onPointerMove={onSpotlightMove}>
-          {t.items.map((item, index) => (
-            <motion.article
-              key={item.title}
-              data-spotlight
-              className={styles.card}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.6, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <span className={styles.tag}>{item.tag}</span>
-              <h3 className={styles.cardTitle}>{item.title}</h3>
-
-              {/* Outcome first: the number is what a buyer scans for */}
-              <div className={styles.metrics} aria-label={t.impact}>
-                {item.metrics.map((m) => (
-                  <div key={m.label} className={styles.metric}>
-                    <CountUp value={m.val} className={styles.metricVal} />
-                    <span className={styles.metricLabel}>{m.label}</span>
-                  </div>
-                ))}
-              </div>
-
-              <dl className={styles.story}>
-                <div>
-                  <dt>{t.challenge}</dt>
-                  <dd>{item.problem}</dd>
-                </div>
-                <div>
-                  <dt>{t.solution}</dt>
-                  <dd>{item.solution}</dd>
-                </div>
-              </dl>
-
+        {/* Real client case */}
+        <motion.article
+          className={styles.featured}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className={styles.featuredBody}>
+            <div className={styles.featuredTop}>
+              <span className={styles.featuredLabel}>{t.featured.label}</span>
+              <span className={styles.clientBadge}>OK TAXI</span>
+            </div>
+            <p className={styles.client}>
+              {t.featured.client} <span>· {t.featured.location}</span>
+            </p>
+            <h3 className={styles.featuredTitle}>{t.featured.title}</h3>
+            <p className={styles.featuredText}>{t.featured.description}</p>
+            <ul className={styles.tags}>
+              {t.featured.tags.map((tag) => <li key={tag}>{tag}</li>)}
+            </ul>
+            <div className={styles.featuredActions}>
               <Link
                 href={`/${lang}#contact`}
-                className={styles.ctaLink}
-                onClick={() => prefillContact(`${t.similarPrefill} ${item.title}`)}
+                className={styles.similarBtn}
+                onClick={() => prefillContact(`${t.similarPrefill} ${t.featured.client}`)}
               >
-                {t.similar}
-                <ArrowRight size={16} />
+                {t.similar} <ArrowRight size={16} />
               </Link>
-            </motion.article>
-          ))}
-        </div>
+              <a href={t.featured.url} target="_blank" rel="noopener noreferrer" className={styles.ctaLink}>
+                {t.featured.cta} <ArrowUpRight size={16} />
+              </a>
+            </div>
+          </div>
+
+          <dl className={styles.featuredMetrics}>
+            {t.featured.metrics.map((m) => (
+              <div key={m.label}>
+                <dt>{m.label}</dt>
+                <dd><CountUp value={m.val} className={styles.featuredVal} /></dd>
+              </div>
+            ))}
+          </dl>
+        </motion.article>
       </div>
     </section>
   );

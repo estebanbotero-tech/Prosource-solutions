@@ -33,11 +33,11 @@ export default function Solutions() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="solutions" className={`section ${styles.solutions}`}>
+    <section id="solutions" className={`section section-dark ${styles.solutions}`}>
       <div className="container">
-        <div className="text-center">
-          <h2 className="section-title">{t.title}</h2>
-          <p className="section-subtitle">{t.subtitle}</p>
+        <div className={styles.header}>
+          <h2>{t.title}</h2>
+          <p>{t.subtitle}</p>
         </div>
 
         <motion.div

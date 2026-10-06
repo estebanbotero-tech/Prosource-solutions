@@ -1,12 +1,17 @@
 "use client";
 
 import { useState } from 'react';
-import { Calculator, MessageCircle, Mail, CheckCircle2, ShieldCheck, Zap } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { MessageCircle, Mail, Clock, ShieldCheck, Headset, Code, Cloud, TrendingDown } from 'lucide-react';
 import Link from 'next/link';
 import styles from './Estimator.module.scss';
 import { useI18n } from '@/i18n/I18nProvider';
 import { company } from '@/data/company';
 import { prefillContact } from '@/components/Contact/Contact';
+import { track } from '@/components/Analytics/Analytics';
+
+// Keyed by estimator.services[].id in src/i18n/*.ts
+const serviceIcons: Record<string, typeof Headset> = { bpo: Headset, '247': Clock, software: Code, cloud: Cloud };
 
 export default function Estimator() {
   const { lang, dict } = useI18n();
@@ -27,112 +32,118 @@ export default function Estimator() {
   return (
     <section id="estimator" className={`section ${styles.estimatorSection}`}>
       <div className="container">
-        <div className="text-center">
-          <div className={styles.badgeWrapper}>
-            <Calculator size={16} />
-            <span>{t.badge}</span>
-          </div>
-          <h2 className="section-title">{t.title}</h2>
-          <p className="section-subtitle">{t.subtitle}</p>
+        <div className={styles.header}>
+          <h2>{t.title}</h2>
+          <p>{t.subtitle}</p>
         </div>
 
         <div className={styles.calculatorCard}>
           <div className={styles.leftCol}>
             {/* Step 1: Service */}
             <div className={styles.stepGroup}>
-              <h3 className={styles.stepTitle}>{t.serviceLabel}</h3>
-              <div className={styles.optionsGrid}>
-                {t.services.map((srv) => (
-                  <button
-                    key={srv.id}
-                    type="button"
-                    className={`${styles.optionBtn} ${selectedService === srv.id ? styles.active : ''}`}
-                    onClick={() => setSelectedService(srv.id)}
-                  >
-                    <span className={styles.optionRadio}></span>
-                    <span className={styles.optionName}>{srv.name}</span>
-                  </button>
-                ))}
+              <h3 className={styles.stepTitle}>
+                <span className={styles.stepNum} aria-hidden="true">1</span>
+                {t.serviceLabel.replace(/^\d+\.\s*/, '')}
+              </h3>
+              <div className={styles.optionsGrid} role="radiogroup" aria-label={t.serviceLabel}>
+                {t.services.map((srv) => {
+                  const Icon = serviceIcons[srv.id] ?? Headset;
+                  const active = selectedService === srv.id;
+                  return (
+                    <button
+                      key={srv.id}
+                      type="button"
+                      role="radio"
+                      aria-checked={active}
+                      className={`${styles.optionBtn} ${active ? styles.active : ''}`}
+                      onClick={() => setSelectedService(srv.id)}
+                    >
+                      <span className={styles.optionIcon}><Icon size={20} /></span>
+                      <span className={styles.optionName}>{srv.name}</span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
             {/* Step 2: Size */}
             <div className={styles.stepGroup}>
-              <h3 className={styles.stepTitle}>{t.sizeLabel}</h3>
-              <div className={styles.sizeGrid}>
-                {t.sizes.map((sz) => (
-                  <button
-                    key={sz.id}
-                    type="button"
-                    className={`${styles.sizeCard} ${selectedSize === sz.id ? styles.active : ''}`}
-                    onClick={() => setSelectedSize(sz.id)}
-                  >
-                    <span className={styles.sizeTitle}>{sz.name}</span>
-                    <span className={styles.sizeDesc}>{sz.desc}</span>
-                  </button>
-                ))}
+              <h3 className={styles.stepTitle}>
+                <span className={styles.stepNum} aria-hidden="true">2</span>
+                {t.sizeLabel.replace(/^\d+\.\s*/, '')}
+              </h3>
+              <div className={styles.sizeGrid} role="radiogroup" aria-label={t.sizeLabel}>
+                {t.sizes.map((sz) => {
+                  const active = selectedSize === sz.id;
+                  return (
+                    <button
+                      key={sz.id}
+                      type="button"
+                      role="radio"
+                      aria-checked={active}
+                      className={`${styles.sizeCard} ${active ? styles.active : ''}`}
+                      onClick={() => setSelectedSize(sz.id)}
+                    >
+                      <span className={styles.sizeTitle}>{sz.name}</span>
+                      <span className={styles.sizeDesc}>{sz.desc}</span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </div>
 
-          {/* Right Col: Instant Projected ROI Card */}
-          <div className={styles.rightCol}>
-            <div className={styles.resultBox}>
-              <h3 className={styles.resultTitle}>{t.summaryTitle}</h3>
-              
-              <div className={styles.impactCard}>
-                <div className={styles.impactRow}>
-                  <div className={styles.impactIcon}>
-                    <Zap size={20} />
-                  </div>
-                  <div>
-                    <span className={styles.impactLabel}>{t.projectedSavings}</span>
-                    <span className={styles.impactValueGreen}>{currentServiceObj.savings}</span>
-                  </div>
+          {/* Result panel: values swap with a short slide when the selection changes */}
+          <div className={styles.rightCol} aria-live="polite">
+            <h3 className={styles.resultTitle}>{t.summaryTitle}</h3>
+
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={selectedService}
+                className={styles.resultBody}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <div className={styles.savings}>
+                  <span className={styles.impactLabel}><TrendingDown size={14} /> {t.projectedSavings}</span>
+                  <span className={styles.savingsValue}>{currentServiceObj.savings}</span>
                 </div>
 
-                <div className={styles.impactRow}>
-                  <div className={styles.impactIcon}>
-                    <CheckCircle2 size={20} />
+                <dl className={styles.facts}>
+                  <div>
+                    <dt className={styles.impactLabel}><Clock size={14} /> {t.deploymentTime}</dt>
+                    <dd>{currentServiceObj.time}</dd>
                   </div>
                   <div>
-                    <span className={styles.impactLabel}>{t.deploymentTime}</span>
-                    <span className={styles.impactValueBlue}>{currentServiceObj.time}</span>
+                    <dt className={styles.impactLabel}><ShieldCheck size={14} /> {t.slaGuarantee}</dt>
+                    <dd>{t.slaValue}</dd>
                   </div>
-                </div>
+                </dl>
+              </motion.div>
+            </AnimatePresence>
 
-                <div className={styles.impactRow}>
-                  <div className={styles.impactIcon}>
-                    <ShieldCheck size={20} />
-                  </div>
-                  <div>
-                    <span className={styles.impactLabel}>{t.slaGuarantee}</span>
-                    <span className={styles.impactValueDark}>{t.slaValue}</span>
-                  </div>
-                </div>
-              </div>
+            <div className={styles.actionButtons}>
+              <a
+                href={waUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.waBtn}
+                onClick={() => track('contact_whatsapp', { location: 'estimator', service: currentServiceObj.id })}
+              >
+                <MessageCircle size={18} />
+                <span>{t.ctaWhatsapp}</span>
+              </a>
 
-              {/* Conversion Buttons */}
-              <div className={styles.actionButtons}>
-                <a
-                  href={waUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.waBtn}
-                >
-                  <MessageCircle size={18} />
-                  <span>{t.ctaWhatsapp}</span>
-                </a>
-
-                <Link
-                  href={`/${lang}#contact`}
-                  className={styles.emailBtn}
-                  onClick={() => prefillContact(summaryText)}
-                >
-                  <Mail size={16} />
-                  <span>{t.ctaForm}</span>
-                </Link>
-              </div>
+              <Link
+                href={`/${lang}#contact`}
+                className={styles.emailBtn}
+                onClick={() => prefillContact(summaryText)}
+              >
+                <Mail size={16} />
+                <span>{t.ctaForm}</span>
+              </Link>
             </div>
           </div>
         </div>

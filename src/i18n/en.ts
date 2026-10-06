@@ -48,6 +48,11 @@ const en: Dict = {
     ],
   },
   about: {
+    missionTitle: "Mission",
+    mission: "Prosource Solutions S.A.S. provides outsourcing services with a human touch, technology backing and industry experience, focused on international companies in the BPO call center channel.",
+    visionTitle: "Vision",
+    vision: "To become a consolidated competitor in the BPO call center channel, with nationwide operations serving international companies, by 2026.",
+    howWeWork: "See how we work",
     title: "The operational and technology extension your business needs",
     p1: "At Prosource Solutions, we eliminate the headache of recruiting, training, and maintaining expensive in-house infrastructure. We build high-performing operational squads and develop the software your company needs to dominate your industry.",
     p2: "We operate as your dedicated strategic partner: backed by strict Service Level Agreements (SLAs), real-time visibility, and a results-driven culture focused on boosting your bottom line.",
@@ -197,49 +202,26 @@ const en: Dict = {
     ],
   },
   caseStudies: {
-    challenge: "Challenge",
-    solution: "Prosource solution",
-    impact: "Measurable impact",
+    featured: {
+      label: "Featured case",
+      client: "OK Taxi, LLC",
+      location: "Atlanta, Georgia · DeKalb and Gwinnett counties",
+      title: "We built their website and Android app, and run their 24/7 care",
+      description: "OK Taxi has connected riders with drivers across metro Atlanta since 2014. It is one of our largest projects: we designed and built their website and Android app, and we run the customer care and dispatch operation that supports their growth.",
+      metrics: [
+        { val: "200,000+", label: "Rides completed" },
+        { val: "45,000+", label: "Customers" },
+        { val: "560+", label: "Taxi units" },
+        { val: "10+", label: "Cities covered" },
+      ],
+      tags: ["Operating since 2014", "24/7 care and dispatch", "Website + Android app built by Prosource"],
+      cta: "Visit OK Taxi",
+      url: "https://oktaxiatlanta.com",
+    },
     similar: "I want a similar outcome",
     similarPrefill: "Hello Prosource Solutions, I am interested in a case similar to:",
-    badge: "Proven Results",
     title: "How we transform numbers and operations",
     subtitle: "Real stories of operational efficiency and revenue growth delivered by Prosource Solutions.",
-    items: [
-      {
-        tag: "Logistics & Fleet Dispatch",
-        title: "24/7 driver dispatch and carrier support optimization",
-        problem: "Lost dispatch capacity and phone line congestion during peak hours and overnight weekends.",
-        solution: "Deployed a dedicated 24/7 BPO dispatch squad with real-time routing protocols and integrated WhatsApp channels.",
-        metrics: [
-          { val: "-68%", label: "Wait time reduction" },
-          { val: "+34%", label: "Dispatch volume capacity" },
-          { val: "24/7", label: "Uninterrupted coverage" },
-        ]
-      },
-      {
-        tag: "Fintech & Digital Services",
-        title: "Tier 1 support squad & Serverless Cloud modernization",
-        problem: "Spike in infrastructure bills and slow KYC verification during nighttime customer signups.",
-        solution: "Architected AWS serverless backend + 24/7 bilingual verification squad with guaranteed SLA.",
-        metrics: [
-          { val: "-35%", label: "Monthly cloud expenses" },
-          { val: "99.2%", label: "First contact resolution" },
-          { val: "< 60s", label: "Initial response SLA" },
-        ]
-      },
-      {
-        tag: "E-Commerce & Retail",
-        title: "Automated back-office & real-time sales recovery",
-        problem: "Cart abandonment due to lack of live assistance and post-purchase ticket backlog.",
-        solution: "Omnichannel sales assistance agents trained in conversion and inventory synchronization.",
-        metrics: [
-          { val: "+26%", label: "Conversion rate increase" },
-          { val: "98.7%", label: "CSAT satisfaction score" },
-          { val: "0", label: "Pending tickets over 24h" },
-        ]
-      }
-    ]
   },
   estimator: {
     badge: "Interactive Estimator",
@@ -327,14 +309,14 @@ const en: Dict = {
     directions: "Get directions",
     infoTitle: "Direct Contact Information",
     email: "Corporate email",
-    phone: "Direct line / WhatsApp",
+    phone: "Direct line",
     locations: "Operating offices",
     hours: "Office hours",
     hoursValue: "Monday to Friday 8:00 AM – 5:00 PM (BPO Operations available 24/7)",
     formTitle: "Request a Commercial Proposal",
     formSubtitle: "Fill in your details and a senior specialist will reach out within 2 business hours.",
     name: "Full Name",
-    namePh: "e.g. Esteban Botero",
+    namePh: "e.g. Laura Gómez",
     company: "Company",
     companyPh: "Company or organization name",
     emailPh: "you@company.com",

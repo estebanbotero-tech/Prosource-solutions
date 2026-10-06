@@ -1,44 +1,59 @@
 @use '../../styles/variables' as *;
 
+$ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
 .estimatorSection {
-  background: linear-gradient(180deg, $color-white 0%, $color-gray-50 100%);
-  position: relative;
+  background: $color-white;
 }
 
-.badgeWrapper {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: rgba($color-blue-main, 0.1);
-  color: $color-blue-dark;
-  padding: 0.35rem 0.9rem;
-  border-radius: $radius-full;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 1rem;
-}
-
-.calculatorCard {
-  background-color: $color-white;
-  border-radius: $radius-xl;
-  box-shadow: $shadow-xl;
-  border: 1px solid $color-gray-200;
+.header {
   display: grid;
-  grid-template-columns: 1fr;
-  overflow: hidden;
+  gap: 1rem;
+  margin-bottom: 3rem;
 
   @media (min-width: $bp-lg) {
-    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: end;
+    gap: 4rem;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 1.3rem + 2.4vw, 3.25rem);
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+
+  p {
+    color: $color-gray-600;
+    font-size: 1.1rem;
+    line-height: 1.6;
   }
 }
 
+.calculatorCard {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-radius: $radius-xl;
+  overflow: hidden;
+  border: 1px solid $color-gray-200;
+  box-shadow: 0 40px 80px -40px rgba($color-blue-dark, 0.35);
+
+  @media (min-width: $bp-lg) {
+    grid-template-columns: 1.2fr 0.8fr;
+  }
+}
+
+/* ---------- Inputs ---------- */
 .leftCol {
-  padding: 2.5rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 2.25rem;
+  background: $color-gray-50;
+
+  @media (min-width: $bp-md) {
+    padding: 2.75rem;
+  }
 }
 
 .stepGroup {
@@ -47,10 +62,25 @@
 }
 
 .stepTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   font-size: 1.1rem;
-  font-weight: 700;
   color: $color-blue-dark;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.stepNum {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  background: $color-lime-main;
+  color: $color-blue-dark;
+  font-size: 0.85rem;
+  font-weight: 800;
 }
 
 .optionsGrid {
@@ -63,70 +93,62 @@
   }
 }
 
-.optionBtn {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 1rem;
+.optionBtn,
+.sizeCard {
   border-radius: $radius-lg;
   border: 1.5px solid $color-gray-200;
-  background-color: $color-white;
+  background: $color-white;
   text-align: left;
-  transition: all $transition-fast;
+  transition: border-color 200ms $ease-out, background-color 200ms $ease-out, box-shadow 200ms $ease-out, transform 200ms $ease-out;
 
   &:hover {
     border-color: $color-blue-main;
-    background-color: rgba($color-blue-main, 0.02);
+    transform: translateY(-2px);
   }
 
-  &.active {
-    border-color: $color-blue-main;
-    background-color: rgba($color-blue-main, 0.06);
-    box-shadow: 0 0 0 2px rgba($color-blue-main, 0.2);
-
-    .optionRadio {
-      border-color: $color-blue-main;
-
-      &::after {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    .optionName {
-      color: $color-blue-dark;
-      font-weight: 700;
-    }
+  &:focus-visible {
+    outline: 2px solid $color-blue-main;
+    outline-offset: 2px;
   }
 }
 
-.optionRadio {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  border: 2px solid $color-gray-400;
+.optionBtn {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  position: relative;
+  gap: 0.85rem;
+  padding: 0.9rem 1rem;
 
-  &::after {
-    content: '';
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: $color-blue-main;
-    opacity: 0;
-    transform: scale(0.5);
-    transition: all $transition-fast;
+  &.active {
+    border-color: $color-blue-dark;
+    background: $color-blue-dark;
+    box-shadow: 0 12px 24px -12px rgba($color-blue-dark, 0.6);
+
+    .optionIcon {
+      background: $color-lime-main;
+      color: $color-blue-dark;
+    }
+
+    .optionName { color: $color-white; }
   }
+}
+
+.optionIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: $radius-md;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  background: $color-blue-light;
+  color: $color-blue-main;
+  transition: background-color 200ms $ease-out, color 200ms $ease-out;
 }
 
 .optionName {
   font-size: 0.95rem;
   font-weight: 600;
-  color: $color-gray-700;
+  color: $color-gray-800;
+  transition: color 200ms $ease-out;
 }
 
 .sizeGrid {
@@ -142,169 +164,148 @@
 .sizeCard {
   display: flex;
   flex-direction: column;
+  gap: 0.3rem;
   padding: 1rem;
-  border-radius: $radius-lg;
-  border: 1.5px solid $color-gray-200;
-  background-color: $color-white;
-  text-align: left;
-  transition: all $transition-fast;
-
-  &:hover {
-    border-color: $color-lime-main;
-    background-color: rgba($color-lime-main, 0.05);
-  }
 
   &.active {
-    border-color: #849e0f;
-    background-color: rgba($color-lime-main, 0.15);
-    box-shadow: 0 0 0 2px rgba($color-lime-main, 0.3);
-
-    .sizeTitle {
-      color: $color-blue-dark;
-      font-weight: 700;
-    }
+    border-color: $color-lime-dark;
+    background: rgba($color-lime-main, 0.16);
+    box-shadow: inset 0 0 0 1px $color-lime-dark;
   }
 }
 
 .sizeTitle {
   font-size: 0.9rem;
-  font-weight: 600;
-  color: $color-gray-800;
-  margin-bottom: 0.35rem;
+  font-weight: 700;
+  color: $color-blue-dark;
 }
 
 .sizeDesc {
-  font-size: 0.75rem;
-  color: $color-gray-500;
-  line-height: 1.3;
+  font-size: 0.78rem;
+  color: $color-gray-600;
+  line-height: 1.35;
 }
 
+/* ---------- Result panel ---------- */
 .rightCol {
-  background: linear-gradient(135deg, $color-blue-dark 0%, #001f3f 100%);
-  padding: 2.5rem;
-  color: $color-white;
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 1.75rem;
+  padding: 2rem;
+  color: $color-white;
+  background:
+    radial-gradient(500px circle at 100% 0%, rgba($color-lime-main, 0.12), transparent 60%),
+    linear-gradient(160deg, #001630 0%, $color-blue-dark 100%);
+
+  @media (min-width: $bp-md) {
+    padding: 2.75rem;
+  }
 }
 
-.resultBox {
+.resultTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba($color-white, 0.75);
+}
+
+.resultBody {
   display: flex;
   flex-direction: column;
   gap: 1.75rem;
 }
 
-.resultTitle {
-  font-size: 1.25rem;
-  color: $color-white;
-  font-weight: 700;
-}
-
-.impactCard {
-  background: rgba($color-white, 0.07);
-  border: 1px solid rgba($color-white, 0.12);
-  border-radius: $radius-xl;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.impactRow {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-}
-
-.impactIcon {
-  width: 36px;
-  height: 36px;
-  border-radius: $radius-md;
-  background: rgba($color-white, 0.1);
-  color: $color-lime-main;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
 .impactLabel {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: $color-gray-300;
-  margin-bottom: 0.2rem;
-}
-
-.impactValueGreen {
-  display: block;
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: $color-lime-main;
-  line-height: 1.2;
-}
-
-.impactValueBlue {
-  display: block;
-  font-size: 1.05rem;
   font-weight: 700;
-  color: #93c5fd;
-  line-height: 1.2;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba($color-white, 0.6);
 }
 
-.impactValueDark {
-  display: block;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: $color-gray-200;
-  line-height: 1.3;
-}
-
-.actionButtons {
+.savings {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0.6rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba($color-white, 0.12);
 }
 
-.waBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  background-color: #25d366;
-  color: $color-white;
-  padding: 0.9rem 1.5rem;
-  border-radius: $radius-full;
-  font-weight: 700;
-  font-size: 0.95rem;
-  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
-  transition: all $transition-normal;
+.savingsValue {
+  font-family: var(--font-display), $font-family-sans;
+  font-size: clamp(1.75rem, 1.3rem + 1.5vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: $color-lime-main;
+  text-wrap: balance;
+}
 
-  &:hover {
-    background-color: #20ba5a;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+.facts {
+  display: grid;
+  gap: 1.25rem;
+
+  dd {
+    margin-top: 0.35rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: $color-white;
+    line-height: 1.4;
   }
 }
 
+.actionButtons {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.waBtn,
 .emailBtn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  background-color: transparent;
-  color: $color-gray-300;
-  border: 1px solid rgba($color-white, 0.2);
-  padding: 0.75rem 1.5rem;
+  gap: 0.6rem;
   border-radius: $radius-full;
-  font-weight: 600;
-  font-size: 0.85rem;
-  transition: all $transition-fast;
+  font-weight: 700;
+  transition: background-color 200ms $ease-out, transform 200ms $ease-out, border-color 200ms $ease-out, color 200ms $ease-out;
+
+  &:focus-visible {
+    outline: 2px solid $color-white;
+    outline-offset: 3px;
+  }
+}
+
+.waBtn {
+  padding: 0.95rem 1.5rem;
+  background: #25d366;
+  color: #04331a;
+  font-size: 0.95rem;
 
   &:hover {
-    color: $color-white;
-    border-color: $color-white;
-    background-color: rgba($color-white, 0.05);
+    background: #3ee07c;
+    transform: translateY(-2px);
   }
+}
+
+.emailBtn {
+  padding: 0.8rem 1.5rem;
+  border: 1px solid rgba($color-white, 0.22);
+  color: rgba($color-white, 0.85);
+  font-size: 0.875rem;
+
+  &:hover {
+    border-color: $color-white;
+    color: $color-white;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .optionBtn:hover,
+  .sizeCard:hover,
+  .waBtn:hover { transform: none; }
 }
