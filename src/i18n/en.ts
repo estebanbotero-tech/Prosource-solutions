@@ -197,6 +197,11 @@ const en: Dict = {
     ],
   },
   caseStudies: {
+    challenge: "Challenge",
+    solution: "Prosource solution",
+    impact: "Measurable impact",
+    similar: "I want a similar outcome",
+    similarPrefill: "Hello Prosource Solutions, I am interested in a case similar to:",
     badge: "Proven Results",
     title: "How we transform numbers and operations",
     subtitle: "Real stories of operational efficiency and revenue growth delivered by Prosource Solutions.",
@@ -317,6 +322,9 @@ const en: Dict = {
     promptCustom: "Ask another question...",
   },
   contact: {
+    mapTitle: "Map of our office in La Estrella, Antioquia",
+    follow: "Follow us",
+    directions: "Get directions",
     infoTitle: "Direct Contact Information",
     email: "Corporate email",
     phone: "Direct line / WhatsApp",
@@ -347,6 +355,11 @@ const en: Dict = {
     emailSubject: "New commercial request from website (EN)",
   },
   footer: {
+    ctaTitle: "Let’s talk about your operation",
+    ctaText: "Tell us what you need and we’ll reply within 24h, no commitment.",
+    offices: "Offices",
+    backToTop: "Back to top",
+    inColombia: "in Colombia",
     description: "Accelerating enterprise profitability and scale with high-performance BPO squads, 24/7/365 operations, and modern technology solutions.",
     navigation: "Navigation",
     services: "Services",

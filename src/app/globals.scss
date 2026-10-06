@@ -88,6 +88,22 @@ section[id] {
   margin: 0 auto 3rem auto;
 }
 
+/* Dark "operations room" sections, alternating with the light ones */
+.section-dark {
+  background: linear-gradient(160deg, #001630 0%, $color-blue-dark 100%);
+  color: $color-white;
+
+  .section-title,
+  h2,
+  h3 {
+    color: $color-white;
+  }
+
+  .section-subtitle {
+    color: rgba($color-white, 0.7);
+  }
+}
+
 /* Base button styles */
 .btn {
   display: inline-flex;

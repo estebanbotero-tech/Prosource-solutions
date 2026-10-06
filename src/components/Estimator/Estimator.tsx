@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Calculator, MessageCircle, Mail, CheckCircle2, ShieldCheck, Zap } from 'lucide-react';
 import Link from 'next/link';
 import styles from './Estimator.module.scss';

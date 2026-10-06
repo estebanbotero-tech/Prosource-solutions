@@ -1,61 +1,103 @@
 @use '../../styles/variables' as *;
 
+$ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
 .whyus {
-  background-color: $color-gray-50;
+  background: $color-white;
+}
+
+.layout {
+  display: grid;
+  gap: 2.5rem;
+
+  @media (min-width: $bp-lg) {
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 4rem;
+    align-items: start;
+  }
+}
+
+// Heading stays in view while the cards scroll past on desktop
+.intro {
+  @media (min-width: $bp-lg) {
+    position: sticky;
+    top: 120px;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 1.3rem + 2.4vw, 3.25rem);
+    line-height: 1.05;
+    margin-bottom: 1rem;
+    text-wrap: balance;
+  }
+
+  p {
+    color: $color-gray-600;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 30rem;
+  }
 }
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  
+  gap: 1rem;
+
   @media (min-width: $bp-sm) {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (min-width: $bp-lg) {
-    grid-template-columns: repeat(4, 1fr);
   }
 }
 
 .feature {
-  text-align: center;
-  padding: 2rem 1.5rem;
-  background-color: $color-white;
+  position: relative;
+  padding: 1.75rem;
   border-radius: $radius-lg;
-  box-shadow: $shadow-sm;
-  transition: all $transition-normal;
+  background: $color-gray-50;
+  border: 1px solid $color-gray-200;
+  overflow: hidden;
+  isolation: isolate;
+  transition: border-color 300ms $ease-out, transform 300ms $ease-out;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(360px circle at var(--spot-x, 50%) var(--spot-y, -20%), rgba($color-lime-main, 0.22), transparent 60%);
+    opacity: 0;
+    transition: opacity 300ms $ease-out;
+  }
 
   &:hover {
-    box-shadow: $shadow-md;
-    transform: translateY(-5px);
+    border-color: rgba($color-blue-main, 0.3);
+    transform: translateY(-3px);
 
-    .iconWrapper {
-      background-color: $color-blue-main;
-      color: $color-lime-main;
-    }
+    &::before { opacity: 1; }
   }
+}
 
-  .iconWrapper {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background-color: rgba($color-lime-main, 0.15);
-    color: $color-blue-main;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.5rem auto;
-    transition: all $transition-normal;
-  }
+.iconWrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: $radius-md;
+  display: grid;
+  place-items: center;
+  background: $color-blue-dark;
+  color: $color-lime-main;
+  margin-bottom: 1.25rem;
+}
 
-  .title {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-  }
+.title {
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
 
-  .description {
-    color: $color-gray-600;
-    font-size: 0.95rem;
-  }
+.description {
+  color: $color-gray-600;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature:hover { transform: none; }
 }

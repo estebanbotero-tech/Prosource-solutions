@@ -1,63 +1,75 @@
 "use client";
 
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { ArrowRight, ArrowUp, Mail, Phone, MapPin } from 'lucide-react';
 import styles from './Footer.module.scss';
-import { company } from '@/data/company';
-import { MessageCircle } from 'lucide-react';
+import { company, mapsUrl } from '@/data/company';
+import SocialLinks from '@/components/SocialLinks/SocialLinks';
 import Logo from '@/components/Logo/Logo';
 import { useI18n } from '@/i18n/I18nProvider';
-
-// Simple SVG Icons for social media
-const InstagramIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-);
-const FacebookIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-);
-const LinkedinIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-);
-const socialLinks = [
-  { href: company.social.instagram, label: 'Instagram', Icon: InstagramIcon },
-  { href: company.social.facebook, label: 'Facebook', Icon: FacebookIcon },
-  { href: company.social.whatsapp, label: 'WhatsApp', Icon: () => <MessageCircle size={20} /> },
-  { href: company.social.linkedin, label: 'LinkedIn', Icon: LinkedinIcon },
-].filter((s) => s.href);
+import { useClock } from '@/components/motion/useClock';
 
 export default function Footer() {
   const { lang, dict } = useI18n();
   const t = dict.footer;
+  const teamTime = useClock('America/Bogota');
   const currentYear = new Date().getFullYear();
+
+  // Same sections as the navbar, plus About/Contact
+  const navLinks = [
+    { id: 'services', name: dict.nav.services },
+    { id: 'solutions', name: dict.nav.solutions },
+    { id: 'cases', name: dict.nav.cases },
+    { id: 'estimator', name: dict.nav.estimator },
+    { id: 'about', name: dict.nav.about },
+    { id: 'contact', name: dict.nav.contact },
+  ];
 
   return (
     <footer className={styles.footer}>
       <div className="container">
+        {/* Closing call to action */}
+        <div className={styles.cta}>
+          <div>
+            <span className={styles.status}>
+              <span className={styles.statusDot} aria-hidden="true" />
+              {dict.hero.clocks.live}
+              {teamTime && <span className={styles.statusTime}> · {teamTime} {t.inColombia}</span>}
+            </span>
+            <h2 className={styles.ctaTitle}>{t.ctaTitle}</h2>
+            <p className={styles.ctaText}>{t.ctaText}</p>
+          </div>
+          <div className={styles.ctaActions}>
+            <Link href={`/${lang}#contact`} className={styles.ctaButton}>
+              {dict.nav.cta} <ArrowRight size={18} />
+            </Link>
+            <a href={`mailto:${company.contact.email}`} className={styles.ctaEmail}>
+              {company.contact.email}
+            </a>
+          </div>
+        </div>
+
         <div className={styles.top}>
           <div className={styles.brand}>
-            <Link href={`/${lang}`} className={styles.logo}>
-              <Logo className={styles.logoIcon} />
+            <Link href={`/${lang}`} className={styles.logo} aria-label={company.name}>
+              <Logo />
             </Link>
             <p className={styles.description}>{t.description}</p>
-            <div className={styles.social}>
-              {socialLinks.map(({ href, label, Icon }) => (
-                <a key={label} href={href} aria-label={label} target="_blank" rel="noopener noreferrer"><Icon /></a>
-              ))}
-            </div>
+            <SocialLinks className={styles.social} />
           </div>
 
-          <div className={styles.section}>
-            <h4>{t.navigation}</h4>
+          <nav className={styles.section} aria-label={t.navigation}>
+            <h3>{t.navigation}</h3>
             <ul>
-              <li><Link href={`/${lang}`}>{dict.nav.home}</Link></li>
-              <li><Link href={`/${lang}#services`}>{dict.nav.services}</Link></li>
-              <li><Link href={`/${lang}#about`}>{dict.nav.about}</Link></li>
-              <li><Link href={`/${lang}#solutions`}>{dict.nav.solutions}</Link></li>
-              <li><Link href={`/${lang}#contact`}>{dict.nav.contact}</Link></li>
+              {navLinks.map((l) => (
+                <li key={l.id}><Link href={`/${lang}#${l.id}`}>{l.name}</Link></li>
+              ))}
             </ul>
-          </div>
+          </nav>
 
           <div className={styles.section}>
-            <h4>{t.services}</h4>
+            <h3>{t.services}</h3>
             <ul>
               {dict.services.items.map((s) => (
                 <li key={s.title}><Link href={`/${lang}#services`}>{s.title}</Link></li>
@@ -66,22 +78,56 @@ export default function Footer() {
           </div>
 
           <div className={styles.section}>
-            <h4>{t.contact}</h4>
-            <ul>
-              <li><a href={`mailto:${company.contact.email}`}>{company.contact.email}</a></li>
-              <li><a href={`tel:${company.contact.phoneHref}`}>{company.contact.phone}</a></li>
+            <h3>{t.contact}</h3>
+            <ul className={styles.contactList}>
+              <li>
+                <Mail size={16} aria-hidden="true" />
+                <a href={`mailto:${company.contact.email}`}>{company.contact.email}</a>
+              </li>
+              <li>
+                <Phone size={16} aria-hidden="true" />
+                <a href={`tel:${company.contact.phoneHref}`}>{company.contact.phone}</a>
+              </li>
+              {company.contact.addresses.map((address) => (
+                <li key={address}>
+                  <MapPin size={16} aria-hidden="true" />
+                  <a href={mapsUrl(address)} target="_blank" rel="noopener noreferrer">{address}</a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
+      </div>
 
+      <div className="container">
         <div className={styles.bottom}>
-          <p>&copy; {currentYear} {company.name}. {t.rights}</p>
+          <p>&copy; {currentYear} {company.legalName} {t.rights}</p>
           <div className={styles.links}>
             <Link href={`/${lang}/privacy`}>{t.privacy}</Link>
             <Link href={`/${lang}/terms`}>{t.terms}</Link>
+            <button
+              type="button"
+              className={styles.toTop}
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            >
+              {t.backToTop} <ArrowUp size={16} />
+            </button>
           </div>
         </div>
       </div>
+      {/* Edge-to-edge wordmark, rises into place when the footer is reached */}
+      <div className={styles.wordmarkWrap} aria-hidden="true">
+        <motion.span
+          className={styles.wordmark}
+          initial={{ y: '40%', opacity: 0 }}
+          whileInView={{ y: '0%', opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+        >
+          PROSOURCE
+        </motion.span>
+      </div>
+
     </footer>
   );
 }

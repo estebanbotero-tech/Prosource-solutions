@@ -195,6 +195,11 @@ const es = {
     ],
   },
   caseStudies: {
+    challenge: "Desafío",
+    solution: "Solución Prosource",
+    impact: "Impacto medible",
+    similar: "Quiero un resultado similar",
+    similarPrefill: "Hola Prosource Solutions, me interesa un caso similar a:",
     badge: "Resultados Demostrables",
     title: "Cómo transformamos números y operaciones",
     subtitle: "Historias reales de optimización y crecimiento logradas con nuestras soluciones.",
@@ -315,6 +320,9 @@ const es = {
     promptCustom: "Escribir otra consulta...",
   },
   contact: {
+    mapTitle: "Mapa de nuestra sede en La Estrella, Antioquia",
+    follow: "Síguenos",
+    directions: "Cómo llegar",
     infoTitle: "Información de Contacto Directo",
     email: "Correo corporativo",
     phone: "Línea directa / WhatsApp",
@@ -345,6 +353,11 @@ const es = {
     emailSubject: "Nueva solicitud comercial desde la web",
   },
   footer: {
+    ctaTitle: "¿Hablamos de tu operación?",
+    ctaText: "Cuéntanos qué necesitas y te respondemos en menos de 24 h, sin compromiso.",
+    offices: "Sedes",
+    backToTop: "Volver arriba",
+    inColombia: "en Colombia",
     description: "Impulsamos la rentabilidad y escalabilidad de tu empresa mediante células BPO de alto rendimiento, operaciones 24/7/365 y soluciones tecnológicas avanzadas.",
     navigation: "Navegación",
     services: "Servicios",

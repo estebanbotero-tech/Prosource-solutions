@@ -1,187 +1,160 @@
 @use '../../styles/variables' as *;
 
+$ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
 .caseStudies {
-  background-color: $color-gray-50;
   position: relative;
 }
 
-.badgeWrapper {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: rgba($color-lime-main, 0.25);
-  color: #3b4703;
-  padding: 0.35rem 0.9rem;
-  border-radius: $radius-full;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 1rem;
+.header {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 3rem;
+
+  @media (min-width: $bp-lg) {
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: end;
+    gap: 4rem;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 1.3rem + 2.4vw, 3.25rem);
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+
+  p {
+    color: rgba($color-white, 0.7);
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
 }
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 1.25rem;
 
   @media (min-width: $bp-lg) {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
+/* Card with a lime spotlight that follows the cursor (--spot-x/--spot-y from onSpotlightMove) */
 .card {
-  background-color: $color-white;
-  border-radius: $radius-xl;
-  padding: 2rem;
-  box-shadow: $shadow-md;
-  border: 1px solid $color-gray-200;
+  position: relative;
   display: flex;
   flex-direction: column;
-  transition: all $transition-normal;
+  gap: 1.25rem;
+  padding: 2rem;
+  border-radius: $radius-lg;
+  background: rgba($color-white, 0.04);
+  border: 1px solid rgba($color-white, 0.1);
+  overflow: hidden;
+  isolation: isolate;
+  transition: border-color 300ms $ease-out;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(420px circle at var(--spot-x, 50%) var(--spot-y, -20%), rgba($color-lime-main, 0.14), transparent 60%);
+    opacity: 0;
+    transition: opacity 300ms $ease-out;
+  }
 
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: $shadow-xl;
-    border-color: rgba($color-blue-main, 0.3);
-  }
-}
+    border-color: rgba($color-lime-main, 0.35);
 
-.cardHeader {
-  margin-bottom: 1.5rem;
+    &::before { opacity: 1; }
+  }
 }
 
 .tag {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: $color-blue-main;
-  background-color: rgba($color-blue-main, 0.08);
-  padding: 0.25rem 0.65rem;
+  align-self: flex-start;
+  padding: 0.3rem 0.75rem;
   border-radius: $radius-full;
-  margin-bottom: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  background: rgba($color-lime-main, 0.12);
+  color: $color-lime-main;
+  font-size: 0.78rem;
+  font-weight: 700;
 }
 
 .cardTitle {
-  font-size: 1.25rem;
-  color: $color-blue-dark;
-  line-height: 1.35;
-  font-weight: 700;
+  font-family: var(--font-display), $font-family-sans;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
 }
 
-.problemSolution {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  flex: 1;
-}
-
-.block {
-  background-color: $color-gray-50;
-  padding: 1rem;
-  border-radius: $radius-md;
-  border-left: 3px solid $color-gray-300;
-
-  &:nth-child(2) {
-    border-left-color: #22c55e;
-    background-color: #f0fdf4;
-  }
-}
-
-.blockLabel {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: $color-gray-700;
-  margin-bottom: 0.35rem;
-}
-
-.dotRed {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #ef4444;
-}
-
-.iconGreen {
-  color: #16a34a;
-}
-
-.blockText {
-  font-size: 0.875rem;
-  color: $color-gray-600;
-  line-height: 1.5;
-}
-
-.metricsBox {
-  background: linear-gradient(135deg, $color-blue-dark 0%, $color-blue-main 100%);
-  border-radius: $radius-lg;
-  padding: 1.25rem;
-  color: $color-white;
-  margin-bottom: 1.5rem;
-}
-
-.metricsHeader {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: $color-lime-main;
-  margin-bottom: 0.75rem;
-}
-
-.metricsGrid {
+.metrics {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
+  gap: 0.75rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid rgba($color-white, 0.1);
+  border-bottom: 1px solid rgba($color-white, 0.1);
 }
 
-.metricItem {
+.metric {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  gap: 0.3rem;
 }
 
 .metricVal {
-  font-size: 1.35rem;
+  font-family: var(--font-display), $font-family-sans;
+  font-size: clamp(1.4rem, 1.1rem + 1vw, 1.9rem);
   font-weight: 800;
-  color: $color-white;
-  line-height: 1.1;
-  margin-bottom: 0.2rem;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  color: $color-lime-main;
+  white-space: nowrap;
 }
 
 .metricLabel {
-  font-size: 0.7rem;
-  color: $color-gray-300;
-  line-height: 1.2;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: rgba($color-white, 0.65);
 }
 
-.cardFooter {
-  padding-top: 1rem;
-  border-top: 1px solid $color-gray-200;
+.story {
+  display: grid;
+  gap: 1rem;
+
+  dt {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgba($color-white, 0.5);
+    margin-bottom: 0.25rem;
+  }
+
+  dd {
+    color: rgba($color-white, 0.82);
+    line-height: 1.55;
+    font-size: 0.95rem;
+  }
 }
 
 .ctaLink {
+  margin-top: auto;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.9rem;
+  color: $color-lime-main;
   font-weight: 700;
-  color: $color-blue-main;
-  transition: all $transition-fast;
 
-  &:hover {
-    color: $color-blue-dark;
-    gap: 0.75rem;
+  svg { transition: transform 220ms $ease-out; }
+
+  &:hover svg { transform: translateX(4px); }
+
+  &:focus-visible {
+    outline: 2px solid $color-white;
+    outline-offset: 3px;
+    border-radius: $radius-sm;
   }
 }

@@ -6,6 +6,7 @@ import { MessageCircle, X, Send, Sparkles } from 'lucide-react';
 import styles from './WhatsAppWidget.module.scss';
 import { useI18n } from '@/i18n/I18nProvider';
 import { company } from '@/data/company';
+import { track } from '@/components/Analytics/Analytics';
 
 export default function WhatsAppWidget() {
   const { lang, dict } = useI18n();
@@ -69,6 +70,7 @@ export default function WhatsAppWidget() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={styles.promptBtn}
+                    onClick={() => track('contact_whatsapp', { location: 'widget' })}
                   >
                     <span>{opt.label}</span>
                     <Send size={14} className={styles.sendIcon} />
@@ -84,6 +86,7 @@ export default function WhatsAppWidget() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.directChatBtn}
+                onClick={() => track('contact_whatsapp', { location: 'widget' })}
               >
                 <MessageCircle size={16} />
                 <span>{t.promptCustom}</span>

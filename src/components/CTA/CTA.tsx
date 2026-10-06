@@ -1,11 +1,12 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { ArrowRight, MessageCircle, Sparkles } from 'lucide-react';
+import { ArrowRight, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 import styles from './CTA.module.scss';
 import { useI18n } from '@/i18n/I18nProvider';
 import { company } from '@/data/company';
+import { track } from '@/components/Analytics/Analytics';
 
 export default function CTA() {
   const { lang, dict } = useI18n();
@@ -17,34 +18,28 @@ export default function CTA() {
   )}`;
 
   return (
-    <section className={`section ${styles.cta}`}>
-      <div className={`container ${styles.content}`}>
+    <section className={styles.cta}>
+      <div className="container">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          className={styles.panel}
+          initial={{ opacity: 0, y: 40, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          {t.badge && (
-            <div className={styles.badgePill}>
-              <Sparkles size={16} />
-              <span>{t.badge}</span>
-            </div>
-          )}
-
           <h2 className={styles.title}>{t.title}</h2>
           <p className={styles.subtitle}>{t.subtitle}</p>
 
           <div className={styles.buttonGroup}>
-            <Link href={`/${lang}#contact`} className="btn btn-primary">
+            <Link href={`/${lang}#contact`} className={styles.primaryBtn}>
               {t.button} <ArrowRight size={20} />
             </Link>
-
             <a
               href={waUrl}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.waBtn}
+              onClick={() => track('contact_whatsapp', { location: 'cta' })}
             >
               <MessageCircle size={20} />
               <span>{t.whatsappBtn}</span>

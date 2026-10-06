@@ -1,71 +1,79 @@
 @use '../../styles/variables' as *;
 
 .about {
-  background-color: $color-white;
+  background: $color-gray-50;
 }
 
 .content {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 4rem;
-  
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+
   @media (min-width: $bp-lg) {
     grid-template-columns: 1fr 1fr;
-    align-items: center;
+    gap: 4rem;
+    align-items: start;
   }
 }
 
-.textContent {
-  .title {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    
-    @media (min-width: $bp-md) {
-      font-size: 2.5rem;
-    }
-  }
-
-  .description {
-    font-size: 1.125rem;
-    color: $color-gray-600;
-    line-height: 1.8;
-    margin-bottom: 2rem;
-  }
+.title {
+  font-size: clamp(2rem, 1.3rem + 2.4vw, 3.25rem);
+  line-height: 1.05;
+  text-wrap: balance;
 }
 
-.statsGrid {
+.text {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
+  gap: 1rem;
 
-  .statCard {
-    background-color: $color-gray-50;
-    border-radius: $radius-lg;
-    padding: 2rem;
-    text-align: center;
-    border: 1px solid $color-gray-100;
-    transition: all $transition-normal;
+  p {
+    color: $color-gray-600;
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+}
 
-    &:hover {
-      box-shadow: $shadow-md;
-      transform: translateY(-5px);
-      border-color: $color-lime-light;
-    }
+// Ruled row of figures, like a spec sheet rather than a card grid.
+// dt comes first in the DOM (label, then value); column-reverse shows the number on top.
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 2px solid $color-blue-dark;
 
-    .statValue {
-      display: block;
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: $color-blue-main;
-      margin-bottom: 0.5rem;
-    }
+  @media (min-width: $bp-lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
 
-    .statLabel {
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: $color-gray-500;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+.stat {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 1.5rem 1.25rem 0 0;
+
+  & + & {
+    @media (min-width: $bp-lg) {
+      padding-left: 1.25rem;
+      border-left: 1px solid $color-gray-200;
     }
   }
+
+  dd { margin: 0; }
+}
+
+.statValue {
+  font-family: var(--font-display), $font-family-sans;
+  font-size: clamp(2.5rem, 1.8rem + 2.5vw, 4rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+  color: $color-blue-dark;
+}
+
+.statLabel {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: $color-gray-600;
 }

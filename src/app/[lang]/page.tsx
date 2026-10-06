@@ -9,6 +9,19 @@ import About from "@/components/About/About";
 import Process from "@/components/Process/Process";
 import CTA from "@/components/CTA/CTA";
 import Contact from "@/components/Contact/Contact";
+import type { Metadata } from "next";
+import { locales } from "@/i18n/config";
+
+// Canonical + hreflang for the home page (subpages keep their own URLs)
+export async function generateMetadata({ params }: PageProps<'/[lang]'>): Promise<Metadata> {
+  const { lang } = await params;
+  return {
+    alternates: {
+      canonical: `/${lang}`,
+      languages: Object.fromEntries(locales.map((l) => [l, `/${l}`])),
+    },
+  };
+}
 
 export default function Home() {
   return (

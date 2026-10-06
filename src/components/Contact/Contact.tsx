@@ -5,7 +5,9 @@ import Link from 'next/link';
 import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
 import { motion } from 'framer-motion';
 import styles from './Contact.module.scss';
-import { company, mapsUrl } from '@/data/company';
+import { company, mapsUrl, mapEmbedUrl, mapQuery } from '@/data/company';
+import SocialLinks from '@/components/SocialLinks/SocialLinks';
+import { track } from '@/components/Analytics/Analytics';
 import { useI18n } from '@/i18n/I18nProvider';
 
 const PREFILL_EVENT = 'contact:prefill';
@@ -73,6 +75,7 @@ export default function Contact() {
         if (!res.ok || String(data.success) !== 'true') throw new Error(data.message);
       }
       setStatus('success');
+      track('generate_lead', { form: 'contact' });
       setFormData(emptyForm);
       setConsent(false);
     } catch {
@@ -115,7 +118,14 @@ export default function Contact() {
               <p>
                 <a href={`tel:${company.contact.phoneHref}`}>{company.contact.phone}</a>
                 {' · '}
-                <a href={company.social.whatsapp} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                <a
+                  href={company.social.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => track('contact_whatsapp', { location: 'contact' })}
+                >
+                  WhatsApp
+                </a>
               </p>
             </div>
           </div>
@@ -138,6 +148,30 @@ export default function Contact() {
               <h4>{t.hours}</h4>
               <p>{t.hoursValue}</p>
             </div>
+          </div>
+
+          <div className={styles.follow}>
+            <h4>{t.follow}</h4>
+            <SocialLinks className={styles.social} />
+          </div>
+
+          {/* Mini map of the main office; loads only when scrolled near */}
+          <div className={styles.map}>
+            <iframe
+              src={mapEmbedUrl(mapQuery)}
+              title={t.mapTitle}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+            <a
+              href={mapsUrl(company.contact.addresses[0])}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.mapLink}
+            >
+              <MapPin size={16} /> {t.directions}
+            </a>
           </div>
         </motion.div>
 

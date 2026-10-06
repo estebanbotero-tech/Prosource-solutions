@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence, Variants } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform, type MotionValue } from 'framer-motion';
 import { ArrowRight, X, MessageCircle, CheckCircle2, Sparkles, Send } from 'lucide-react';
 import styles from './Services.module.scss';
 import { serviceIcons } from '@/data/services';
@@ -9,29 +9,55 @@ import { useI18n } from '@/i18n/I18nProvider';
 import { prefillContact } from '@/components/Contact/Contact';
 import { company } from '@/data/company';
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
+type ServiceCardProps = {
+  index: number;
+  total: number;
+  progress: MotionValue<number>;
+  title: string;
+  badge?: string;
+  description: string;
+  image?: string;
+  moreLabel: string;
+  onOpen: () => void;
 };
 
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" }
-  }
-};
+// Sticky card that shrinks slightly as the next one slides over it
+function ServiceCard({ index, total, progress, title, badge, description, image, moreLabel, onOpen }: ServiceCardProps) {
+  const Icon = serviceIcons[index];
+  const scale = useTransform(progress, [index / total, 1], [1, 1 - (total - 1 - index) * 0.04]);
+
+  return (
+    <div className={styles.cardShell} style={{ ['--i' as string]: index }}>
+      <motion.article className={styles.card} style={{ scale }}>
+        <div className={styles.cardBody}>
+          <div className={styles.cardTop}>
+            <span className={styles.iconWrapper}><Icon size={24} /></span>
+            {badge && <span className={styles.badgePill}>{badge}</span>}
+          </div>
+          <h3 className={styles.cardTitle}>{title}</h3>
+          <p className={styles.cardDesc}>{description}</p>
+          <button type="button" className={styles.cardLinkBtn} onClick={onOpen} aria-haspopup="dialog">
+            <span>{moreLabel}</span>
+            <ArrowRight className={styles.arrow} size={16} />
+          </button>
+        </div>
+        {image && (
+          <div className={styles.cardMedia}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={image} alt="" loading="lazy" />
+          </div>
+        )}
+      </motion.article>
+    </div>
+  );
+}
 
 export default function Services() {
   const { lang, dict } = useI18n();
   const t = dict.services;
   const [activeModalIndex, setActiveModalIndex] = useState<number | null>(null);
+  const stackRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: stackRef, offset: ["start start", "end end"] });
 
   // Close on Escape & Lock body scroll
   useEffect(() => {
@@ -68,45 +94,27 @@ export default function Services() {
   return (
     <section id="services" className={`section ${styles.services}`}>
       <div className="container">
-        <div className="text-center">
-          <h2 className="section-title">{t.title}</h2>
-          <p className="section-subtitle">{t.subtitle}</p>
+        <div className={styles.header}>
+          <h2>{t.title}</h2>
+          <p>{t.subtitle}</p>
         </div>
 
-        <motion.div
-          className={styles.grid}
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          {t.items.map((service, i) => {
-            const Icon = serviceIcons[i];
-            return (
-              <motion.div key={service.title} className={styles.card} variants={itemVariants}>
-                <span className={styles.number}>{String(i + 1).padStart(2, '0')}</span>
-                <div className={styles.iconWrapper}>
-                  <Icon size={28} />
-                </div>
-                {service.badge && (
-                  <span className={styles.badgePill}>{service.badge}</span>
-                )}
-                <h3 className={styles.cardTitle}>{service.title}</h3>
-                <p className={styles.cardDesc}>{service.description}</p>
-                
-                <button
-                  type="button"
-                  className={styles.cardLinkBtn}
-                  onClick={() => setActiveModalIndex(i)}
-                  aria-label={`${t.more} sobre ${service.title}`}
-                >
-                  <span>{t.more}</span>
-                  <ArrowRight className={styles.arrow} size={16} />
-                </button>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+        <div ref={stackRef} className={styles.stack}>
+          {t.items.map((service, i) => (
+            <ServiceCard
+              key={service.title}
+              index={i}
+              total={t.items.length}
+              progress={scrollYProgress}
+              title={service.title}
+              badge={service.badge}
+              description={service.description}
+              image={service.image}
+              moreLabel={t.more}
+              onOpen={() => setActiveModalIndex(i)}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Service Details Modal */}
