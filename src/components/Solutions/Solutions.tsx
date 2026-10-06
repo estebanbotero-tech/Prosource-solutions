@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, Variants } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { useState } from 'react';
+import { ArrowRight, Check, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import styles from './Solutions.module.scss';
 import { solutionVisuals } from '@/data/solutions';
@@ -29,6 +30,7 @@ const itemVariants: Variants = {
 export default function Solutions() {
   const { lang, dict } = useI18n();
   const t = dict.solutions;
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <section id="solutions" className={`section ${styles.solutions}`}>
@@ -47,25 +49,58 @@ export default function Solutions() {
         >
           {t.items.map((solution, i) => {
             const { icon: Icon, image } = solutionVisuals[i];
+            const isOpen = openIndex === i;
+            const detailsId = `solution-details-${i}`;
             return (
-              <motion.div key={solution.title} className={styles.card} variants={itemVariants}>
+              <motion.div
+                key={solution.title}
+                className={`${styles.card} ${isOpen ? styles.open : ''}`}
+                variants={itemVariants}
+              >
                 <div className={styles.imageWrapper}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={image} alt={solution.title} loading="lazy" />
+                  <img src={image} alt="" loading="lazy" />
                 </div>
                 <div className={styles.content}>
                   <div className={styles.iconWrapper}>
-                    <Icon size={24} />
+                    <Icon size={20} />
                   </div>
                   <h3 className={styles.cardTitle}>{solution.title}</h3>
-                  <p className={styles.cardDesc}>{solution.description}</p>
-                  <Link
-                    href={`/${lang}#contact`}
-                    className={styles.cardLink}
-                    onClick={() => prefillContact(`${dict.services.prefill} ${solution.title}.`)}
-                  >
-                    {t.more} <ArrowRight className={styles.arrow} size={18} />
-                  </Link>
+
+                  {isOpen ? (
+                    <div id={detailsId} className={styles.details}>
+                      <span className={styles.detailsLabel}>{t.includes}</span>
+                      <ul>
+                        {solution.details.map((d) => (
+                          <li key={d}><Check size={16} className={styles.check} />{d}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : (
+                    <p className={styles.cardDesc}>{solution.description}</p>
+                  )}
+
+                  <div className={styles.actions}>
+                    <button
+                      type="button"
+                      className={styles.toggle}
+                      aria-expanded={isOpen}
+                      aria-controls={detailsId}
+                      onClick={() => setOpenIndex(isOpen ? null : i)}
+                    >
+                      {isOpen ? t.less : t.more}
+                      <ChevronDown className={styles.chevron} size={18} />
+                    </button>
+                    {isOpen && (
+                      <Link
+                        href={`/${lang}#contact`}
+                        className={styles.quoteLink}
+                        onClick={() => prefillContact(`${dict.services.prefill} ${solution.title}.`)}
+                      >
+                        {t.quote} <ArrowRight size={16} />
+                      </Link>
+                    )}
+                  </div>
                 </div>
               </motion.div>
             );
