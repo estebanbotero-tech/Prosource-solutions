@@ -35,17 +35,11 @@ const en: Dict = {
       team: "Team in Colombia",
       live: "Operating now",
     },
-    globeHint: "Running your operation from Colombia",
+    globeHint: "From Colombia, serving clients worldwide",
   },
   trustBar: {
-    title: "Industries that trust our operational infrastructure and engineering talent",
-    items: [
-      { name: "Logistics & Transport", tag: "24/7 fleet dispatch & monitoring" },
-      { name: "Fintech & Banking", tag: "Mission-critical support & compliance" },
-      { name: "E-Commerce & Retail", tag: "Omnichannel customer care & post-sale" },
-      { name: "Healthcare & Assistance", tag: "Immediate hotline & triage" },
-      { name: "SaaS & Tech Companies", tag: "Tier 1-3 support & engineering" },
-    ],
+    title: "We build solutions for any industry",
+    items: ["Logistics & Transportation", "Fintech & Banking", "E-Commerce & Retail", "Healthcare", "Technology & SaaS", "Telecommunications", "Education", "Travel & Hospitality", "Insurance", "Real Estate", "Manufacturing", "Energy", "Government", "Agribusiness"],
   },
   about: {
     missionTitle: "Mission",
@@ -57,6 +51,21 @@ const en: Dict = {
     p1: "At Prosource Solutions, we eliminate the headache of recruiting, training, and maintaining expensive in-house infrastructure. We build high-performing operational squads and develop the software your company needs to dominate your industry.",
     p2: "We operate as your dedicated strategic partner: backed by strict Service Level Agreements (SLAs), real-time visibility, and a results-driven culture focused on boosting your bottom line.",
     stats: ["Years of track record", "Companies served", "Delivered projects", "365-day availability"],
+  },
+  team: {
+    title: "The team behind your operation",
+    subtitle: "Leaders in Antioquia and Caldas accountable for every client, every process and every line of code.",
+    members: [
+      { role: "General Manager", bio: "Leads Prosource's strategy and every client relationship, so each operation delivers what we promise." },
+      { role: "Technology Lead", bio: "Leads software development, cloud infrastructure and the integrations behind every operation." },
+      { role: "Planning Lead", bio: "Plans capacity, shifts and targets so every client has uninterrupted coverage." },
+      { role: "Human Resources Lead", bio: "Recruits, trains and supports the people who serve our clients with a human touch." },
+      { role: "Operations Lead · Manizales", bio: "Leads the Manizales operations team and the day-to-day delivery of service KPIs." },
+      { role: "Operations Lead · Medellín, Antioquia", bio: "Leads the Medellín operations team and 24/7 care for our clients." },
+    ],
+    prev: "Previous",
+    next: "Next",
+    show: "Show",
   },
   services: {
     title: "Our High-Impact Services",

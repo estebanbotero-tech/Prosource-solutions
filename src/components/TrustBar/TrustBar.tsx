@@ -1,10 +1,17 @@
 "use client";
 
-import { Truck, Landmark, ShoppingBag, HeartPulse, Cpu } from 'lucide-react';
+import {
+  Truck, Landmark, ShoppingBag, HeartPulse, Cpu, RadioTower, GraduationCap,
+  Plane, ShieldCheck, Building2, Factory, Zap, Scale, Wheat,
+} from 'lucide-react';
 import styles from './TrustBar.module.scss';
 import { useI18n } from '@/i18n/I18nProvider';
 
-const icons = [Truck, Landmark, ShoppingBag, HeartPulse, Cpu];
+// Same order as trustBar.items in src/i18n/*.ts
+const icons = [
+  Truck, Landmark, ShoppingBag, HeartPulse, Cpu, RadioTower, GraduationCap,
+  Plane, ShieldCheck, Building2, Factory, Zap, Scale, Wheat,
+];
 
 export default function TrustBar() {
   const { dict } = useI18n();
@@ -12,13 +19,12 @@ export default function TrustBar() {
 
   const row = (hidden: boolean) => (
     <ul className={styles.row} aria-hidden={hidden || undefined}>
-      {t.items.map((item, index) => {
+      {t.items.map((name, index) => {
         const Icon = icons[index % icons.length];
         return (
-          <li key={item.name} className={styles.item}>
-            <span className={styles.iconCircle}><Icon size={18} /></span>
-            <span className={styles.itemName}>{item.name}</span>
-            <span className={styles.itemTag}>{item.tag}</span>
+          <li key={name} className={styles.item}>
+            <span className={styles.iconCircle}><Icon size={16} /></span>
+            <span className={styles.itemName}>{name}</span>
           </li>
         );
       })}

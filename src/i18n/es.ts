@@ -33,17 +33,11 @@ const es = {
       team: "Equipo en Colombia",
       live: "Operando ahora",
     },
-    globeHint: "Conectamos tu operación desde Colombia",
+    globeHint: "Desde Colombia, operamos para clientes en todo el mundo",
   },
   trustBar: {
-    title: "Sectores que confían en nuestra infraestructura operativa y tecnológica",
-    items: [
-      { name: "Logística y Transporte", tag: "Despacho y monitoreo 24/7" },
-      { name: "Fintech y Servicios", tag: "Atención crítica y seguridad" },
-      { name: "E-Commerce y Retail", tag: "Soporte omnicanal y postventa" },
-      { name: "Salud y Asistencia", tag: "Líneas de ayuda inmediata" },
-      { name: "Empresas SaaS & Tech", tag: "Desarrollo y soporte Tier 1-3" },
-    ],
+    title: "Desarrollamos soluciones para cualquier sector",
+    items: ["Logística y Transporte", "Fintech y Banca", "E-Commerce y Retail", "Salud", "Tecnología y SaaS", "Telecomunicaciones", "Educación", "Turismo y Hotelería", "Seguros", "Inmobiliario", "Manufactura", "Energía", "Gobierno", "Agroindustria"],
   },
   about: {
     missionTitle: "Misión",
@@ -55,6 +49,21 @@ const es = {
     p1: "En Prosource Solutions eliminamos la carga de contratar, capacitar y gestionar infraestructura interna. Diseñamos células operativas de alto rendimiento y desarrollamos la tecnología que tu negocio requiere para competir y ganar en el mercado actual.",
     p2: "Trabajamos como un socio estratégico directo: con acuerdos de nivel de servicio (SLAs) rigurosos, métricas en tiempo real y una cultura de servicio humano, eficiente y orientada a resultados financieros reales para tu negocio.",
     stats: ["Años de trayectoria", "Empresas atendidas", "Proyectos entregados", "Disponibilidad 365 días"],
+  },
+  team: {
+    title: "El equipo detrás de tu operación",
+    subtitle: "Líderes en Antioquia y Caldas que responden por cada cliente, cada proceso y cada línea de código.",
+    members: [
+      { role: "Gerente General", bio: "Dirige la estrategia de Prosource y la relación con cada cliente, para que cada operación cumpla lo que prometemos." },
+      { role: "Líder de Tecnología", bio: "Lidera el desarrollo de software, la infraestructura cloud y las integraciones que sostienen cada operación." },
+      { role: "Líder de Planeación", bio: "Planea capacidad, turnos y metas para que cada cliente tenga cobertura sin interrupciones." },
+      { role: "Líder de Recursos Humanos", bio: "Selecciona, forma y acompaña al talento que atiende a nuestros clientes con calidad humana." },
+      { role: "Líder de Operación · Manizales", bio: "Lidera el equipo de operación en Manizales y el cumplimiento diario de los indicadores de servicio." },
+      { role: "Líder de Operación · Medellín, Antioquia", bio: "Lidera el equipo de operación en Medellín y la atención 24/7 a nuestros clientes." },
+    ],
+    prev: "Anterior",
+    next: "Siguiente",
+    show: "Ver a",
   },
   services: {
     title: "Nuestros Servicios de Alto Impacto",

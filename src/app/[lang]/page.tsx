@@ -6,6 +6,7 @@ import Estimator from "@/components/Estimator/Estimator";
 import Solutions from "@/components/Solutions/Solutions";
 import WhyUs from "@/components/WhyUs/WhyUs";
 import About from "@/components/About/About";
+import Team from "@/components/Team/Team";
 import Process from "@/components/Process/Process";
 import CTA from "@/components/CTA/CTA";
 import Contact from "@/components/Contact/Contact";
@@ -34,6 +35,7 @@ export default function Home() {
       <Solutions />
       <WhyUs />
       <About />
+      <Team />
       <Process />
       <CTA />
       <Contact />

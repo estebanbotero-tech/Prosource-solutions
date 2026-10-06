@@ -101,7 +101,7 @@ export default function Footer() {
 
       <div className="container">
         <div className={styles.bottom}>
-          <p>&copy; {currentYear} {company.legalName} {t.rights}</p>
+          <p>&copy; {currentYear} {company.legalName} · NIT {company.nit}. {t.rights}</p>
           <div className={styles.links}>
             <Link href={`/${lang}/privacy`}>{t.privacy}</Link>
             <Link href={`/${lang}/terms`}>{t.terms}</Link>

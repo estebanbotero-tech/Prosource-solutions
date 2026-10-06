@@ -52,6 +52,29 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [pathname]);
 
+  // Site-wide fix for in-page links ("/es#contact" etc.): once the URL already has that hash,
+  // Next's Link sees no navigation and the page doesn't move. Handle every same-page anchor
+  // click here (capture phase, before Link) and always scroll to the section.
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = (e.target as HTMLElement).closest('a');
+      const href = a?.getAttribute('href');
+      if (!a || !href || a.target === '_blank') return;
+      const url = new URL(href, window.location.href);
+      if (!url.hash || url.pathname !== window.location.pathname) return;
+      const section = document.getElementById(decodeURIComponent(url.hash.slice(1)));
+      if (!section) return;
+      // preventDefault only: Link skips navigation when defaultPrevented, while the link's own
+      // onClick (prefillContact, closing the mobile menu) still runs
+      e.preventDefault();
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (window.location.hash !== url.hash) history.pushState(null, '', url.hash);
+    };
+    document.addEventListener('click', onClick, true);
+    return () => document.removeEventListener('click', onClick, true);
+  }, []);
+
   // Lock background scroll and allow closing with Escape while the mobile menu is open
   useEffect(() => {
     if (!isMobileMenuOpen) return;

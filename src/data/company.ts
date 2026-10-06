@@ -6,8 +6,8 @@ export const company = {
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://prosource.com.co",
   // Google Analytics 4 measurement ID (G-XXXXXXX). Analytics stays off until it's set.
   gaId: process.env.NEXT_PUBLIC_GA_ID || "",
-  // TODO: replace with the real NIT before publishing (required by Ley 1581 de 2012).
-  nit: "[NIT pendiente]",
+  // Shown in the footer and legal pages (Ley 1581 de 2012)
+  nit: "901.209.820-0",
   // Contact form submissions are delivered here (via formsubmit.co).
   formRecipient: "boteroestebanc13@gmail.com",
   contact: {

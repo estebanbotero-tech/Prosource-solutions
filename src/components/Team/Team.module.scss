@@ -1,0 +1,310 @@
+@use '../../styles/variables' as *;
+
+$ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+$panel-h: 560px;
+$collapsed-w: 92px;
+
+.team {
+  background: $color-white;
+  overflow: hidden;
+}
+
+/* ---------- Header + controls ---------- */
+.header {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+
+  @media (min-width: $bp-lg) {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 4rem;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 1.3rem + 2.4vw, 3.25rem);
+    line-height: 1.05;
+    margin-bottom: 0.75rem;
+    text-wrap: balance;
+  }
+
+  p {
+    color: $color-gray-600;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 36rem;
+  }
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.counter {
+  margin-right: 0.5rem;
+  font-variant-numeric: tabular-nums;
+  color: $color-gray-500;
+  font-weight: 600;
+
+  strong {
+    font-family: var(--font-display), $font-family-sans;
+    font-size: 1.75rem;
+    color: $color-blue-dark;
+  }
+}
+
+.arrow {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid $color-gray-300;
+  color: $color-blue-dark;
+  transition: background-color 200ms $ease-out, border-color 200ms $ease-out, color 200ms $ease-out;
+
+  &:hover {
+    background: $color-blue-dark;
+    border-color: $color-blue-dark;
+    color: $color-white;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-blue-main;
+    outline-offset: 3px;
+  }
+}
+
+/* ---------- Track: swipe carousel on mobile ---------- */
+.track {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  // let cards bleed to the screen edge on phones
+  margin: 0 -1.5rem;
+  padding: 0 1.5rem 0.5rem;
+  scroll-padding: 0 1.5rem;
+
+  &::-webkit-scrollbar { display: none; }
+}
+
+.panel {
+  position: relative;
+  flex: 0 0 min(80%, 340px);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+}
+
+.photo {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  background: $color-blue-dark;
+
+  img {
+    object-fit: cover;
+    object-position: center 20%;
+    transition: transform 900ms $ease-out;
+  }
+}
+
+.index {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  z-index: 2;
+  padding: 0.25rem 0.55rem;
+  border-radius: $radius-full;
+  background: rgba($color-blue-dark, 0.75);
+  color: $color-white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.info {
+  padding: 1rem 0.25rem 0;
+}
+
+.role {
+  color: $color-lime-dark;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+
+.name {
+  font-family: var(--font-display), $font-family-sans;
+  font-size: 1.3rem;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.5rem;
+}
+
+.bio {
+  color: $color-gray-600;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.hit {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: $radius-xl;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 3px solid $color-lime-main;
+    outline-offset: -3px;
+  }
+}
+
+.progress {
+  display: none;
+}
+
+/* ---------- Desktop: expanding panels ---------- */
+@media (min-width: $bp-lg) {
+  .track {
+    overflow: visible;
+    margin: 0;
+    padding: 0;
+    gap: 0.75rem;
+    height: $panel-h;
+  }
+
+  .panel {
+    flex: 0 0 $collapsed-w;
+    border-radius: $radius-xl;
+    overflow: hidden;
+    background: $color-blue-dark;
+    transition: flex-basis 700ms $ease-out, flex-grow 700ms $ease-out;
+
+    &.active {
+      flex: 1 1 auto;
+    }
+  }
+
+  .photo {
+    position: absolute;
+    inset: 0;
+    aspect-ratio: auto;
+    border-radius: 0;
+
+    // dark fade at the bottom so the bio reads over the photo
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(#001630, 0.92) 0%, rgba(#001630, 0.55) 30%, rgba(#001630, 0) 55%);
+      opacity: 0;
+      transition: opacity 500ms $ease-out;
+    }
+  }
+
+  .panel:not(.active) .photo img {
+    filter: saturate(0.6) brightness(0.8);
+  }
+
+  .panel:not(.active):hover .photo img {
+    filter: none;
+    transform: scale(1.05);
+  }
+
+  .active .photo::after { opacity: 1; }
+
+  .index {
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: left 500ms $ease-out, transform 500ms $ease-out;
+  }
+
+  .active .index {
+    left: 1.25rem;
+    transform: none;
+    background: $color-lime-main;
+    color: $color-blue-dark;
+  }
+
+  // Bio overlay: only visible on the open panel, fades up after it widens
+  .info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    padding: 2rem 2.25rem;
+    max-width: 34rem;
+    opacity: 0;
+    transform: translateY(16px);
+    pointer-events: none;
+    transition: opacity 300ms $ease-out, transform 300ms $ease-out;
+  }
+
+  .active .info {
+    opacity: 1;
+    transform: none;
+    transition-delay: 250ms;
+    transition-duration: 500ms;
+  }
+
+  .role { color: $color-lime-main; }
+
+  .name {
+    color: $color-white;
+    font-size: clamp(1.6rem, 1.2rem + 1vw, 2.2rem);
+  }
+
+  .bio {
+    color: rgba($color-white, 0.82);
+    font-size: 1.02rem;
+  }
+
+  .progress {
+    display: block;
+    height: 3px;
+    margin-top: 1.25rem;
+    border-radius: 3px;
+    background: $color-gray-200;
+    overflow: hidden;
+  }
+
+  .progressFill {
+    display: block;
+    height: 100%;
+    width: 100%;
+    background: $color-lime-main;
+    transform-origin: left;
+    animation: fill linear forwards;
+  }
+
+  .progressPaused {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes fill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel,
+  .info,
+  .index,
+  .photo img,
+  .photo::after { transition: none !important; }
+
+  .progress { display: none; }
+}

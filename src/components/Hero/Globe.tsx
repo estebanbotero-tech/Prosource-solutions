@@ -4,21 +4,83 @@ import { useEffect, useRef } from 'react';
 import createGlobe from 'cobe';
 import styles from './Hero.module.scss';
 
-// Operations base (Antioquia + Manizales offices) and the markets we connect to.
-// Edit freely: [lat, lng].
+type RGB = [number, number, number];
+
+// Operations base (Antioquia + Manizales offices). Edit freely: [lat, lng].
 const BASES: [number, number][] = [
   [6.157, -75.643], // La Estrella, Antioquia
   [5.07, -75.517],  // Manizales
 ];
-const MARKETS: [number, number][] = [
-  [25.76, -80.19],  // Miami
-  [33.75, -84.39],  // Atlanta
-  [40.71, -74.0],   // New York
-  [19.43, -99.13],  // Ciudad de México
-  [40.42, -3.7],    // Madrid
+// Real client city, highlighted in lime (OK Taxi)
+const CLIENTS: [number, number][] = [
+  [33.75, -84.39], // Atlanta
+];
+// One point per continent: global reach, not specific clients
+const REACH: [number, number][] = [
+  [34.05, -118.24], // North America · Los Angeles
+  [-23.55, -46.63], // South America · São Paulo
+  [40.42, -3.7],    // Europe · Madrid
+  [1.35, 103.82],   // Asia · Singapore
+  [-33.87, 151.21], // Oceania · Sydney
 ];
 
-const LIME: [number, number, number] = [0.71, 0.83, 0.11];
+// Every country in the Americas (capital, or its main city): small dots without arcs.
+// US, Brazil and Colombia also have the larger points (Atlanta/LA, São Paulo, bases).
+const AMERICAS: [number, number][] = [
+  // North America
+  [40.71, -74.0],   // USA · New York
+  [43.65, -79.38],  // Canada · Toronto
+  [19.43, -99.13],  // México · Ciudad de México
+  // Central America
+  [14.63, -90.51],  // Guatemala
+  [17.25, -88.77],  // Belice · Belmopán
+  [13.69, -89.22],  // El Salvador · San Salvador
+  [14.07, -87.19],  // Honduras · Tegucigalpa
+  [12.11, -86.24],  // Nicaragua · Managua
+  [9.93, -84.08],   // Costa Rica · San José
+  [8.98, -79.52],   // Panamá
+  // Caribbean
+  [23.11, -82.37],  // Cuba · La Habana
+  [17.97, -76.79],  // Jamaica · Kingston
+  [18.59, -72.31],  // Haití · Puerto Príncipe
+  [18.49, -69.93],  // República Dominicana · Santo Domingo
+  [25.05, -77.35],  // Bahamas · Nassau
+  [10.66, -61.51],  // Trinidad y Tobago · Puerto España
+  [13.1, -59.61],   // Barbados · Bridgetown
+  [14.01, -60.99],  // Santa Lucía · Castries
+  [13.16, -61.22],  // San Vicente y las Granadinas · Kingstown
+  [12.06, -61.75],  // Granada · Saint George's
+  [17.12, -61.85],  // Antigua y Barbuda · Saint John's
+  [15.3, -61.39],   // Dominica · Roseau
+  [17.3, -62.72],   // San Cristóbal y Nieves · Basseterre
+  // South America
+  [10.48, -66.9],   // Venezuela · Caracas
+  [-0.18, -78.47],  // Ecuador · Quito
+  [-12.05, -77.04], // Perú · Lima
+  [-16.5, -68.15],  // Bolivia · La Paz
+  [-33.45, -70.67], // Chile · Santiago
+  [-25.26, -57.58], // Paraguay · Asunción
+  [-34.9, -56.16],  // Uruguay · Montevideo
+  [-34.6, -58.38],  // Argentina · Buenos Aires
+  [6.8, -58.16],    // Guyana · Georgetown
+  [5.85, -55.2],    // Surinam · Paramaribo
+];
+
+// Major economies elsewhere: small dots without arcs (presence, not clutter)
+const WORLD: [number, number][] = [
+  [51.51, -0.13],   // London
+  [48.86, 2.35],    // Paris
+  [50.11, 8.68],    // Frankfurt
+  [25.2, 55.27],    // Dubai
+  [19.08, 72.88],   // Mumbai
+  [31.23, 121.47],  // Shanghai
+  [37.57, 126.98],  // Seoul
+  [35.68, 139.69],  // Tokyo
+];
+
+const LIME: RGB = [0.71, 0.83, 0.11];
+const SKY: RGB = [0.55, 0.75, 1];
+const WHITE: RGB = [1, 1, 1];
 
 // cobe's own formula to turn a coordinate into globe rotation angles
 const toAngles = (lat: number, lng: number) => [
@@ -36,7 +98,7 @@ export default function Globe() {
     if (!canvas) return;
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const [focusPhi, focusTheta] = toAngles(18, -68); // centered on the Americas, Madrid at the edge
+    const [focusPhi, focusTheta] = toAngles(18, -68); // starts centered on the Americas
     let width = canvas.offsetWidth;
     let visible = true;
     let raf = 0;
@@ -57,22 +119,29 @@ export default function Globe() {
       markerColor: LIME,
       glowColor: [0.12, 0.32, 0.58],
       markers: [
-        ...BASES.map((location) => ({ location, size: 0.09 })),
-        ...MARKETS.map((location) => ({ location, size: 0.05, color: [1, 1, 1] as [number, number, number] })),
+        // Colombia and Atlanta are the protagonists: biggest, in lime
+        ...BASES.map((location) => ({ location, size: 0.07 })),
+        ...CLIENTS.map((location) => ({ location, size: 0.07 })),
+        ...REACH.map((location) => ({ location, size: 0.035, color: WHITE })),
+        ...[...AMERICAS, ...WORLD].map((location) => ({ location, size: 0.025, color: SKY })),
       ],
-      arcs: MARKETS.map((to) => ({ from: BASES[0], to })),
+      // Only arc: Colombia → Atlanta (the real client). Everything else is dots.
+      arcs: [
+        ...CLIENTS.map((to) => ({ from: BASES[0], to, color: LIME })),
+      ],
       arcColor: LIME,
       arcWidth: 0.6,
       arcHeight: 0.35,
       markerElevation: 0.02,
     });
 
-    // Gentle sway around the Americas (never spins them out of view) + drag offset
+    // Slow full turn (~50s) so every continent comes around, plus drag offset.
+    // Reduced motion: stays on the Americas.
     const tick = (now: number) => {
       if (visible) {
         const t = (now - start) / 1000;
-        const sway = reduceMotion ? 0 : Math.sin(t * 0.18) * 0.35;
-        globe.update({ phi: focusPhi + sway + dragOffset.current, width: width * 2, height: width * 2 });
+        const spin = reduceMotion ? 0 : t * 0.12;
+        globe.update({ phi: focusPhi + spin + dragOffset.current, width: width * 2, height: width * 2 });
       }
       raf = requestAnimationFrame(tick);
     };
