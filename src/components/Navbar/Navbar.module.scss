@@ -6,6 +6,11 @@
   left: 0;
   width: 100%;
   z-index: 50;
+
+  // Open menu must cover the WhatsApp FAB (z-index 9999) so its CTA isn't hidden
+  &.menuOpen {
+    z-index: 10000;
+  }
   transition: all $transition-normal;
   padding: 1.5rem 0;
   background-color: transparent;
@@ -22,42 +27,79 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  max-width: 1600px; // wider than .container so logo/CTA sit near the edges
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+
+  // 3 columns: logo | menu (truly centered) | actions
+  @media (min-width: $bp-lg) {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1.5rem;
+  }
 }
 
 .logo {
+  justify-self: start;
+  white-space: nowrap;
   display: flex;
   align-items: center;
   gap: 0.5rem;
   font-weight: 800;
   font-size: 1.25rem;
   color: $color-blue-dark;
-
-  .logo-icon {
-    color: $color-lime-main;
-  }
 }
 
 .desktopMenu {
   display: none;
   align-items: center;
-  gap: 2rem;
+  gap: 1.25rem;
 
   @media (min-width: $bp-lg) {
     display: flex;
   }
 
+  @media (min-width: $bp-xl) {
+    gap: 2.25rem;
+  }
+
+  // Lime underline grows from the left; text turns navy (lime text is illegible on white)
   .navLink {
+    position: relative;
+    white-space: nowrap;
     font-weight: 500;
     color: $color-gray-600;
+    padding: 0.35rem 0;
     transition: color $transition-fast;
 
-    &:hover {
-      color: $color-lime-main;
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      border-radius: 2px;
+      background: $color-lime-main;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    &:hover,
+    &.active {
+      color: $color-blue-dark;
+    }
+
+    &:hover::after,
+    &.active::after {
+      transform: scaleX(1);
     }
   }
 }
 
 .desktopActions {
+  justify-self: end;
+  white-space: nowrap;
   display: none;
   align-items: center;
   gap: 1.5rem;
@@ -76,7 +118,39 @@
   transition: color $transition-fast;
 
   &:hover {
-    color: $color-lime-dark;
+    color: $color-blue-main;
+  }
+}
+
+.navLink,
+.langSelector,
+.logo {
+  border-radius: $radius-sm;
+
+  &:focus-visible {
+    outline: 2px solid $color-blue-main;
+    outline-offset: 4px;
+  }
+}
+
+.mobileBar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  @media (min-width: $bp-lg) {
+    display: none;
+  }
+}
+
+.mobileCta {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  white-space: nowrap;
+
+  // Phones: logo + name need the row; the hero CTA is already in the first viewport
+  @media (max-width: 479px) {
+    display: none;
   }
 }
 
@@ -99,7 +173,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   background-color: $color-white;
   z-index: 100;
   display: flex;
@@ -109,6 +183,7 @@
   .closeBtn {
     align-self: flex-end;
     margin-bottom: 3rem;
+    color: $color-blue-dark;
   }
 
   .mobileNavLinks {

@@ -102,9 +102,6 @@ export default function WhatsAppWidget() {
       >
         <span className={styles.beaconRing}></span>
         {isOpen ? <X size={26} /> : <MessageCircle size={28} />}
-        {!isOpen && (
-          <span className={styles.badgeNotification}>1</span>
-        )}
       </button>
     </div>
   );

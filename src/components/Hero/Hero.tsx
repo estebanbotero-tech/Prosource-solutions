@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { ArrowRight, ShieldCheck, Clock, TrendingUp, MessageCircle, Activity, CheckCircle2, Zap } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Clock, TrendingUp, MessageCircle, Activity, CheckCircle2, Zap, Star } from 'lucide-react';
 import Link from 'next/link';
 import styles from './Hero.module.scss';
 import { useI18n } from '@/i18n/I18nProvider';
@@ -19,20 +19,15 @@ export default function Hero() {
   return (
     <section className={styles.hero}>
       <div className={`container ${styles.content}`}>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className={styles.textContent}
-        >
+        {/* No opacity entrance: headline + CTA must paint with the server HTML */}
+        <div className={styles.textContent}>
           <div className={styles.indicatorBadge}>
             <span className={styles.livePulse}></span>
             <span>{t.indicator}</span>
           </div>
 
           <h1 className={styles.title}>
-            {t.title}<br />
-            {t.titleEnd} <span className={styles.highlight}>{t.highlight}</span>
+            {t.title} {t.titleEnd} <span className={styles.highlight}>{t.highlight}</span>
           </h1>
 
           <p className={styles.description}>
@@ -40,7 +35,7 @@ export default function Hero() {
           </p>
 
           <div className={styles.actions}>
-            <Link href={`/${lang}#estimator`} className="btn btn-primary">
+            <Link href={`/${lang}#contact`} className="btn btn-primary">
               {t.primary} <ArrowRight size={18} />
             </Link>
             <a 
@@ -53,6 +48,7 @@ export default function Hero() {
               {t.secondary}
             </a>
           </div>
+          <p className={styles.reassurance}>{t.reassurance}</p>
 
           {/* Trust Value Badges */}
           <div className={styles.trustBadges}>
@@ -69,43 +65,31 @@ export default function Hero() {
               <span>{t.badge3}</span>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Live Metrics Command Center */}
         <motion.div
           className={styles.visual}
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ scale: 0.96 }}
+          animate={{ scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           aria-hidden="true"
         >
           <div className={styles.blob}></div>
 
           {/* Floating Pill Top Right */}
-          <motion.div 
-            className={`${styles.floatingPill} ${styles.pillTop}`}
-            animate={{ y: [0, -8, 0] }}
-            transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-          >
+          <div className={`${styles.floatingPill} ${styles.pillTop}`}>
             <CheckCircle2 size={16} className={styles.pillIconGreen} />
             <span>{t.liveDashboard.pill1}</span>
-          </motion.div>
+          </div>
 
           {/* Floating Pill Bottom Left */}
-          <motion.div 
-            className={`${styles.floatingPill} ${styles.pillBottom}`}
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
-          >
+          <div className={`${styles.floatingPill} ${styles.pillBottom}`}>
             <Zap size={16} className={styles.pillIconYellow} />
             <span>{t.liveDashboard.pill3}</span>
-          </motion.div>
+          </div>
 
-          <motion.div
-            className={styles.dashboard}
-            animate={{ y: [0, -6, 0] }}
-            transition={{ repeat: Infinity, duration: 7, ease: "easeInOut" }}
-          >
+          <div className={styles.dashboard}>
             <div className={styles.dashHeader}>
               <div className={styles.windowDots}>
                 <span className={styles.dot}></span>
@@ -127,7 +111,7 @@ export default function Hero() {
                 </div>
                 <div className={styles.kpiValRow}>
                   <span className={styles.kpiValue}>{t.liveDashboard.efficiency}</span>
-                  <span className={styles.kpiTrend}>▲ ROI</span>
+                  <span className={styles.kpiTrend}><TrendingUp size={12} /> {t.liveDashboard.roi}</span>
                 </div>
                 <div className={styles.progressBar}>
                   <div className={styles.progressFill} style={{ width: '85%' }}></div>
@@ -141,7 +125,7 @@ export default function Hero() {
                 </div>
                 <div className={styles.kpiValRow}>
                   <span className={styles.kpiValue}>{t.liveDashboard.resolution}</span>
-                  <span className={styles.kpiTrend}>⚡ Récord</span>
+                  <span className={styles.kpiTrend}><Zap size={12} /> {t.liveDashboard.record}</span>
                 </div>
                 <div className={styles.miniChart}>
                   <svg viewBox="0 0 100 24" className={styles.sparkline}>
@@ -158,16 +142,18 @@ export default function Hero() {
               <div className={`${styles.kpiCard} ${styles.kpiFull}`}>
                 <div className={styles.kpiHeader}>
                   <span className={styles.kpiLabel}>{t.liveDashboard.csatLabel}</span>
-                  <span className={styles.kpiScoreBadge}>Top Tier</span>
+                  <span className={styles.kpiScoreBadge}>{t.liveDashboard.topTier}</span>
                 </div>
                 <div className={styles.csatRow}>
                   <span className={styles.kpiValueLarge}>{t.liveDashboard.csat}</span>
-                  <div className={styles.stars}>★★★★★</div>
-                  <span className={styles.csatSub}>Auditoría continua de calidad</span>
+                  <div className={styles.stars}>
+                    {[0, 1, 2, 3, 4].map((i) => <Star key={i} size={14} fill="currentColor" strokeWidth={0} />)}
+                  </div>
+                  <span className={styles.csatSub}>{t.liveDashboard.csatSub}</span>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>

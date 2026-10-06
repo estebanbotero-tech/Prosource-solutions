@@ -9,7 +9,7 @@ const en: Dict = {
     home: "Home",
     services: "Services",
     cases: "Case Studies",
-    estimator: "ROI Estimator",
+    estimator: "Savings calculator",
     about: "About Us",
     solutions: "Technology",
     contact: "Contact",
@@ -24,7 +24,8 @@ const en: Dict = {
     titleEnd: "cut up to 40% in costs with",
     highlight: "top talent and technology.",
     description: "Prosource Solutions delivers dedicated BPO squads, 24/7/365 operational coverage, and custom software for companies looking for higher margins, zero downtime, and accelerated growth.",
-    primary: "Request a custom quote",
+    primary: "Get Quote in 24h",
+    reassurance: "We reply within 24h · No commitment",
     secondary: "Chat on WhatsApp",
     badge1: "Guaranteed 99.9% SLA",
     badge2: "24/7/365 Full Coverage",
@@ -42,6 +43,10 @@ const en: Dict = {
       pill1: "Ticket solved in 42s",
       pill2: "Cloud Backup Synced",
       pill3: "BPO Dispatch Online",
+      roi: "ROI",
+      record: "Record",
+      topTier: "Top Tier",
+      csatSub: "Continuous quality auditing",
     }
   },
   trustBar: {
@@ -63,28 +68,143 @@ const en: Dict = {
   services: {
     title: "Our High-Impact Services",
     subtitle: "Turnkey solutions designed to bulletproof your operations, delight your customers, and accelerate your revenue.",
-    more: "Get quote for this service",
+    more: "Learn more",
     prefill: "Hi, I'm interested in receiving a commercial proposal for:",
+    modalClose: "Close",
+    modalQuote: "Quote this service",
+    modalWa: "Inquire on WhatsApp",
     items: [
       { 
         title: "Omnichannel Customer Care", 
         badge: "Retention + Sales",
-        description: "Bilingual, dedicated teams trained to handle calls, WhatsApp, live chat, and support tickets with record-breaking response times and high CSAT (> 95%)." 
+        description: "Bilingual, dedicated teams trained to handle calls, WhatsApp, live chat, and support tickets with record-breaking response times and high CSAT (> 95%).",
+        image: "/services/customer-service.jpg",
+        details: {
+          headline: "Customer Care Services",
+          p1: "At Prosource Solutions, our commitment to client satisfaction is our highest priority.",
+          p2: "That's why we have built a customer service solution combining exceptional quality and years of proven operational experience to deliver fast, effective, and tailored outcomes.",
+          sectionTitle: "What defines us?",
+          whatWeOffer: "",
+          features: [
+            { 
+              title: "Personalized attention", 
+              desc: "Tailored customer interactions matching your brand tone, empathy, and professional excellence." 
+            },
+            { 
+              title: "Efficient resolution", 
+              desc: "Specialists focused on high first-contact resolution (FCR) rates and minimal wait times." 
+            },
+            { 
+              title: "Continuous availability", 
+              desc: "Omnichannel coverage across phone, WhatsApp, live chat, and email wherever your users need you." 
+            },
+            { 
+              title: "Ongoing commitment", 
+              desc: "Rigorous quality monitoring, active feedback loops, and continuous operational improvement." 
+            }
+          ],
+          p3: "Our team of trained specialists is ready to provide fast and effective solutions without compromising the excellence that sets us apart. Furthermore, we are accessible across multiple communication channels, ensuring you always have the support you need, exactly when you need it. We constantly strive to listen to your feedback and improve every single day, because we don't just solve problems—we build long-lasting relationships of trust.",
+          conclusion: "At Prosource Solutions, we don't just resolve issues; we build enduring relationships. Contact us today and experience a customer service solution built to exceed your expectations."
+        }
       },
       { 
-        title: "BPO & Back-Office Management", 
+        title: "BPO / Back Office", 
         badge: "Cost Reduction",
-        description: "Outsource administrative workflows, document processing, data validation, and billing so your core team can stay 100% focused on revenue." 
+        description: "Outsource administrative workflows, document processing, data validation, and billing so your core team can stay 100% focused on revenue.",
+        image: "/services/bpo-backoffice.jpg",
+        details: {
+          headline: "BPO / Back Office",
+          p1: "At Prosource Solutions, we understand that optimizing internal workflows is paramount to business success. That is why we provide BPO (Business Process Outsourcing) and Back Office solutions engineered to streamline operations, reduce overhead, and allow you to focus on what truly matters: growing your business.",
+          p2: "",
+          sectionTitle: "Why choose us?",
+          whatWeOffer: "We specialize in the end-to-end management of administrative and operational workflows, delivering customized solutions tailored to each client's specific demands. From document management and data processing to customer care, we guarantee accuracy, confidentiality, and exceptional results.",
+          features: [
+            { 
+              title: "Proven experience", 
+              desc: "Highly trained team members equipped with cutting-edge tools and robust industry methodologies." 
+            },
+            { 
+              title: "Scalability", 
+              desc: "We adapt our teams to your growth velocity, guaranteeing operational elasticity and business continuity." 
+            },
+            { 
+              title: "Operational efficiency", 
+              desc: "Process optimization engineered to maximize output and minimize cycle times." 
+            },
+            { 
+              title: "Uncompromising quality", 
+              desc: "Every task is audited under strict quality benchmarks, ensuring consistent and dependable deliverables." 
+            }
+          ],
+          p3: "At Prosource Solutions, we are not just a vendor—we are your strategic ally. By delegating back office operations to our teams, you can focus on core strategic goals while we manage the operational details.",
+          conclusion: "Contact us today and discover how our BPO and Back Office solutions can transform your business."
+        }
       },
       { 
-        title: "24/7 - 365 Mission Critical Ops", 
+        title: "24/7 - 365 Service", 
         badge: "Zero Downtime",
-        description: "Night shifts, weekend dispatch, and non-stop operational monitoring. Your company never sleeps and never loses customer opportunities." 
+        description: "Night shifts, weekend dispatch, and non-stop operational monitoring. Your company never sleeps and never loses customer opportunities.",
+        image: "/services/service-247.jpg",
+        details: {
+          headline: "24/7 - 365 Operations",
+          p1: "At Prosource Solutions, we recognize that business never stops—and your customer demands don't either. That's why we deliver support and operational coverage available 24 hours a day, 7 days a week, 365 days a year.",
+          p2: "Our mission is to be constantly at your disposal, guaranteeing you have the mission-critical backing you require at any given moment, regardless of the hour or day.",
+          sectionTitle: "What sets us apart?",
+          whatWeOffer: "",
+          features: [
+            { 
+              title: "Immediate response", 
+              desc: "Our active squads are ready to answer queries or resolve operational alerts in real time." 
+            },
+            { 
+              title: "Global coverage", 
+              desc: "We adapt smoothly to global timezones to support customers and fleets anywhere in the world." 
+            },
+            { 
+              title: "Continuous operation", 
+              desc: "Whether you need tech support, customer care, or logistics dispatch, your business never halts." 
+            },
+            { 
+              title: "Highly trained talent", 
+              desc: "Skilled specialists delivering rapid resolutions focused on customer satisfaction and quality." 
+            }
+          ],
+          p3: "Your peace of mind is our priority. With our 24/7 - 365 service, you have the absolute certainty of a dependable partner by your side. At Prosource Solutions, we transform 24/7 availability into your distinct competitive advantage.",
+          conclusion: "Contact us today and discover how we provide continuous operational peace of mind, year-round, without interruptions."
+        }
       },
       { 
         title: "Software & Mobile Engineering", 
         badge: "Tailored Innovation",
-        description: "Custom digital solutions built to scale: web platforms, native/hybrid apps, API integrations, and robust corporate cloud software." 
+        description: "Custom digital solutions built to scale: web platforms, native/hybrid apps, API integrations, and robust corporate cloud software.",
+        image: "/services/software-dev.jpg",
+        details: {
+          headline: "Software Development",
+          p1: "At Prosource Solutions, we design and build tailor-made digital solutions that accelerate your company's transformation and scalability.",
+          p2: "We combine agile frameworks, modern architectures, and rigorous engineering quality standards to deliver stable, blazing-fast, and secure software.",
+          sectionTitle: "What defines us?",
+          whatWeOffer: "We engineer complete digital ecosystems: responsive web platforms, native and cross-platform mobile apps, workflow automations, and hardened API integrations connecting your existing infrastructure.",
+          features: [
+            { 
+              title: "Scalable architecture", 
+              desc: "Cloud-native system design engineered to handle traffic spikes and heavy concurrent transactions." 
+            },
+            { 
+              title: "Bespoke development", 
+              desc: "Web and mobile apps built 100% around your specific business model and workflows." 
+            },
+            { 
+              title: "Agile methodology", 
+              desc: "Continuous sprints, iterative delivery, and clear reporting to witness concrete progress from week one." 
+            },
+            { 
+              title: "Security and quality", 
+              desc: "Clean code, automated tests, and strict data security protocols to protect your operational assets." 
+            }
+          ],
+          p3: "At Prosource Solutions, your technological vision becomes a tangible market advantage. We operate as an engineering extension committed to your commercial success.",
+          conclusion: "Contact us today and discover how to accelerate your software roadmap with a dedicated engineering squad."
+        }
       },
     ],
   },

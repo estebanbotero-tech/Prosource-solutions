@@ -15,28 +15,40 @@ export default function Navbar() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeId, setActiveId] = useState('');
 
   const otherLang = lang === 'es' ? 'en' : 'es';
   const switchHref = pathname.replace(/^\/(es|en)/, `/${otherLang}`);
 
+  // Desktop keeps 4 links (logo = home, CTA = contact); About/Contact live in the mobile menu and footer
   const navLinks = [
-    { name: dict.nav.home, href: `/${lang}` },
-    { name: dict.nav.services, href: `/${lang}#services` },
-    { name: dict.nav.cases, href: `/${lang}#cases` },
-    { name: dict.nav.estimator, href: `/${lang}#estimator` },
-    { name: dict.nav.solutions, href: `/${lang}#solutions` },
-    { name: dict.nav.about, href: `/${lang}#about` },
-    { name: dict.nav.contact, href: `/${lang}#contact` },
+    { id: 'services', name: dict.nav.services },
+    { id: 'solutions', name: dict.nav.solutions },
+    { id: 'cases', name: dict.nav.cases },
+    { id: 'estimator', name: dict.nav.estimator },
+  ];
+  const mobileLinks = [
+    ...navLinks,
+    { id: 'about', name: dict.nav.about },
+    { id: 'contact', name: dict.nav.contact },
   ];
 
   useEffect(() => {
+    const ids = ['services', 'solutions', 'cases', 'estimator'];
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+      // Scroll-spy: the nav section crossing 40% of the viewport height
+      const line = window.innerHeight * 0.4;
+      const current = ids.find((id) => {
+        const r = document.getElementById(id)?.getBoundingClientRect();
+        return r && r.top <= line && r.bottom > line;
+      });
+      setActiveId(current ?? '');
     };
     handleScroll();
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [pathname]);
 
   // Lock background scroll and allow closing with Escape while the mobile menu is open
   useEffect(() => {
@@ -63,17 +75,22 @@ export default function Navbar() {
   );
 
   return (
-    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
+    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''} ${isMobileMenuOpen ? styles.menuOpen : ''}`}>
       <div className={`container ${styles.nav}`}>
         <Link href={`/${lang}`} className={styles.logo}>
-          <Logo className={styles.logoIcon} variant="header" />
-          <span style={{ fontWeight: 700 }}>{company.name}</span>
+          <Logo variant="header" />
+          <span>{company.name}</span>
         </Link>
 
         {/* Desktop Menu */}
         <nav className={styles.desktopMenu}>
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className={styles.navLink}>
+            <Link
+              key={link.id}
+              href={`/${lang}#${link.id}`}
+              className={`${styles.navLink} ${activeId === link.id ? styles.active : ''}`}
+              aria-current={activeId === link.id ? 'location' : undefined}
+            >
               {link.name}
             </Link>
           ))}
@@ -87,15 +104,20 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className={styles.mobileMenuBtn}
-          onClick={() => setIsMobileMenuOpen(true)}
-          aria-label={dict.nav.openMenu}
-          aria-expanded={isMobileMenuOpen}
-        >
-          <Menu size={28} />
-        </button>
+        {/* Mobile: compact CTA always in reach + menu button */}
+        <div className={styles.mobileBar}>
+          <Link href={`/${lang}#contact`} className={`btn btn-primary ${styles.mobileCta}`}>
+            {dict.nav.cta}
+          </Link>
+          <button
+            className={styles.mobileMenuBtn}
+            onClick={() => setIsMobileMenuOpen(true)}
+            aria-label={dict.nav.openMenu}
+            aria-expanded={isMobileMenuOpen}
+          >
+            <Menu size={28} />
+          </button>
+        </div>
 
         {/* Mobile Menu Overlay */}
         <AnimatePresence>
@@ -114,14 +136,14 @@ export default function Navbar() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 aria-label={dict.nav.closeMenu}
               >
-                <X size={32} color="#002d5a" />
+                <X size={32} />
               </button>
 
               <nav className={styles.mobileNavLinks}>
-                {navLinks.map((link) => (
+                {mobileLinks.map((link) => (
                   <Link
-                    key={link.href}
-                    href={link.href}
+                    key={link.id}
+                    href={`/${lang}#${link.id}`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {link.name}
