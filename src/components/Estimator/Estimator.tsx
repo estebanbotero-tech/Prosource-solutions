@@ -18,14 +18,14 @@ export default function Estimator() {
   const t = dict.estimator;
 
   const [selectedService, setSelectedService] = useState(t.services[0].id);
-  const [selectedSize, setSelectedSize] = useState(t.sizes[0].id);
+  const [ideas, setIdeas] = useState('');
 
   const currentServiceObj = t.services.find((s) => s.id === selectedService) || t.services[0];
-  const currentSizeObj = t.sizes.find((s) => s.id === selectedSize) || t.sizes[0];
+  const idea = ideas.trim();
 
   const summaryText = lang === 'es'
-    ? `Hola Prosource Solutions, usé la calculadora de ahorro de su sitio web:\n- Servicio: ${currentServiceObj.name}\n- Tamaño del equipo: ${currentSizeObj.name}\n- Ahorro proyectado: ${currentServiceObj.savings}\nMe gustaría recibir una propuesta comercial formal.`
-    : `Hi Prosource Solutions, I used the savings calculator on your website:\n- Service: ${currentServiceObj.name}\n- Team size: ${currentSizeObj.name}\n- Projected savings: ${currentServiceObj.savings}\nI'd like to receive a formal proposal.`;
+    ? `Hola Prosource Solutions, revisé las soluciones de su sitio web:\n- Servicio: ${currentServiceObj.name}\n- Ahorro de referencia: ${currentServiceObj.savings}${idea ? `\n- Mi idea: ${idea}` : ''}\nMe gustaría recibir una propuesta comercial formal.`
+    : `Hi Prosource Solutions, I explored the solutions on your website:\n- Service: ${currentServiceObj.name}\n- Reference savings: ${currentServiceObj.savings}${idea ? `\n- My idea: ${idea}` : ''}\nI'd like to receive a formal proposal.`;
 
   const waUrl = `${company.social.whatsapp}?text=${encodeURIComponent(summaryText)}`;
 
@@ -66,30 +66,22 @@ export default function Estimator() {
               </div>
             </div>
 
-            {/* Step 2: Size */}
+            {/* Step 2: Free-text ideas, appended to the WhatsApp/email message */}
             <div className={styles.stepGroup}>
               <h3 className={styles.stepTitle}>
                 <span className={styles.stepNum} aria-hidden="true">2</span>
-                {t.sizeLabel}
+                <label htmlFor="estimator-ideas">{t.ideasLabel}</label>
               </h3>
-              <div className={styles.sizeGrid} role="radiogroup" aria-label={t.sizeLabel}>
-                {t.sizes.map((sz) => {
-                  const active = selectedSize === sz.id;
-                  return (
-                    <button
-                      key={sz.id}
-                      type="button"
-                      role="radio"
-                      aria-checked={active}
-                      className={`${styles.sizeCard} ${active ? styles.active : ''}`}
-                      onClick={() => setSelectedSize(sz.id)}
-                    >
-                      <span className={styles.sizeTitle}>{sz.name}</span>
-                      <span className={styles.sizeDesc}>{sz.desc}</span>
-                    </button>
-                  );
-                })}
-              </div>
+              <p className={styles.ideasHint}>{t.ideasHint}</p>
+              <textarea
+                id="estimator-ideas"
+                className={styles.ideas}
+                rows={4}
+                maxLength={1000}
+                value={ideas}
+                onChange={(e) => setIdeas(e.target.value)}
+                placeholder={t.ideasPh}
+              />
             </div>
           </div>
 

@@ -31,12 +31,12 @@ export default function Home() {
       <TrustBar />
       <Services />
       <CaseStudies />
-      <Estimator />
       <Solutions />
       <WhyUs />
       <About />
       <Team />
       <Process />
+      <Estimator />
       <CTA />
       <Contact />
     </>

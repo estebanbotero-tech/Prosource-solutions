@@ -6,6 +6,23 @@
   margin: 0 auto;
   padding: 8rem 1.5rem 5rem;
   color: var(--text-body);
+  isolation: isolate;
+
+  // Logo watermark: the logo's alpha as a mask, tinted with the theme heading color so it
+  // reads in light and dark mode. Fixed, so it stays centered while the text scrolls.
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 50% auto auto 50%;
+    width: min(70vw, 560px);
+    aspect-ratio: 413 / 280;
+    translate: -50% -50%;
+    z-index: -1;
+    pointer-events: none;
+    background: var(--heading);
+    opacity: 0.05;
+    mask: url('/logo.webp') center / contain no-repeat;
+  }
 
   h1 {
     font-size: 2rem;
