@@ -12,6 +12,7 @@ export default function Process() {
 
   const scrollerRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLOListElement>(null);
+  const stepRefs = useRef<(HTMLLIElement | null)[]>([]);
   // Desktop (pinned): progress through the pin. Mobile (normal flow): the list passing mid-screen.
   const { scrollYProgress: pinProgress } = useScroll({ target: scrollerRef, offset: ['start start', 'end end'] });
   const { scrollYProgress: listProgress } = useScroll({ target: listRef, offset: ['start 55%', 'end 55%'] });
@@ -37,6 +38,33 @@ export default function Process() {
     setActive(Math.min(n - 1, Math.max(0, Math.floor(p * n))));
   });
 
+  const goToStep = (index: number) => {
+    setActive(index);
+
+    if (isDesktop.current && scrollerRef.current) {
+      const scroller = scrollerRef.current;
+      const rect = scroller.getBoundingClientRect();
+      const scrollerTop = rect.top + window.scrollY;
+      const scrollableDistance = scroller.offsetHeight - window.innerHeight;
+
+      if (scrollableDistance > 0) {
+        const targetProgress = (index + 0.5) / n;
+        const targetY = scrollerTop + targetProgress * scrollableDistance;
+
+        window.scrollTo({
+          top: targetY,
+          behavior: 'smooth',
+        });
+        return;
+      }
+    }
+
+    const stepEl = stepRefs.current[index];
+    if (stepEl) {
+      stepEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+
   return (
     <section id="process" className={styles.process}>
       <div
@@ -61,14 +89,22 @@ export default function Process() {
             {t.steps.map((step, i) => (
               <li
                 key={step.title}
+                ref={(el) => { stepRefs.current[i] = el; }}
                 className={`${styles.step} ${i === active ? styles.active : ''} ${i < active ? styles.done : ''}`}
                 aria-current={i === active ? 'step' : undefined}
               >
-                <span className={styles.node} aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-                <div>
-                  <h3 className={styles.title}>{step.title}</h3>
-                  <p className={styles.description}>{step.desc}</p>
-                </div>
+                <button
+                  type="button"
+                  className={styles.stepBtn}
+                  onClick={() => goToStep(i)}
+                  aria-label={`${step.title} (${i + 1} / ${n})`}
+                >
+                  <span className={styles.node} aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                  <div>
+                    <h3 className={styles.title}>{step.title}</h3>
+                    <p className={styles.description}>{step.desc}</p>
+                  </div>
+                </button>
               </li>
             ))}
           </ol>

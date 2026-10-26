@@ -6,10 +6,9 @@ import styles from './Hero.module.scss';
 
 type RGB = [number, number, number];
 
-// Operations base (Antioquia + Manizales offices). Edit freely: [lat, lng].
+// Operations base (Antioquia headquarters). Edit freely: [lat, lng].
 const BASES: [number, number][] = [
   [6.157, -75.643], // La Estrella, Antioquia
-  [5.07, -75.517],  // Manizales
 ];
 // Real client city, highlighted in lime (OK Taxi)
 const CLIENTS: [number, number][] = [

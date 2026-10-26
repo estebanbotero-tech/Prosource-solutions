@@ -18,7 +18,7 @@ export default function WhatsAppWidget() {
 
   const quickOptions = [
     { label: t.prompt1, text: lang === 'es' ? 'Hola Prosource Solutions, me interesa cotizar un equipo de Atención al Cliente / BPO para mi empresa.' : "Hi Prosource Solutions, I'd like a quote for a customer care / BPO team." },
-    { label: t.prompt2, text: lang === 'es' ? 'Hola Prosource Solutions, requiero información para una operación crítica o soporte 24/7/365.' : "Hi Prosource Solutions, I'd like information about 24/7/365 operations and support." },
+    { label: t.prompt2, text: lang === 'es' ? 'Hola Prosource Solutions, requiero información para una operación crítica.' : "Hi Prosource Solutions, I'd like information about critical operations." },
     { label: t.prompt3, text: lang === 'es' ? 'Hola Prosource Solutions, tengo un proyecto de desarrollo de software o app móvil y deseo una cotización.' : "Hi Prosource Solutions, I have a software or mobile app project and I'd like a quote." },
   ];
 

@@ -80,7 +80,7 @@ export default function Estimator() {
                 maxLength={1000}
                 value={ideas}
                 onChange={(e) => setIdeas(e.target.value)}
-                placeholder={t.ideasPh}
+                placeholder={currentServiceObj.placeholder || t.ideasPh}
               />
             </div>
           </div>

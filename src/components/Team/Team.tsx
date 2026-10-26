@@ -123,7 +123,6 @@ export default function Team() {
                 <div className={styles.info}>
                   <p className={styles.role}>{t.members[i].role}</p>
                   <h3 className={styles.name}>{member.name}</h3>
-                  <p className={styles.bio}>{t.members[i].bio}</p>
                 </div>
               </article>
             );

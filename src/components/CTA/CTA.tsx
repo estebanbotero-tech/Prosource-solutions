@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 import styles from './CTA.module.scss';
+import Magnetic from '@/components/motion/Magnetic';
 import { useI18n } from '@/i18n/I18nProvider';
 import { company } from '@/data/company';
 import { track } from '@/components/Analytics/Analytics';
@@ -31,9 +32,11 @@ export default function CTA() {
           <p className={styles.subtitle}>{t.subtitle}</p>
 
           <div className={styles.buttonGroup}>
-            <Link href={`/${lang}#contact`} className={styles.primaryBtn}>
-              {t.button} <ArrowRight size={20} />
-            </Link>
+            <Magnetic>
+              <Link href={`/${lang}#contact`} className={styles.primaryBtn}>
+                {t.button} <ArrowRight size={20} />
+              </Link>
+            </Magnetic>
             <a
               href={waUrl}
               target="_blank"

@@ -14,7 +14,6 @@ export const company = {
     phoneHref: "+573148414635",
     addresses: [
       "Calle 79B sur #50-150 501\nLa Estrella, Antioquia",
-      "Carrera 23 #63-23 1003A\nManizales, Caldas",
     ],
   },
   // Leave a network empty ("") to hide its icon in the footer.

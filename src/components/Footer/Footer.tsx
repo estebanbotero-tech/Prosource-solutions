@@ -9,6 +9,7 @@ import SocialLinks from '@/components/SocialLinks/SocialLinks';
 import Logo from '@/components/Logo/Logo';
 import { useI18n } from '@/i18n/I18nProvider';
 import { useClock } from '@/components/motion/useClock';
+import Magnetic from '@/components/motion/Magnetic';
 
 export default function Footer() {
   const { lang, dict } = useI18n();
@@ -41,9 +42,11 @@ export default function Footer() {
             <p className={styles.ctaText}>{t.ctaText}</p>
           </div>
           <div className={styles.ctaActions}>
-            <Link href={`/${lang}#contact`} className={styles.ctaButton}>
-              {dict.nav.cta} <ArrowRight size={18} />
-            </Link>
+            <Magnetic>
+              <Link href={`/${lang}#contact`} className={styles.ctaButton}>
+                {dict.nav.cta} <ArrowRight size={18} />
+              </Link>
+            </Magnetic>
             <a href={`mailto:${company.contact.email}`} className={styles.ctaEmail}>
               {company.contact.email}
             </a>

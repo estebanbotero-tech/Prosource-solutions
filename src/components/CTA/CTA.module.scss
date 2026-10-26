@@ -103,8 +103,20 @@ $ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 .primaryBtn {
   background: $color-blue-dark;
   color: $color-white;
+  box-shadow: 0 10px 28px -6px rgba($color-blue-dark, 0.45);
 
-  &:hover { background: $color-blue-main; }
+  svg {
+    transition: transform 220ms $ease-out;
+  }
+
+  &:hover {
+    background: $color-blue-main;
+    box-shadow: 0 14px 34px -4px rgba($color-blue-dark, 0.6);
+
+    svg {
+      transform: translateX(4px);
+    }
+  }
 }
 
 .waBtn {

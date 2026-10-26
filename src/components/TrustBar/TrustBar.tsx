@@ -1,17 +1,14 @@
 "use client";
 
-import {
-  Truck, Landmark, ShoppingBag, HeartPulse, Cpu, RadioTower, GraduationCap,
-  Plane, ShieldCheck, Building2, Factory, Zap, Scale, Wheat,
-} from 'lucide-react';
+import { Truck, ShoppingBag, Cpu, RadioTower, Plane, Briefcase } from 'lucide-react';
 import styles from './TrustBar.module.scss';
 import { useI18n } from '@/i18n/I18nProvider';
 
 // Same order as trustBar.items in src/i18n/*.ts
-const icons = [
-  Truck, Landmark, ShoppingBag, HeartPulse, Cpu, RadioTower, GraduationCap,
-  Plane, ShieldCheck, Building2, Factory, Zap, Scale, Wheat,
-];
+const icons = [Truck, ShoppingBag, Cpu, RadioTower, Plane, Briefcase];
+
+// The list is short, so each row repeats it to stay wider than large screens
+const REPEAT = 2;
 
 export default function TrustBar() {
   const { dict } = useI18n();
@@ -19,10 +16,14 @@ export default function TrustBar() {
 
   const row = (hidden: boolean) => (
     <ul className={styles.row} aria-hidden={hidden || undefined}>
-      {t.items.map((name, index) => {
+      {Array.from({ length: REPEAT }, () => t.items).flat().map((name, index) => {
         const Icon = icons[index % icons.length];
         return (
-          <li key={name} className={styles.item}>
+          <li
+            key={`${name}-${index}`}
+            className={index >= t.items.length ? `${styles.item} ${styles.repeat}` : styles.item}
+            aria-hidden={index >= t.items.length || undefined}
+          >
             <span className={styles.iconCircle}><Icon size={16} /></span>
             <span className={styles.itemName}>{name}</span>
           </li>

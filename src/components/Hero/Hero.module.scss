@@ -36,7 +36,7 @@ $ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   z-index: 1;
 
   @media (min-width: $bp-lg) {
-    grid-template-columns: 1.05fr 0.95fr;
+    grid-template-columns: 1.15fr 0.85fr;
     align-items: center;
     gap: 3rem;
   }
@@ -49,9 +49,9 @@ $ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
 /* ---------- Headline: masked line reveal (CSS, so it runs before hydration) ---------- */
 .title {
-  font-size: clamp(2.25rem, 1.2rem + 2.8vw, 3.9rem);
-  line-height: 1.02;
-  letter-spacing: -0.035em;
+  font-size: clamp(2.25rem, 1.2rem + 2.5vw, 3.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
   font-weight: 800;
   color: $color-white;
   margin-bottom: 1.75rem;
@@ -61,8 +61,8 @@ $ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   display: block;
   overflow: hidden;
   // room for descenders (g, y, ç) inside the mask
-  padding-bottom: 0.08em;
-  margin-bottom: -0.08em;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
   text-wrap: balance;
 
   > span {
@@ -84,15 +84,16 @@ $ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .description {
-  font-size: 1.1rem;
-  color: rgba($color-white, 0.74);
-  margin-bottom: 2rem;
-  max-width: 34rem;
-  line-height: 1.65;
+  font-size: 1.15rem;
+  color: rgba($color-white, 0.78);
+  margin-bottom: 2.25rem;
+  max-width: 40rem;
+  line-height: 1.6;
+  text-wrap: pretty;
   animation: fadeUp 700ms $ease-out 260ms both;
 
   @media (min-width: $bp-md) {
-    font-size: 1.15rem;
+    font-size: 1.25rem;
   }
 }
 
@@ -155,30 +156,7 @@ $ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 .reassurance {
   font-size: 0.9rem;
   color: rgba($color-white, 0.6);
-  margin-bottom: 2.25rem;
   animation: fadeUp 700ms $ease-out 400ms both;
-}
-
-.trustBadges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem 1.5rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid rgba($color-white, 0.12);
-  animation: fadeUp 700ms $ease-out 460ms both;
-}
-
-.trustItem {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: rgba($color-white, 0.82);
-
-  .trustIcon {
-    color: $color-lime-main;
-  }
 }
 
 /* ---------- Globe + live clocks ---------- */
@@ -294,7 +272,6 @@ $ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   .description,
   .actions,
   .reassurance,
-  .trustBadges,
   .clockCard,
   .liveDot {
     animation: none;

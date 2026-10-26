@@ -3,10 +3,11 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Globe, Moon, Sun } from 'lucide-react';
+import { Menu, X, Globe, Moon, Sun, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence, MotionConfig } from 'framer-motion';
 import styles from './Navbar.module.scss';
 import Logo from '@/components/Logo/Logo';
+import Magnetic from '@/components/motion/Magnetic';
 import { useI18n } from '@/i18n/I18nProvider';
 import { useModal } from '@/components/useModal';
 
@@ -154,16 +155,18 @@ export default function Navbar() {
         <div className={styles.desktopActions}>
           {themeToggle}
           {langSwitch}
-          <Link href={`/${lang}#contact`} className="btn btn-primary">
-            {dict.nav.cta}
-          </Link>
+          <Magnetic>
+            <Link href={`/${lang}#contact`} className="btn btn-primary">
+              {dict.nav.cta} <ArrowRight size={16} />
+            </Link>
+          </Magnetic>
         </div>
 
         {/* Mobile: compact CTA always in reach + menu button */}
         <div className={styles.mobileBar}>
           {themeToggle}
           <Link href={`/${lang}#contact`} className={`btn btn-primary ${styles.mobileCta}`}>
-            {dict.nav.cta}
+            {dict.nav.cta} <ArrowRight size={14} />
           </Link>
           <button
             className={styles.mobileMenuBtn}
@@ -211,13 +214,15 @@ export default function Navbar() {
 
               <div className={styles.mobileActions}>
                 {langSwitch}
-                <Link
-                  href={`/${lang}#contact`}
-                  className="btn btn-primary"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {dict.nav.cta}
-                </Link>
+                <Magnetic>
+                  <Link
+                    href={`/${lang}#contact`}
+                    className="btn btn-primary"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {dict.nav.cta} <ArrowRight size={18} />
+                  </Link>
+                </Magnetic>
               </div>
             </motion.div>
           )}
