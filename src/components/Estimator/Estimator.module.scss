@@ -221,24 +221,6 @@ $ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   color: rgba($color-white, 0.6);
 }
 
-.savings {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgba($color-white, 0.12);
-}
-
-.savingsValue {
-  font-family: var(--font-display), $font-family-sans;
-  font-size: clamp(1.75rem, 1.3rem + 1.5vw, 2.4rem);
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  color: $color-lime-main;
-  text-wrap: balance;
-}
-
 .facts {
   display: grid;
   gap: 1.25rem;

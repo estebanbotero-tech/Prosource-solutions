@@ -5,7 +5,7 @@ import type { Dict } from './es';
 const en: Dict = {
   meta: {
     title: "Prosource Solutions | BPO, 24/7 Operations & Custom Technology",
-    description: "Scale your business and cut operating costs by up to 40% with specialized BPO teams, 24/7 support, and custom software development.",
+    description: "Scale your business and optimize operating costs with specialized BPO teams, 24/7 support, and custom software development.",
   },
   nav: {
     services: "Services",
@@ -23,15 +23,13 @@ const en: Dict = {
   },
   hero: {
     title: "Scale your operations and",
-    titleEnd: "cut costs by up to 40% with",
+    titleEnd: "optimize costs with",
     highlight: "talent and technology.",
     description: "Prosource Solutions provides dedicated BPO teams, 24/7/365 support, and custom software for companies that want higher margins, zero downtime, and faster growth.",
     primary: "Get a Quote in 24h",
     reassurance: "We reply within 24 hours · No obligation",
     secondary: "Chat on WhatsApp",
-    badge1: "99.9% SLA guaranteed",
     badge2: "24/7/365 support",
-    badge3: "Up to 40% lower costs",
     clocks: {
       you: "Your time",
       team: "Our team in Colombia",
@@ -237,19 +235,18 @@ const en: Dict = {
   },
   estimator: {
     title: "Explore the right solution for your business",
-    subtitle: "Choose what your business needs and see reference savings and timelines to get started.",
+    subtitle: "Choose what your business needs and see reference timelines to get started.",
     serviceLabel: "What kind of solution do you need?",
     services: [
-      { id: "bpo", name: "Customer care / BPO", savings: "35% to 45% vs. hiring in-house", time: "7 to 10 business days" },
-      { id: "247", name: "24/7/365 critical operations", savings: "40% to 55% on overtime and night shifts", time: "5 to 8 business days" },
-      { id: "software", name: "Software & app development", savings: "A ready-to-go team, no hiring process needed", time: "First sprint starts immediately" },
-      { id: "cloud", name: "Cloud infrastructure & data", savings: "Up to 30% lower cloud bill", time: "Audit within 48 hours" },
+      { id: "bpo", name: "Customer care / BPO", time: "7 to 10 business days" },
+      { id: "247", name: "24/7/365 critical operations", time: "5 to 8 business days" },
+      { id: "software", name: "Software & app development", time: "First sprint starts immediately" },
+      { id: "cloud", name: "Cloud infrastructure & data", time: "Audit within 48 hours" },
     ],
     ideasLabel: "Share your ideas and proposals",
     ideasHint: "This helps us define the requirements for your project.",
     ideasPh: "E.g., we need 5 bilingual agents for chat and email support, Monday to Saturday.",
     summaryTitle: "Reference values, confirmed in your proposal",
-    projectedSavings: "Reference savings",
     deploymentTime: "Estimated time to launch",
     slaGuarantee: "Service level (SLA)",
     slaValue: "Uptime and KPIs agreed with you in the proposal",

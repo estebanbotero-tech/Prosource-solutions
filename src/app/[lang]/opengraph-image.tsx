@@ -36,8 +36,6 @@ export default async function Image({ params }: { params: Promise<{ lang: string
         </div>
         <div style={{ display: 'flex', gap: 32, fontSize: 26, color: 'rgba(255,255,255,0.75)' }}>
           <span>{t.badge2}</span>
-          <span>·</span>
-          <span>{t.badge1}</span>
         </div>
       </div>
     ),

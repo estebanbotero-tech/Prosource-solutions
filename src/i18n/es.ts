@@ -3,7 +3,7 @@
 const es = {
   meta: {
     title: "Prosource Solutions | BPO, operaciones 24/7 y tecnología a la medida",
-    description: "Escala tu empresa y reduce hasta un 40 % tus costos operativos con equipos BPO especializados, soporte 24/7 y desarrollo de software a la medida.",
+    description: "Escala tu empresa y optimiza tus costos operativos con equipos BPO especializados, soporte 24/7 y desarrollo de software a la medida.",
   },
   nav: {
     services: "Servicios",
@@ -21,15 +21,13 @@ const es = {
   },
   hero: {
     title: "Escala tu operación y",
-    titleEnd: "reduce hasta un 40 % tus costos con",
+    titleEnd: "optimiza tus costos con",
     highlight: "talento y tecnología.",
     description: "Prosource Solutions ofrece equipos BPO dedicados, soporte 24/7/365 y software a la medida para empresas que buscan más rentabilidad, cero tiempos muertos y un crecimiento acelerado.",
     primary: "Cotizar en 24 h",
     reassurance: "Respondemos en menos de 24 h · Sin compromiso",
     secondary: "Hablar por WhatsApp",
-    badge1: "SLA del 99,9 % garantizado",
     badge2: "Soporte 24/7/365",
-    badge3: "Hasta 40 % menos en costos",
     clocks: {
       you: "Tu hora",
       team: "Equipo en Colombia",
@@ -235,19 +233,18 @@ const es = {
   },
   estimator: {
     title: "Explora la solución ideal para tu negocio",
-    subtitle: "Elige lo que tu negocio necesita y conoce el ahorro y los tiempos de referencia para empezar.",
+    subtitle: "Elige lo que tu negocio necesita y conoce los tiempos de referencia para empezar.",
     serviceLabel: "¿Qué tipo de solución buscas?",
     services: [
-      { id: "bpo", name: "Atención al cliente / BPO", savings: "35 % a 45 % frente a contratar internamente", time: "7 a 10 días hábiles" },
-      { id: "247", name: "Operación crítica 24/7/365", savings: "40 % a 55 % en horas extra y turnos nocturnos", time: "5 a 8 días hábiles" },
-      { id: "software", name: "Desarrollo de software y apps", savings: "Un equipo listo para empezar, sin procesos de contratación", time: "Inicio inmediato del primer sprint" },
-      { id: "cloud", name: "Infraestructura en la nube y datos", savings: "Hasta 30 % menos en tu factura de nube", time: "Auditoría en 48 horas" },
+      { id: "bpo", name: "Atención al cliente / BPO", time: "7 a 10 días hábiles" },
+      { id: "247", name: "Operación crítica 24/7/365", time: "5 a 8 días hábiles" },
+      { id: "software", name: "Desarrollo de software y apps", time: "Inicio inmediato del primer sprint" },
+      { id: "cloud", name: "Infraestructura en la nube y datos", time: "Auditoría en 48 horas" },
     ],
     ideasLabel: "Danos tus ideas y propuestas",
     ideasHint: "Así podemos establecer los requisitos de tu proyecto.",
     ideasPh: "Ej.: necesitamos 5 agentes bilingües para soporte por chat y correo, de lunes a sábado.",
     summaryTitle: "Valores de referencia: se confirman en tu propuesta",
-    projectedSavings: "Ahorro de referencia",
     deploymentTime: "Tiempo estimado de puesta en marcha",
     slaGuarantee: "Nivel de servicio (SLA)",
     slaValue: "Disponibilidad y KPI que acordamos contigo en la propuesta",

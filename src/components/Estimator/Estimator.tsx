@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { MessageCircle, Mail, Clock, ShieldCheck, Headset, Code, Cloud, TrendingDown } from 'lucide-react';
+import { MessageCircle, Mail, Clock, ShieldCheck, Headset, Code, Cloud } from 'lucide-react';
 import Link from 'next/link';
 import styles from './Estimator.module.scss';
 import { useI18n } from '@/i18n/I18nProvider';
@@ -24,8 +24,8 @@ export default function Estimator() {
   const idea = ideas.trim();
 
   const summaryText = lang === 'es'
-    ? `Hola Prosource Solutions, revisé las soluciones de su sitio web:\n- Servicio: ${currentServiceObj.name}\n- Ahorro de referencia: ${currentServiceObj.savings}${idea ? `\n- Mi idea: ${idea}` : ''}\nMe gustaría recibir una propuesta comercial formal.`
-    : `Hi Prosource Solutions, I explored the solutions on your website:\n- Service: ${currentServiceObj.name}\n- Reference savings: ${currentServiceObj.savings}${idea ? `\n- My idea: ${idea}` : ''}\nI'd like to receive a formal proposal.`;
+    ? `Hola Prosource Solutions, revisé las soluciones de su sitio web:\n- Servicio: ${currentServiceObj.name}${idea ? `\n- Mi idea: ${idea}` : ''}\nMe gustaría recibir una propuesta comercial formal.`
+    : `Hi Prosource Solutions, I explored the solutions on your website:\n- Service: ${currentServiceObj.name}${idea ? `\n- My idea: ${idea}` : ''}\nI'd like to receive a formal proposal.`;
 
   const waUrl = `${company.social.whatsapp}?text=${encodeURIComponent(summaryText)}`;
 
@@ -98,11 +98,6 @@ export default function Estimator() {
                 exit={{ opacity: 0, y: -12 }}
                 transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
               >
-                <div className={styles.savings}>
-                  <span className={styles.impactLabel}><TrendingDown size={14} /> {t.projectedSavings}</span>
-                  <span className={styles.savingsValue}>{currentServiceObj.savings}</span>
-                </div>
-
                 <dl className={styles.facts}>
                   <div>
                     <dt className={styles.impactLabel}><Clock size={14} /> {t.deploymentTime}</dt>

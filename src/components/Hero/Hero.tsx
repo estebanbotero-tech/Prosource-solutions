@@ -2,7 +2,7 @@
 
 import type { ReactNode } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
-import { ArrowRight, ShieldCheck, Clock, TrendingUp, MessageCircle } from 'lucide-react';
+import { ArrowRight, Clock, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 import styles from './Hero.module.scss';
 import Globe from './Globe';
@@ -75,16 +75,8 @@ export default function Hero() {
 
           <div className={styles.trustBadges}>
             <div className={styles.trustItem}>
-              <ShieldCheck className={styles.trustIcon} size={18} />
-              <span>{t.badge1}</span>
-            </div>
-            <div className={styles.trustItem}>
               <Clock className={styles.trustIcon} size={18} />
               <span>{t.badge2}</span>
-            </div>
-            <div className={styles.trustItem}>
-              <TrendingUp className={styles.trustIcon} size={18} />
-              <span>{t.badge3}</span>
             </div>
           </div>
         </div>
